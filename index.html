@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>مساعد الزيارة الإشرافية (مدير / مساعد مدير مدرسة)</title>
+<style>
+:root{
+  --bg:#e0f2fe; --card:#ffffff; --fg:#0f172a; --mut:#64748b; --line:#cbd5e1; 
+  --acc:#0284c7; --accfg:#ffffff; --soft:#f0f9ff; --ok:#16a34a; --bad:#d97706; 
+  --h1:#0c4a6e; --h2:#0284c7; --sh:0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.65 system-ui,"Segoe UI",Tahoma,sans-serif}
+.hero{background:linear-gradient(135deg,var(--h1),var(--h2));color:#fff;padding:18px 16px 26px;border-radius:0 0 24px 24px;box-shadow:var(--sh)}
+.hero .in{max-width:640px;margin:0 auto;display:flex;flex-wrap:wrap;gap:10px 14px;align-items:flex-start}
+.hero h1{font-size:19px;line-height:1.4;margin:0}
+.hero .sub{font-size:12px;opacity:.8;margin-top:2px}
+.credit{margin-right:auto;text-align:left;direction:rtl;font-size:12px;line-height:1.5;background:rgba(255,255,255,.14);padding:6px 12px;border-radius:12px}
+.credit b{display:block;font-size:13px}
+.credit span{opacity:.85}
+main{max-width:640px;margin:-14px auto 0;padding:0 14px 96px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:12px;box-shadow:var(--sh)}
+.ttl{display:flex;align-items:center;gap:8px;font-weight:700;font-size:14px;margin-bottom:8px}
+.num{width:24px;height:24px;border-radius:50%;background:var(--acc);color:var(--accfg);font-size:13px;display:grid;place-items:center;flex:none}
+label{display:block;font-weight:600;font-size:13px;margin:0 0 6px}
+select,textarea{width:100%;padding:11px;border:1px solid var(--line);border-radius:12px;background:#f8fafc;color:var(--fg);font:inherit}
+select:focus,textarea:focus{outline:2px solid var(--acc);outline-offset:1px;background:#fff}
+textarea{min-height:92px;resize:vertical;margin-top:8px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:420px){.two{grid-template-columns:1fr}}
+.tag{display:inline-block;font-size:12px;font-weight:600;padding:3px 12px;border-radius:99px;background:var(--soft);margin-top:10px;border:1px solid var(--line)}
+.tag.ok{color:var(--ok);background:#f0fdf4}
+.tag.bad{color:var(--bad);background:#fffbeb}
+.hint{font-size:12px;color:var(--mut);margin-top:8px}
+.row{display:flex;gap:8px;margin-top:8px}
+button{flex:1;padding:11px;border-radius:12px;border:1px solid var(--line);background:#f8fafc;color:var(--fg);font:inherit;cursor:pointer;font-weight:600;transition:all .2s}
+button.pri{background:var(--acc);border-color:var(--acc);color:var(--accfg)}
+button.sm{flex:0 0 28%}
+button:active{transform:scale(.98)}
+button:hover{opacity:.9}
+.bar{position:fixed;left:0;right:0;bottom:0;padding:10px 14px calc(10px + env(safe-area-inset-bottom,0px));background:var(--card);border-top:1px solid var(--line)}
+.bar button{display:block;width:100%;max-width:612px;margin:0 auto;padding:14px;font-size:16px}
+#toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--fg);color:#fff;padding:8px 18px;border-radius:99px;font-size:13px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:100}
+#toast.on{opacity:1}
+.note{font-size:12px;color:var(--mut);padding:0 4px}
+input{width:100%;padding:11px;border:1px solid var(--line);border-radius:12px;background:#f8fafc;color:var(--fg);font:inherit;margin-bottom:8px}
+.lnk{flex:none;border:0;background:none;color:var(--mut);font-size:12px;text-decoration:underline;padding:6px}
+.md{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:30;display:none;place-items:center;padding:14px}
+.md .card{width:100%;max-width:360px;margin:0}
+.ov{position:fixed;inset:0;background:var(--bg);z-index:20;overflow:auto;display:none;padding:calc(14px + env(safe-area-inset-top,0px)) 14px calc(24px + env(safe-area-inset-bottom,0px))}
+.ov .wrap{max-width:640px;margin:0 auto}
+.ar{display:flex;gap:8px;align-items:flex-start;margin-bottom:8px}
+.ar textarea{margin:0;min-height:56px;flex:1}
+.ar button{flex:0 0 auto;padding:9px 12px}
+button.del{color:#dc2626;border-color:#fca5a5;background:#fef2f2}
+.err{color:#dc2626;font-size:12px;min-height:18px;margin-bottom:6px}
+details.card summary{cursor:pointer;font-weight:700;font-size:14px}
+.layout{display:grid;gap:12px}
+.side,#fields{display:grid;gap:12px;align-content:start}
+.side .card,#fields .card{margin-bottom:0}
+@media (min-width:900px){
+  body{font-size:16px}
+  .hero{padding:24px 28px 40px}
+  .hero .in,main{max-width:860px}
+  .hero h1{font-size:25px}
+  main{padding:0 28px 110px;margin-top:-18px}
+  textarea{min-height:130px}
+  .bar button{max-width:460px}
+  .ov .wrap{max-width:860px}
+}
+</style>
+</head>
+<body>
+<header class="hero"><div class="in">
+  <div><h1>مساعد الزيارة الإشرافية (مدير / مساعد مدير مدرسة)</h1><div class="sub">وزارة التربية والتعليم - سلطنة عمان 2026/2027</div></div>
+  <div class="credit"><b>إعداد وتجميع: أحمد بن عبدالله بن سعيد العلي</b><span>مساعد مدير مدرسة المسعى للبنين ٥-٩</span><b>إشراف ومتابعة: د. حسن بن علي بن إبراهيم البلوشي</b><span>مدير مدرسة المسعى للبنين ٥-٩</span></div>
+</div></header>
+
+<main>
+<div class="layout"><aside class="side">
+<div class="card">
+  <div class="ttl"><span class="num">✦</span>منشئ العبارة (البند + التقدير + الدليل + الأثر)</div>
+  <div class="two">
+    <div><label for="item">البند</label><select id="item"></select></div>
+    <div><label for="grade">التقدير</label><select id="grade"></select></div>
+  </div>
+  <span id="tag" class="tag"></span>
+  <div id="hint" class="hint"></div>
+  
+  <label style="margin-top:10px">الدليل (اختياره يضيف أثراً تلقائياً)</label>
+  <select id="evsel"></select>
+  
+  <label style="margin-top:10px">الأثر المترتب (تلقائي وقابل للتعديل)</label>
+  <select id="atharsel"></select>
+
+  <textarea id="draft"></textarea>
+  <div class="row"><button class="pri" id="addto"></button><button class="sm" id="dreset">إعادة ضبط</button></div>
+</div>
+<p class="note">عند اختيار الدليل، سيتم إدراج أثر تلقائي من البنك، ويمكنك تغيير الأثر يدوياً من القائمة أو التعديل على النص في المسودة. التقديرات (1 و2) تذهب للإجادة، و(3 و4 و5) للتطوير.</p>
+</aside>
+<section id="fields"></section>
+</div>
+<p style="text-align:center;margin:4px 0 0"><button class="lnk" id="open-adm">🔐 لوحة التحكم</button></p>
+</main>
+<div class="bar"><button class="pri" id="all">نسخ التقرير الإشرافي كاملاً</button></div>
+
+<div id="lg" class="md"><div class="card">
+  <div class="ttl">🔐 تسجيل الدخول للوحة التحكم</div>
+  <label for="lg-u">اسم المستخدم</label><input id="lg-u" autocomplete="username" autocapitalize="off">
+  <label for="lg-p">كلمة المرور</label><input id="lg-p" type="password" autocomplete="current-password">
+  <div id="lg-err" class="err"></div>
+  <div class="row"><button class="pri" id="lg-go">دخول</button><button id="lg-x">إلغاء</button></div>
+</div></div>
+
+<div id="adm" class="ov"><div class="wrap">
+  <div class="card"><div class="ttl" style="justify-content:space-between"><span>⚙️ لوحة التحكم</span><button class="sm" id="a-close" style="flex:none;padding:6px 14px">إغلاق</button></div>
+    <div class="note">تُحفظ التعديلات في متصفح هذا الجهاز.</div></div>
+  <div class="card">
+    <label>البنك</label><select id="a-b"><option value="ev">الأدلة</option><option value="atr">الأثر</option><option value="sup">الدعم المقدم</option><option value="rec">التوصيات الإشرافية</option><option value="not">الملاحظات الصفية</option></select>
+    <div id="a-ir" style="margin-top:8px"><label>البند</label><select id="a-i"></select></div>
+    <div style="margin-top:8px"><label>النوع</label><select id="a-t"><option value="0">جانب الإجادة (1 و2)</option><option value="1">جانب التحسين (3 و4 و5)</option></select></div>
+  </div>
+  <div class="card"><div class="ttl"><span id="a-n"></span></div><div id="a-l"></div>
+    <label style="margin-top:10px">إضافة عبارة جديدة</label><textarea id="a-new" placeholder="اكتب العبارة هنا..."></textarea>
+    <div class="row"><button class="pri" id="a-add">إضافة</button></div></div>
+  <details class="card"><summary>النسخ الاحتياطي والاستعادة</summary><div style="margin-top:10px">
+    <div class="row"><button id="b-copy">نسخ النسخة الاحتياطية</button></div>
+    <label style="margin-top:10px">استيراد نسخة احتياطية</label><textarea id="b-in" placeholder="الصق هنا النص المنسوخ سابقاً..."></textarea>
+    <div class="row"><button id="b-imp">استيراد</button><button class="del" id="b-reset">استعادة الأصل</button></div></div></details>
+</div></div>
+<div id="toast"></div>
+
+<script>
+// ===== البيانات: تم استخراج البنود والمؤشرات من الاستمارة المرفقة =====
+const D=[
+["توظيف نتائج التقويم الذاتي في التخطيط الاستراتيجي وتحسين الأداء المدرسي",
+["يفعل أدوات التقويم الذاتي في متابعة تحسين وتطوير الأداء المدرسي وفق إجراءات منظمة قابلة للقياس","ينفذ ويتابع جميع عمليات التقويم الذاتي، ويحدد جوانب التحسين بناء على أدلة واضحة","يتابع توظيف نتائج التقويم الذاتي في بناء وتنفيذ التخطيط الاستراتيجي","يوظف نتائج التقويم الذاتي في بناء الخطط المدرسية لرفع كفاءة الأداء","يتابع أثر تنفيذ التخطيط الاستراتيجي وتوظيف نتائجه في التحسين المستمر"],
+["غياب أدوات واضحة للتقويم الذاتي أو محدوديتها","عدم توظيف نتائج التقويم الذاتي في بناء الخطط المدرسية","ضعف متابعة أثر تنفيذ التخطيط الاستراتيجي على الأداء","الخطط المدرسية لا تعكس نتائج التقويم الذاتي","عدم وجود أدلة واضحة على عمليات التحسين المبنية على التقويم"]],
+["تفعيل التخطيط في تحسين وتطوير الأداء المدرسي ونواتج تعلم الطلبة",
+["يقود بناء وتحديث رؤية المدرسة ورسالتها بمشاركة المجتمع المدرسي","يوجه ويشارك في إعداد خطة مدرسية واقعية ومرنة وشاملة","يتابع أعضاء المجتمع المدرسي في تنفيذ الإجراءات وتقييم الأهداف","يتابع أثر تنفيذ الخطط المدرسية في تحسين وتطوير الأداء","يعزز الإبداع والابتكار في المجتمع المدرسي ويحفز المجيدين"],
+["الرؤية والرسالة غير محدثة أو غير معروفة للمجتمع المدرسي","الخطة المدرسية غير شاملة أو غير واقعية","عدم متابعة تنفيذ الخطة أو تقييم أهدافها","ضعف أثر الخطط المدرسية على نواتج التعلم","غياب التحفيز للمبدعين والمجيدين"]],
+["الإشراف على عمليتي التعليم والتعلم بما يدعم تعلم الطلبة ويراعي التمايز بينهم",
+["يخطط وينفذ زيارات إشرافية مشتركة ومتكاملة مع المعلمين الأوائل","يقيم بنود استمارة الزيارة الإشرافية بموضوعية ويقدم توصيات إجرائية","يتابع فاعلية أساليب التدريس لتحقيق أهداف المناهج والتمايز بين الطلبة","يتابع أثر الإجراءات العلاجية والإثرائية في تحسين نواتج التعلم","يوظف نتائج البحوث العلمية والأساليب الإشرافية المتنوعة"],
+["الزيارات الإشرافية غير منتظمة أو غير شاملة","تقييم الزيارات غير موضوعي ولا يقدم توصيات واضحة","عدم متابعة فاعلية أساليب التدريس والتمايز","ضعف متابعة أثر الإجراءات العلاجية والإثرائية","عدم توظيف نتائج البحوث في تطوير الأداء"]],
+["تنفيذ برامج إنماء مهني لأعضاء الهيئة التعليمية ومتابعة أثرها",
+["يوفر فرصا وبرامج إنماء مهني متنوعة لتلبية الاحتياجات التدريبية","يسهم في تطوير الكفايات المهنية لأعضاء الهيئة التعليمية","يتابع أثر برامج الإنماء المهني في تحسين الممارسات التدريسية ونواتج التعلم"],
+["برامج الإنماء المهني لا تلبي الاحتياجات الفعلية","ضعف تطوير الكفايات المهنية للمعلمين","عدم متابعة أثر برامج الإنماء على الممارسات الصفية"]],
+["الإشراف على مجتمعات التعلم المهنية وتبادل الخبرات التعليمية",
+["يشرف على تفعيل مجتمعات تعلم مهنية لتبادل الخبرات","تشرف على تفعيل مجتمعات تعلم مع المدارس الأخرى لتبادل الخبرات","يعمل على معالجة التحديات المشتركة من خلال مجتمعات التعلم"],
+["مجتمعات التعلم المهنية غير مفعلة أو شكلية","غياب تبادل الخبرات مع المدارس الأخرى","عدم معالجة التحديات التعليمية من خلال مجتمعات التعلم"]],
+["توظيف وإدارة الأجهزة والوسائل التعليمية ومرافق المبنى المدرسي",
+["يشرف على تطوير المرافق المدرسية ويلتزم بالاشتراطات الصحية","يتابع نظافة المبنى المدرسي وصيانته بصورة منتظمة","يتابع توفير وصيانة الأجهزة والوسائل التعليمية","يتابع توظيف مرافق المبنى وتجهيزاته في دعم عمليتي التعليم والتعلم"],
+["المرافق المدرسية لا تلبي الاشتراطات الصحية","إهمال نظافة المبنى وصيانته","عدم توفير أو صيانة الأجهزة والوسائل التعليمية","ضعف توظيف مرافق المبنى في العملية التعليمية"]],
+["إدارة موارد المدرسة وفق أولوياتها واحتياجات الطلبة",
+["يتابع توزيع الأدوار والمسؤوليات بين العاملين وفقا لمهامهم","يعزز القدرات والابتكارات والمبادرات التطويرية بما يخدم تعلم الطلبة","يوظف الموارد المتاحة بكفاءة لدعم عمليات التدريس والتعلم"],
+["توزيع الأدوار والمسؤوليات غير عادل أو غير واضح","عدم تشجيع الابتكارات والمبادرات التطويرية","هدر الموارد أو عدم توظيفها لدعم التعلم"]],
+["تفعيل المجالس واللجان والفرق المدرسية في اتخاذ القرارات وتحسين الأداء",
+["يشكل المجالس واللجان والفرق المدرسية وفق الدليل المعتمد","يفعل العمل التعاوني بين المجالس واللجان","يعمل على رفع إنتاجية فرق العمل ويعزز كفاءتها","يتابع تنفيذ مهام واختصاصات المجالس واللجان ويشارك في أعمالها"],
+["المجالس واللجان غير مشكلة وفق الدليل","ضعف العمل التعاوني بين اللجان","إنتاجية فرق العمل منخفضة","عدم متابعة تنفيذ قرارات ومهام اللجان"]],
+["الشراكة مع أولياء الأمور والمجتمع",
+["يوظف البيانات والتقارير في توجيه فرص الشراكة مع أولياء الأمور","يبني شراكات مرتبطة بأولويات تعلم الطلبة وتطوير الأداء المدرسي","يتابع فاعلية وأثر برامج الشراكة بين المدرسة والأسرة والمجتمع","يمكن أولياء الأمور من دعم تعلم أبنائهم ومتابعة تقدمهم"],
+["الشراكة مع أولياء الأمور محدودة أو شكلية","غياب شراكات مرتبطة بأولويات تعلم الطلبة","عدم متابعة أثر برامج الشراكة","عدم تمكين أولياء الأمور من دعم تعلم أبنائهم"]],
+["الحوكمة وفق الأدوار والمسؤوليات",
+["يطبق إجراءات إدارية موثقة على أعضاء المجتمع المدرسي","يشرف ويتابع انتظام وانضباط الكوادر العاملة والطلبة","يشرف على تأدية فعاليات الطابور المدرسي وفق اللائحة","يعزز مبادئ الحوكمة (النزاهة، الشفافية، المساءلة)","يشرف ويتابع توزيع أنصبة المواد الدراسية بين المعلمين بعدالة"],
+["غياب الإجراءات الإدارية الموثقة","ضعف انتظام وانضباط الكوادر والطلبة","إهمال الإشراف على فعاليات الطابور المدرسي","ضعف تعزيز مبادئ النزاهة والشفافية","عدم عدالة توزيع أنصبة المواد"]],
+["الالتزام بأخلاقيات المهنة والقوانين والأنظمة واللوائح والقرارات",
+["يلتزم بأخلاقيات مهنة التعليم والمحافظة على سرية المعلومات","يتقبل التوجيهات والملاحظات الصادرة من المسؤول المباشر والمشرف","يسهم في نشر ثقافة العمل بروح الفريق وتعزيز بيئة مدرسية إيجابية","يوفر البيانات والتقارير المتعلقة بالأداء المدرسي للجهات ذات العلاقة","يشرف على مشاركة نتائج التقويم للطلبة وأولياء أمورهم وفقاً للقوانين"],
+["عدم الالتزام بأخلاقيات المهنة أو سرية المعلومات","عدم تقبل التوجيهات والملاحظات الإشرافية","ضعف نشر ثقافة العمل بروح الفريق","التأخر في توفير البيانات والتقارير للجهات ذات العلاقة","عدم مشاركة نتائج التقويم مع أولياء الأمور بشكل نظامي"]]
+];
+
+// ===== بنك الآثار الكبير لكل بند =====
+const ATHAR = [
+[ // 1. التقويم الذاتي
+  ["مما انعكس أثره في تحسين وتطوير الأداء المدرسي بشكل مستمر ومبني على الأدلة", "مما ساهم في بناء خطط مدرسية دقيقة تلبي الاحتياجات الفعلية", "مما أدى إلى رفع كفاءة الأداء المدرسي وتحسين نواتج التعلم", "مما كان له الأثر في تحديد أولويات التحسين بدقة وموضوعية", "مما أسهم في ترسيخ ثقافة التقويم الذاتي المستمر"],
+  ["مما أدى إلى غياب الأدلة الموضوعية في تحديد جوانب التحسين", "مما انعكس أثره في خطط مدرسية لا تلبي الاحتياجات الفعلية", "مما ساهم في ضعف كفاءة الأداء المدرسي", "مما كان له الأثر في تراجع نواتج التعلم لغياب التخطيط المبني على البيانات", "مما أسهم في تكرار المشكلات دون معالجة جذرية"]
+],
+[ // 2. التخطيط
+  ["مما انعكس أثره في وضوح الرؤية والرسالة وتحقيق الأهداف الاستراتيجية", "مما ساهم في تنفيذ خطة مدرسية شاملة ومرنة", "مما أدى إلى تحسين وتطوير الأداء المدرسي بشكل ملموس", "مما كان له الأثر في تعزيز الإبداع والابتكار في المجتمع المدرسي", "مما أسهم في تحسين نواتج تعلم الطلبة"],
+  ["مما أدى إلى غموض الرؤية والرسالة وضياع الأهداف", "مما انعكس أثره في خطة مدرسية غير واقعية أو غير شاملة", "مما ساهم في ضعف تحسين الأداء المدرسي", "مما كان له الأثر في إحباط المبدعين وضعف التحفيز", "مما أسهم في تراجع نواتج التعلم"]
+],
+[ // 3. الإشراف على التعليم
+  ["مما انعكس أثره في تحسين الممارسات التدريسية وجودة التعليم", "مما ساهم في تحقيق أهداف المناهج الدراسية ومراعاة التمايز", "مما أدى إلى تحسين نواتج تعلم الطلبة من خلال العلاج والإثراء", "مما كان له الأثر في تقديم توصيات إشرافية إجرائية فعالة", "مما أسهم في توظيف البحوث لتحسين الأداء المدرسي"],
+  ["مما أدى إلى ضعف جودة الممارسات التدريسية", "مما انعكس أثره في عدم تحقيق أهداف المناهج وإهمال التمايز", "مما ساهم في تدني نواتج تعلم الطلبة", "مما كان له الأثر في غياب التوجيه الإشرافي الفعال", "مما أسهم في بقاء التحديات التعليمية دون حل"]
+],
+[ // 4. الإنماء المهني
+  ["مما انعكس أثره في تطوير الكفايات المهنية للمعلمين", "مما ساهم في تحسين الممارسات الصفية ونواتج التعلم", "مما أدى إلى تلبية الاحتياجات التدريبية الفعلية للمعلمين", "مما كان له الأثر في رفع الروح المعنوية والرضا الوظيفي", "مما أسهم في بناء مجتمع مهني متعلم"],
+  ["مما أدى إلى هدر موارد التدريب دون تحسين ملموس", "مما انعكس أثره في بقاء الممارسات الصفية تقليدية", "مما ساهم في عدم تلبية الاحتياجات التدريبية", "مما كان له الأثر في شعور المعلمين بعدم الدعم", "مما أسهم في ضعف الأداء المهني"]
+],
+[ // 5. مجتمعات التعلم
+  ["مما انعكس أثره في تبادل الخبرات وتحسين الممارسات التعليمية", "مما ساهم في معالجة التحديات التعليمية المشتركة", "مما أدى إلى بناء شراكات مهنية بين المدارس", "مما كان له الأثر في تحسين تعلم الطلبة", "مما أسهم في خلق بيئة تعاونية بين المعلمين"],
+  ["مما أدى إلى عزلة المعلمين وعدم تبادل الخبرات", "مما انعكس أثره في تكرار الأخطاء وعدم معالجة التحديات", "مما ساهم في ضعف التواصل المهني بين المدارس", "مما كان له الأثر في عدم الاستفادة من الخبرات المتاحة", "مما أسهم في تراجع جودة التعليم"]
+],
+[ // 6. الأجهزة والمرافق
+  ["مما انعكس أثره في توفير بيئة مدرسية آمنة وصحية", "مما ساهم في استدامة الأجهزة والوسائل التعليمية", "مما أدى إلى تحسين جودة عمليتي التعليم والتعلم", "مما كان له الأثر في الحفاظ على المبنى المدرسي", "مما أسهم في توفير بيئة جاذبة للطلبة"],
+  ["مما أدى إلى وجود مخاطر صحية أو بيئية", "مما انعكس أثره في تعطل الأجهزة وعدم توفر الوسائل", "مما ساهم في ضعف دعم العملية التعليمية", "مما كان له الأثر في تدهور حالة المبنى المدرسي", "مما أسهم في عزوف الطلبة عن بيئة المدرسة"]
+],
+[ // 7. إدارة الموارد
+  ["مما انعكس أثره في توزيع عادل للأدوار والمسؤوليات", "مما ساهم في استثمار الموارد بكفاءة لدعم التعلم", "مما أدى إلى تحفيز الابتكار والمبادرات التطويرية", "مما كان له الأثر في تحسين كفاءة العمل المدرسي", "مما أسهم في تلبية احتياجات الطلبة"],
+  ["مما أدى إلى إرباك العمل وضعف المساءلة", "مما انعكس أثره في هدر الموارد دون عائد ملموس", "مما ساهم في إحباط المبادرين", "مما كان له الأثر في ضعف دعم عمليات التدريس", "مما أسهم في عدم تلبية احتياجات الطلبة"]
+],
+[ // 8. المجالس واللجان
+  ["مما انعكس أثره في اتخاذ قرارات مدرسية مدروسة ومبنية على المشاركة", "مما ساهم في تحسين الأداء المدرسي من خلال فرق العمل", "مما أدى إلى رفع كفاءة وإنتاجية اللجان", "مما كان له الأثر في تنفيذ القرارات بشكل فعال", "مما أسهم في تعزيز ثقافة العمل الجماعي"],
+  ["مما أدى إلى قرارات ارتجالية أو غير مدروسة", "مما انعكس أثره في ضعف أداء اللجان وإنتاجيتها", "مما ساهم في عدم تنفيذ القرارات", "مما كان له الأثر في هيمنة الفردية على العمل الجماعي", "مما أسهم في بقاء المشكلات المدرسية دون حل"]
+],
+[ // 9. الشراكة مع أولياء الأمور
+  ["مما انعكس أثره في تحسين دعم أولياء الأمور لتعلم أبنائهم", "مما ساهم في بناء شراكات فعالة تدعم الأداء المدرسي", "مما أدى إلى تحسين نواتج تعلم الطلبة", "مما كان له الأثر في تعزيز الثقة بين المدرسة والمجتمع", "مما أسهم في توفير دعم إضافي لبرامج المدرسة"],
+  ["مما أدى إلى غياب الدعم الأسري لتعلم الطلبة", "مما انعكس أثره في ضعف الثقة بين المدرسة والمجتمع", "مما ساهم في عدم الاستفادة من دعم أولياء الأمور", "مما كان له الأثر في تراجع نواتج التعلم", "مما أسهم في غياب التواصل الفعال"]
+],
+[ // 10. الحوكمة
+  ["مما انعكس أثره في انتظام العمل المدرسي واحترام الأنظمة", "مما ساهم في تعزيز النزاهة والشفافية والمساءلة", "مما أدى إلى توزيع عادل للأنصبة والمسؤوليات", "مما كان له الأثر في ضبط السلوك والانضباط العام", "مما أسهم في بناء بيئة عمل منظمة"],
+  ["مما أدى إلى ارتباك العمل وتجاوز الأنظمة", "مما انعكس أثره في غياب الشفافية والمساءلة", "مما ساهم في عدم عدالة التوزيع", "مما كان له الأثر في انتشار الفوضى والانضباط", "مما أسهم في ضعف الثقة بين العاملين"]
+],
+[ // 11. أخلاقيات المهنة
+  ["مما انعكس أثره في بناء بيئة مدرسية آمنة وإيجابية", "مما ساهم في تعزيز ثقافة العمل بروح الفريق", "مما أدى إلى تحسين جودة القرارات المبنية على البيانات", "مما كان له الأثر في حماية حقوق جميع أطراف العملية التعليمية", "مما أسهم في الحفاظ على سرية المعلومات"],
+  ["مما أدى إلى انتهاك الخصوصية وغياب الثقة", "مما انعكس أثره في انتشار السلوكيات السلبية", "مما ساهم في ضعف التعاون بين العاملين", "مما كان له الأثر في حجب البيانات والتقارير", "مما أسهم في تدهور العلاقات المهنية"]
+]
+];
+
+// ===== العبارات الرسمية =====
+const SUB="ويظهر ذلك من خلال:";
+const NAMES=["توظيف نتائج التقويم الذاتي في التخطيط الاستراتيجي وتحسين الأداء المدرسي", "تفعيل التخطيط في تحسين وتطوير الأداء المدرسي ونواتج تعلم الطلبة", "الإشراف على عمليتي التعليم والتعلم بما يدعم تعلم الطلبة ويراعي التمايز بينهم", "تنفيذ برامج إنماء مهني لأعضاء الهيئة التعليمية ومتابعة أثرها", "الإشراف على مجتمعات التعلم المهنية وتبادل الخبرات التعليمية", "توظيف وإدارة الأجهزة والوسائل التعليمية ومرافق المبنى المدرسي", "إدارة موارد المدرسة وفق أولوياتها واحتياجات الطلبة", "تفعيل المجالس واللجان والفرق المدرسية في اتخاذ القرارات وتحسين الأداء", "الشراكة مع أولياء الأمور والمجتمع", "الحوكمة وفق الأدوار والمسؤوليات", "الالتزام بأخلاقيات المهنة والقوانين والأنظمة واللوائح والقرارات"];
+const HINT=["التقويم الذاتي - التخطيط الاستراتيجي", "الرؤية والرسالة - الخطة المدرسية", "الزيارات الإشرافية - التمايز - نواتج التعلم", "برامج الإنماء المهني - الكفايات", "مجتمعات التعلم - تبادل الخبرات", "المرافق - الأجهزة - الصيانة", "الموارد - الأدوار - الابتكار", "المجالس - اللجان - الفرق المدرسية", "الشراكة - أولياء الأمور - المجتمع", "الحوكمة - النزاهة - المساءلة", "أخلاقيات المهنة - القوانين - اللوائح"];
+const OFF=[["يفعل أدوات التقويم الذاتي في متابعة تحسين وتطوير الأداء المدرسي بصورة متميزة.", "يفعل أدوات التقويم الذاتي في متابعة تحسين وتطوير الأداء المدرسي بصورة جيدة.", "يفعل أدوات التقويم الذاتي في متابعة تحسين وتطوير الأداء المدرسي بصورة ملائمة.", "يفعل أدوات التقويم الذاتي في متابعة تحسين وتطوير الأداء المدرسي بصورة محدودة.", "يفعل أدوات التقويم الذاتي في متابعة تحسين وتطوير الأداء المدرسي بصورة نادرة."], ["يقود بناء وتحديث رؤية المدرسة ورسالتها بمشاركة المجتمع المدرسي بصورة متميزة.", "يقود بناء وتحديث رؤية المدرسة ورسالتها بمشاركة المجتمع المدرسي بصورة جيدة.", "يقود بناء وتحديث رؤية المدرسة ورسالتها بمشاركة المجتمع المدرسي بصورة ملائمة.", "يقود بناء وتحديث رؤية المدرسة ورسالتها بمشاركة المجتمع المدرسي بصورة محدودة.", "يقود بناء وتحديث رؤية المدرسة ورسالتها بمشاركة المجتمع المدرسي بصورة نادرة."], ["يخطط وينفذ زيارات إشرافية مشتركة ومتكاملة مع المعلمين الأوائل بصورة متميزة.", "يخطط وينفذ زيارات إشرافية مشتركة ومتكاملة مع المعلمين الأوائل بصورة جيدة.", "يخطط وينفذ زيارات إشرافية مشتركة ومتكاملة مع المعلمين الأوائل بصورة ملائمة.", "يخطط وينفذ زيارات إشرافية مشتركة ومتكاملة مع المعلمين الأوائل بصورة محدودة.", "يخطط وينفذ زيارات إشرافية مشتركة ومتكاملة مع المعلمين الأوائل بصورة نادرة."], ["يوفر فرصا وبرامج إنماء مهني متنوعة لتلبية الاحتياجات التدريبية بصورة متميزة.", "يوفر فرصا وبرامج إنماء مهني متنوعة لتلبية الاحتياجات التدريبية بصورة جيدة.", "يوفر فرصا وبرامج إنماء مهني متنوعة لتلبية الاحتياجات التدريبية بصورة ملائمة.", "يوفر فرصا وبرامج إنماء مهني متنوعة لتلبية الاحتياجات التدريبية بصورة محدودة.", "يوفر فرصا وبرامج إنماء مهني متنوعة لتلبية الاحتياجات التدريبية بصورة نادرة."], ["يشرف على تفعيل مجتمعات تعلم مهنية لتبادل الخبرات بصورة متميزة.", "يشرف على تفعيل مجتمعات تعلم مهنية لتبادل الخبرات بصورة جيدة.", "يشرف على تفعيل مجتمعات تعلم مهنية لتبادل الخبرات بصورة ملائمة.", "يشرف على تفعيل مجتمعات تعلم مهنية لتبادل الخبرات بصورة محدودة.", "يشرف على تفعيل مجتمعات تعلم مهنية لتبادل الخبرات بصورة نادرة."], ["يشرف على تطوير المرافق المدرسية ويلتزم بالاشتراطات الصحية بصورة متميزة.", "يشرف على تطوير المرافق المدرسية ويلتزم بالاشتراطات الصحية بصورة جيدة.", "يشرف على تطوير المرافق المدرسية ويلتزم بالاشتراطات الصحية بصورة ملائمة.", "يشرف على تطوير المرافق المدرسية ويلتزم بالاشتراطات الصحية بصورة محدودة.", "يشرف على تطوير المرافق المدرسية ويلتزم بالاشتراطات الصحية بصورة نادرة."], ["يتابع توزيع الأدوار والمسؤوليات بين العاملين وفقا لمهامهم بصورة متميزة.", "يتابع توزيع الأدوار والمسؤوليات بين العاملين وفقا لمهامهم بصورة جيدة.", "يتابع توزيع الأدوار والمسؤوليات بين العاملين وفقا لمهامهم بصورة ملائمة.", "يتابع توزيع الأدوار والمسؤوليات بين العاملين وفقا لمهامهم بصورة محدودة.", "يتابع توزيع الأدوار والمسؤوليات بين العاملين وفقا لمهامهم بصورة نادرة."], ["يشكل المجالس واللجان والفرق المدرسية وفق الدليل المعتمد بصورة متميزة.", "يشكل المجالس واللجان والفرق المدرسية وفق الدليل المعتمد بصورة جيدة.", "يشكل المجالس واللجان والفرق المدرسية وفق الدليل المعتمد بصورة ملائمة.", "يشكل المجالس واللجان والفرق المدرسية وفق الدليل المعتمد بصورة محدودة.", "يشكل المجالس واللجان والفرق المدرسية وفق الدليل المعتمد بصورة نادرة."], ["يوظف البيانات والتقارير في توجيه فرص الشراكة مع أولياء الأمور بصورة متميزة.", "يوظف البيانات والتقارير في توجيه فرص الشراكة مع أولياء الأمور بصورة جيدة.", "يوظف البيانات والتقارير في توجيه فرص الشراكة مع أولياء الأمور بصورة ملائمة.", "يوظف البيانات والتقارير في توجيه فرص الشراكة مع أولياء الأمور بصورة محدودة.", "يوظف البيانات والتقارير في توجيه فرص الشراكة مع أولياء الأمور بصورة نادرة."], ["يطبق إجراءات إدارية موثقة على أعضاء المجتمع المدرسي بصورة متميزة.", "يطبق إجراءات إدارية موثقة على أعضاء المجتمع المدرسي بصورة جيدة.", "يطبق إجراءات إدارية موثقة على أعضاء المجتمع المدرسي بصورة ملائمة.", "يطبق إجراءات إدارية موثقة على أعضاء المجتمع المدرسي بصورة محدودة.", "يطبق إجراءات إدارية موثقة على أعضاء المجتمع المدرسي بصورة نادرة."], ["يلتزم بأخلاقيات مهنة التعليم والمحافظة على سرية المعلومات بصورة متميزة.", "يلتزم بأخلاقيات مهنة التعليم والمحافظة على سرية المعلومات بصورة جيدة.", "يلتزم بأخلاقيات مهنة التعليم والمحافظة على سرية المعلومات بصورة ملائمة.", "يلتزم بأخلاقيات مهنة التعليم والمحافظة على سرية المعلومات بصورة محدودة.", "يلتزم بأخلاقيات مهنة التعليم والمحافظة على سرية المعلومات بصورة نادرة."]];
+const GL={1:"متميز (1)",2:"جيد (2)",3:"ملائم (3)",4:"غير ملائم (4)",5:"يحتاج إلى تدخل (5)"};
+NAMES.forEach((n,i)=>D[i][0]=n);
+const official=(i,g)=>OFF[i][g-1]+" "+SUB;
+
+const FL=[
+{k:"f1",t:"جوانب الإجادة في الأداء وأدلتها"},
+{k:"f2",t:"الجوانب التى تحتاج إلى تطوير في الأداء وأدلتها"},
+{k:"f3",t:"الملاحظات",bank:["لا توجد ملاحظات جوهرية.","لوحظ تفاعل إيجابي.","يحتاج إلى مزيد من المتابعة.","ملاحظات عامة على سير العمل."]},
+{k:"f4",t:"الدعم المقدم",bank:["توفير موارد إضافية.","تنظيم ورشة عمل.","زيارة تبادلية.","دعم فني."]},
+{k:"f5",t:"التوصيات",bank:["الاستمرار على النهج الحالي.","إعداد خطة تحسين.","تكثيف الزيارات الإشرافية.","توثيق الأدلة."]}
+];
+
+const MAX=1000;
+const KEY_D="sv_principal_v1";
+const $=id=>document.getElementById(id);
+const itemSel=$("item"),gradeSel=$("grade"),box=$("fields");
+D.forEach((d,i)=>itemSel.add(new Option((i+1)+". "+d[0],i)));
+[["جوانب الإجادة",[1,2]],["جوانب التحسين والتطوير",[3,4,5]]].forEach(([n,g])=>{
+  const og=document.createElement("optgroup");og.label=n;
+  g.forEach(v=>og.appendChild(new Option(GL[v],v)));gradeSel.appendChild(og);
+});
+
+let toastT;
+function toast(m){const t=$("toast");t.textContent=m;t.classList.add("on");clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove("on"),1600)}
+async function copy(text){
+  if(!text.trim()){toast("لا يوجد نص للنسخ");return}
+  try{await navigator.clipboard.writeText(text)}
+  catch(e){const a=document.createElement("textarea");a.value=text;document.body.appendChild(a);a.select();try{document.execCommand("copy")}catch(_){}a.remove()}
+  toast(text.length>MAX&&text.indexOf("\n\n")<0?"تم النسخ، لكن النص يتجاوز 1000 حرف":"تم النسخ");
+}
+
+FL.forEach((f,n)=>{
+  const c=document.createElement("div");c.className="card";
+  c.innerHTML='<div class="ttl"><span class="num">'+(n+1)+'</span><span style="flex:1">'+f.t+'*</span><span class="note" id="n-'+f.k+'">0 / '+MAX+'</span></div>'+
+    (f.bank?'<select data-k="'+f.k+'"></select>':'')+
+    '<textarea id="'+f.k+'"></textarea>'+
+    '<div class="row"><button class="pri" data-copy="'+f.k+'">نسخ هذا الحقل</button><button class="sm" data-clear="'+f.k+'">مسح</button></div>';
+  box.appendChild(c);
+});
+
+const isEx=()=>+gradeSel.value<=2;
+
+function cnt(k){const n=$(k).value.length,c=$("n-"+k);c.textContent=n+" / "+MAX;c.style.color=n>MAX?"#dc2626":"";if(k==="f1"||k==="f2")fillSelects()}
+function fillSelects(){
+  const i=+itemSel.value,b=D[i][isEx()?1:2];
+  const ev=$("evsel");ev.innerHTML="";ev.add(new Option("اختر دليلاً يُضاف إلى العبارة...",""));
+  for(let st=0;st<b.length;st+=6){
+    const og=document.createElement("optgroup");og.label="مجموعة "+(st/6+1);
+    b.slice(st,st+6).forEach((t,j)=>{
+      const opt = document.createElement("option");
+      opt.textContent = t; 
+      opt.value = st+j;
+      og.appendChild(opt);
+    });
+    ev.appendChild(og);
+  }
+  
+  const atrBank = ATHAR[i][isEx()?0:1];
+  const atr=$("atharsel"); atr.innerHTML=""; atr.add(new Option("اختر الأثر المترتب (يُعبأ تلقائياً)...", ""));
+  atrBank.forEach((t, j) => {
+    const opt = document.createElement("option");
+    opt.textContent = t;
+    opt.value = j;
+    atr.appendChild(opt);
+  });
+
+  FL.forEach(f=>{
+    if(!f.bank)return;
+    const s=document.querySelector('select[data-k="'+f.k+'"]');
+    s.innerHTML="";s.add(new Option("أضف من القائمة...",""));
+    f.bank.forEach((t,j)=>{
+      const opt = document.createElement("option");
+      opt.textContent = t;
+      opt.value = t;
+      s.appendChild(opt);
+    });
+  });
+}
+function refresh(){
+  const i=+itemSel.value,g=+gradeSel.value,ex=isEx();
+  const tag=$("tag");tag.className="tag "+(ex?"ok":"bad");
+  tag.textContent=ex?"مجال الإجادة":"مجال التحسين والتطوير";
+  $("hint").textContent=HINT[i]?"مؤشرات البند: "+HINT[i]:"";
+  fillSelects();
+  $("draft").value=official(i,g);
+  $("addto").textContent="إضافة إلى: "+(ex?"جوانب الإجادة":"الجوانب التى تحتاج إلى تطوير");
+}
+itemSel.onchange=gradeSel.onchange=refresh;
+
+function addEv(ta,txt){
+  let v=ta.value.trim();
+  if(v.includes(txt))return;
+  v=v.replace(/[.。]$/,"");
+  v+=v.endsWith(SUB)?" "+txt:"، "+txt;
+  ta.value=v+".";
+}
+
+$("evsel").onchange=e=>{
+  const s=e.target;if(s.value==="")return;
+  const i = +itemSel.value;
+  const ex = isEx();
+  
+  const evText = D[i][ex?1:2][+s.value];
+  addEv($("draft"), evText);
+  
+  const impacts = ATHAR[i][ex?0:1];
+  if(impacts && impacts.length > 0) {
+    const randomIndex = Math.floor(Math.random() * impacts.length);
+    const randomImpact = impacts[randomIndex];
+    addEv($("draft"), randomImpact);
+    $("atharsel").value = randomIndex;
+  }
+  s.value="";
+  toast("تمت إضافة الدليل والأثر التلقائي. يمكنك التعديل.");
+};
+
+$("atharsel").onchange=e=>{
+  const s=e.target;if(s.value==="")return;
+  addEv($("draft"),ATHAR[+itemSel.value][isEx()?0:1][+s.value]);s.value="";
+};
+
+$("dreset").onclick=()=>{$("draft").value=official(+itemSel.value,+gradeSel.value)};
+$("addto").onclick=()=>{
+  const d=$("draft").value.trim();
+  if(!d||d.endsWith(SUB)){toast("اختر دليلاً واحداً على الأقل");return}
+  const t=$(isEx()?"f1":"f2"),old=t.value.trim();
+  t.value=(old?old+"\n":"")+d;cnt(t.id);
+  toast(t.value.length>MAX?"أُضيفت، لكن الحقل تجاوز 1000 حرف: اختصر النص":"تمت الإضافة");
+  $("draft").value=official(+itemSel.value,+gradeSel.value);
+};
+
+box.addEventListener("change",e=>{
+  const s=e.target;if(s.tagName!=="SELECT"||!s.dataset.k||s.value==="")return;
+  const f=FL.find(z=>z.k===s.dataset.k);
+  const txt=s.value;
+  const ta=$(f.k);
+  const lines=ta.value.split("\n").map(z=>z.replace(/^[-•]\s*/,"").trim()).filter(Boolean);
+  if(!lines.includes(txt))lines.push(txt);
+  ta.value=lines.length>1?lines.map(z=>"- "+z).join("\n"):lines[0];
+  cnt(f.k);s.value="";
+});
+box.addEventListener("input",e=>{if(e.target.tagName==="TEXTAREA")cnt(e.target.id)});
+box.addEventListener("click",e=>{
+  const b=e.target.closest("button");if(!b)return;
+  if(b.dataset.copy)copy($(b.dataset.copy).value.trim());
+  if(b.dataset.clear){const k=b.dataset.clear;$(k).value="";cnt(k);toast("تم المسح")}
+});
+$("all").onclick=()=>{
+  const parts=[];
+  FL.forEach(f=>{const v=$(f.k).value.trim();if(v)parts.push(f.t+":\n"+v)});
+  copy(parts.join("\n\n"));
+};
+
+// Admin
+const DEF_U="admin",DEF_H="315b2ff12928e0f4ba90ad67548f1466bd19cc54894878589617f8b473921f25",KEY_C="sv_cred";
+async function sha(t){const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode("sv|"+t));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("")}
+function cred(){try{const c=JSON.parse(localStorage.getItem(KEY_C)||"null");if(c&&c.u&&c.h)return c}catch(e){}return{u:DEF_U,h:DEF_H}}
+
+let fails=0,lock=0;
+$("open-adm").onclick=()=>{$("lg-err").textContent="";$("lg").style.display="grid";setTimeout(()=>$("lg-u").focus(),50)};
+$("lg-x").onclick=()=>{$("lg").style.display="none";$("lg-p").value=""};
+$("lg-p").addEventListener("keydown",e=>{if(e.key==="Enter")$("lg-go").click()});
+$("lg-go").onclick=async()=>{
+  if(Date.now()<lock){$("lg-err").textContent="محاولات كثيرة، حاول بعد 30 ثانية";return}
+  try{
+    const c=cred(),hh=await sha($("lg-p").value);
+    if($("lg-u").value.trim()===c.u&&hh===c.h){fails=0;$("lg").style.display="none";$("lg-p").value="";$("adm").style.display="block";renderList()}
+    else{if(++fails>=5){lock=Date.now()+30000;fails=0}$("lg-err").textContent="بيانات الدخول غير صحيحة"}
+  }catch(e){$("lg-err").textContent="هذا المتصفح لا يدعم التحقق الآمن"}
+};
+$("a-close").onclick=()=>{$("adm").style.display="none";scrollTo(0,0)};
+
+D.forEach((d,i)=>$("a-i").add(new Option((i+1)+". "+d[0],i)));
+const curArr=()=>{const b=$("a-b").value,x=+$("a-t").value,i=+$("a-i").value;return b==="ev"?D[i][1+x]:b==="atr"?ATHAR[i][x]:[]};
+function renderList(){
+  $("a-ir").style.display=$("a-b").value==="ev"||$("a-b").value==="atr"?"":"none";
+  const arr=curArr(),L=$("a-l");L.innerHTML="";
+  $("a-n").textContent="عدد العبارات: "+arr.length;
+  arr.forEach((t,n)=>{
+    const r=document.createElement("div");r.className="ar";
+    const ta=document.createElement("textarea");ta.value=t;
+    ta.onchange=()=>{const v=ta.value.trim();if(!v){ta.value=arr[n];return}arr[n]=v;toast("تم الحفظ")};
+    const d=document.createElement("button");d.textContent="حذف";d.className="del";
+    d.onclick=()=>{if(confirm("حذف هذه العبارة؟")){arr.splice(n,1);renderList()}};
+    r.append(ta,d);L.appendChild(r);
+  });
+}
+["a-b","a-i","a-t"].forEach(k=>$(k).onchange=renderList);
+$("a-add").onclick=()=>{
+  const v=$("a-new").value.trim();if(!v)return;
+  const a=curArr();if(a.includes(v)){toast("العبارة موجودة مسبقاً");return}
+  a.push(v);$("a-new").value="";renderList();toast("تمت الإضافة");
+};
+
+refresh();
+</script>
+</body>
+</html>
