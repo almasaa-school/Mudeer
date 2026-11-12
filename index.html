@@ -1,198 +1,2467 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>مساعد الزيارة الإشرافية (مدير / مساعد مدير مدرسة)</title>
-<style>
-:root{--bg:#e0f2fe;--card:#fff;--fg:#0f172a;--mut:#64748b;--line:#cbd5e1;--acc:#0284c7;--soft:#f0f9ff;--in:#f8fafc;--ok:#16a34a;--bad:#d97706;--h1:#0c4a6e;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b1220;--card:#111a2e;--fg:#e2e8f0;--mut:#94a3b8;--line:#2b3a55;--soft:#0f2438;--in:#16213a;--h1:#082f49;color-scheme:dark}}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.65 system-ui,"Segoe UI",Tahoma,sans-serif}
-.hero{background:linear-gradient(135deg,var(--h1),#0284c7);color:#fff;padding:18px 16px 26px;border-radius:0 0 24px 24px}
-.hero .in{max-width:640px;margin:0 auto;display:flex;flex-wrap:wrap;gap:10px 14px}
-.hero h1{font-size:19px;line-height:1.4;margin:0}.sub{font-size:12px;opacity:.8}
-.credit{font-size:12px;line-height:1.5;background:rgba(255,255,255,.14);padding:6px 12px;border-radius:12px}
-.credit b{display:block;font-size:13px}.credit span{opacity:.85}
-main{max-width:640px;margin:-14px auto 0;padding:0 14px 96px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;box-shadow:0 4px 6px -1px rgba(0,0,0,.1)}
-.ttl{display:flex;align-items:center;gap:8px;font-weight:700;font-size:14px;margin-bottom:8px}
-.num{width:24px;height:24px;border-radius:50%;background:var(--acc);color:#fff;font-size:13px;display:grid;place-items:center;flex:none}
-label{display:block;font-weight:600;font-size:13px;margin:10px 0 6px}
-select,textarea{width:100%;padding:11px;border:1px solid var(--line);border-radius:12px;background:var(--in);color:var(--fg);font:inherit}
-textarea{min-height:96px;resize:vertical;margin-top:8px}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-@media (max-width:420px){.two{grid-template-columns:1fr}}
-.tag{display:inline-block;font-size:12px;font-weight:600;padding:3px 12px;border-radius:99px;background:var(--soft);margin-top:10px;border:1px solid var(--line)}
-.tag.ok{color:var(--ok)}.tag.bad{color:var(--bad)}
-.row{display:flex;gap:8px;margin-top:8px}
-button{flex:1;padding:11px;border-radius:12px;border:1px solid var(--line);background:var(--in);color:var(--fg);font:inherit;cursor:pointer;font-weight:600}
-button.pri{background:var(--acc);border-color:var(--acc);color:#fff}button.sm{flex:0 0 28%}
-.bar{position:fixed;left:0;right:0;bottom:0;padding:10px 14px calc(10px + env(safe-area-inset-bottom,0px));background:var(--card);border-top:1px solid var(--line)}
-.bar button{display:block;width:100%;max-width:612px;margin:0 auto;padding:14px;font-size:16px}
-#toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:#0f172a;color:#fff;padding:8px 18px;border-radius:99px;font-size:13px;opacity:0;pointer-events:none;transition:opacity .2s}
-#toast.on{opacity:1}
-.note{font-size:12px;color:var(--mut)}
-.layout,.side,#fields{display:grid;gap:12px;align-content:start}
-.ind{background:var(--soft);padding:12px;border-radius:12px;font-size:14px;font-weight:600;border-right:4px solid var(--acc);line-height:1.6}
-@media (min-width:900px){.hero .in,main{max-width:860px}body{font-size:16px}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مِعيار | MI’YAR — مساعد الزيارة الإشرافية الذكي 2026/2027م</title>
+    <!-- تحميل Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- تحميل خطوط Tajawal و Cairo من Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <!-- أيقونات Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Tajawal', 'Cairo', 'sans-serif'],
+                        heading: ['Cairo', 'Tajawal', 'sans-serif'],
+                    },
+                    colors: {
+                        navy: {
+                            950: '#090e1a',
+                            900: '#0f172a',
+                            800: '#1e293b',
+                            700: '#1e3a8a',
+                            600: '#1d4ed8',
+                        },
+                        gold: {
+                            400: '#fbbf24',
+                            500: '#d97706',
+                            600: '#b45309',
+                            50: '#fffbeb',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Tajawal', 'Cairo', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+        h1, h2, h3, h4, .font-heading {
+            font-family: 'Cairo', 'Tajawal', sans-serif;
+        }
+        /* تخصيص شريط التمرير */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        /* تنسيقات الطباعة الرسمية */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #official-print-area, #official-print-area * {
+                visibility: visible;
+            }
+            #official-print-area {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                background: white !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                box-shadow: none !important;
+            }
+            .no-print {
+                display: none !important;
+            }
+            @page {
+                size: A4 portrait;
+                margin: 12mm;
+            }
+        }
+        .select-styled {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%231e3a8a' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: left 0.75rem center;
+            background-repeat: no-repeat;
+            background-size: 1.25em 1.25em;
+            padding-left: 2.5rem;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+        .step-badge {
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
 </head>
-<body>
-<header class="hero"><div class="in">
-<div><h1>مساعد الزيارة الإشرافية (مدير / مساعد مدير مدرسة)</h1><div class="sub">وزارة التعليم - سلطنة عمان 2026/2027</div></div>
-<div class="credit"><b>إعداد وتجميع: أحمد بن عبدالله بن سعيد العلي</b><span>مساعد مدير مدرسة المسعى للبنين ٥-٩</span><b>إشراف ومتابعة: د. حسن بن علي بن إبراهيم البلوشي</b><span>مدير مدرسة المسعى للبنين ٥-٩</span></div>
-</div></header>
-<main><div class="layout"><aside class="side">
-<div class="card">
-<div class="ttl"><span class="num">✦</span>منشئ العبارة (المؤشر + الدليل + الأثر)</div>
-<div class="two"><div><label for="item">البند</label><select id="item"></select></div><div><label for="grade">التقدير</label><select id="grade"></select></div></div>
-<span id="tag" class="tag"></span>
-<label>المؤشر الرسمي المقابل للتقدير:</label><div id="ib" class="ind"></div>
-<label>الدليل (يضيف أثراً تلقائياً)</label><select id="evsel"></select>
-<label>الأثر المترتب</label><select id="atsel"></select>
-<textarea id="draft"></textarea>
-<div class="row"><button class="pri" id="addto"></button><button class="sm" id="dreset">إعادة ضبط</button></div>
-</div>
-<p class="note">يرتبط كل مؤشر من المؤشرات الخمسة بتقدير: المؤشر 1 = متميز ... المؤشر 5 = يحتاج إلى تدخل. عند إضافة كل جانب يُولَّد له دعم مقدم واحد وتوصية أو توصيتان. تُبنى التوصيات على جوانب التحسين والتطوير، وإن لم يوجد منها شيء تُبنى على جوانب الإجادة.</p>
-</aside><section id="fields"></section></div></main>
-<div class="bar"><button class="pri" id="all">نسخ التقرير الإشرافي كاملاً</button></div>
-<div id="toast"></div>
-<script>
-const ITEMS=[
-{n:"توظيف نتائج التقويم الذاتي في التخطيط الإستراتيجي، وتحسين الأداء المدرسي",f:"توظيف نتائج التقويم الذاتي في التخطيط وتحسين الأداء",
-ind:["يفعل أدوات التقويم الذاتي في متابعة تحسين وتطوير الأداء المدرسي وفق إجراءات منظمة قابلة للقياس","ينفذ ويتابع جميع عمليات التقويم الذاتي، ويحدد جوانب التحسين بناء على أدلة واضحة","يتابع توظيف نتائج التقويم الذاتي في بناء وتنفيذ التخطيط الاستراتيجي بما يتوافق مع الخطط المدرسية","يوظف نتائج التقويم الذاتي في بناء الخطط المدرسية (الخطة المدرسية، برامج الإنماء المهني، خطط المواد الدراسية... الخ) لرفع كفاءة الأداء المدرسي","يتابع أثر تنفيذ التخطيط الاستراتيجي، وتوظيف نتائجه في تحسين وتطوير الأداء المدرسي"],
-ev:["وثيقة التقويم الذاتي للمدرسة والتقارير التحليلية المرفقة بها.","محاضر اجتماعات فريق التقويم الذاتي ولجان التخطيط.","مطابقة أهداف الخطة المدرسية مع نتائج مؤشرات التقويم الذاتي.","سجل جوانب التحسين المستخلصة من التقويم الذاتي وخطط معالجتها."]},
-{n:"تفعيل التخطيط في تحسين وتطوير الأداء المدرسي، ونواتج تعلم الطلبة",f:"التخطيط المدرسي ورؤية المدرسة ورسالتها",
-ind:["يقود بناء وتحديث رؤية المدرسة ورسالتها بمشاركة أعضاء المجتمع المدرسي وأولياء الأمور، بما يتوافق مع أهداف التعلم","يوجه ويشارك في إعداد خطة مدرسية واقعية ومرنة وشاملة، تتكامل مع الخطط المدرسية الأخرى","يتابع أعضاء المجتمع المدرسي في تنفيذ الإجراءات، وتقييم أهداف الخطة المدرسية والاستفادة من نتائجها في التحسين والتطوير المستمر","يتابع أثر تنفيذ الخطط المدرسية (الخطة المدرسية، خطة الإنماء المهني، خطط المناهج الدراسية... الخ) في تحسين وتطوير الأداء المدرسي","يعزز الإبداع والابتكار في المجتمع المدرسي، ويحفز المجيدين منهم"],
-ev:["وثيقة الرؤية والرسالة المعتمدة والمعلنة.","الخطة المدرسية وخطط المواد وخطة الإنماء المهني.","سجلات متابعة تنفيذ الخطة وتقييم أهدافها.","سجل المبادرات الإبداعية وشهادات تكريم المجيدين."]},
-{n:"الإشراف على عمليتي التعليم والتعلم بما يدعم تعلم الطلبة، ويراعي التمايز بينهم",f:"الإشراف على عمليتي التعليم والتعلم ومراعاة التمايز",
-ind:["يخطط وينفذ زيارات إشرافية مشتركة ومتكاملة مع المعلمين الأوائل، بما يضمن شمولية أعضاء الهيئة التعليمية","يقيم بنود استمارة الزيارة الإشرافية بموضوعية، ويقدم توصيات إجرائية ويتابع تنفيذها","يتابع فاعلية أساليب التدريس، لتحقيق أهداف المناهج الدراسية، والتمايز بين الطلبة","يتابع أثر الإجراءات العلاجية والإثرائية في تحسين وتطوير نواتج تعلم الطلبة","يوظف نتائج البحوث العلمية والأساليب الإشرافية المتنوعة، ويتابع أثرها في تحسين وتطوير الأداء المدرسي"],
-ev:["خطة الزيارات الإشرافية المشتركة مع المعلمين الأوائل.","استمارات الزيارة الصفية المكتملة وسجل متابعة التوصيات.","تقارير أثر الخطط العلاجية والإثرائية في التحصيل الدراسي.","بحوث إجرائية ونماذج لجولات التعلم والتأمل المشترك."]},
-{n:"تنفيذ برامج إنماء مهني لأعضاء الهيئة التعليمية، ومتابعة أثرها في تحسين الممارسات التدريسية، ونواتج تعلم الطلبة",f:"برامج الإنماء المهني وقياس أثرها",
-ind:["يوفر فرصا وبرامج إنماء مهني متنوعة لتلبية الاحتياجات التدريبية تسهم في تطوير الكفايات المهنية لأعضاء الهيئة التعليمية","يشارك بفاعلية في برامج الإنماء المهني ويوظفها لتطوير مهاراته القيادية والإشرافية","يوظف ما يكتسبه من تعلم مهني في تحسين وتطوير الأداء المدرسي","يعزز ثقافة التعلم المهني المستمر من خلال دعم المبادرات المهنية وتبادل الخبرات والبحوث الإجرائية","يقيس أثر برامج الإنماء المهني في تطوير أداء جميع أعضاء الهيئة التعليمية وتحسين تعلم الطلبة"],
-ev:["خطة الإنماء المهني وسجلات الورش والبرامج المنفذة.","شهادات مشاركة الإدارة المدرسية في البرامج التدريبية.","استمارات قياس أثر التدريب على الأداء الصفي.","سجل تبادل الخبرات والبحوث الإجرائية."]},
-{n:"الإشراف على مجتمعات التعلم المهنية، وتبادل الخبرات التعليمية في تطوير ممارسات التدريس، وتعلم الطلبة",f:"مجتمعات التعلم المهنية وتبادل الخبرات",
-ind:["يشرف على بناء مجتمعات التعلم المهنية وفق احتياجات أعضاء الهيئة التعليمية","يشرف على تفعيل مجتمعات تعلم مهنية داخل المدرسة بما يدعم استدامتها، وتحسين الممارسات التعليمية، ورفع نواتج تعلم الطلبة","يشرف على تفعيل مجتمعات تعلم مهنية مع المدارس الأخرى لتبادل الخبرات وتحسين الممارسات التعليمية ومعالجة التحديات المشتركة","يشرف على توظيف مخرجات مجتمعات التعلم المهنية في تطوير الأداء التدريسي وتحسين جودة التعليم والتعلم داخل المدرسة","يقيس أثر مجتمعات التعلم المهنية على تطوير أداء أعضاء الهيئة التعليمية، وتحسين نواتج تعلم الطلبة"],
-ev:["قرارات تشكيل مجتمعات التعلم المهنية وخططها.","محاضر الجلسات ومخرجاتها التطبيقية.","سجلات التعاون مع المدارس الأخرى.","تقارير قياس أثر المجتمعات على الأداء ونواتج التعلم."]},
-{n:"توظيف وإدارة الأجهزة والوسائل التعليمية، ومرافق المبنى المدرسي",f:"المرافق والأجهزة والوسائل التعليمية",
-ind:["يهيئ المرافق المدرسية ويتابع الالتزام بالاشتراطات الصحية بما يخدم تعلم الطلبة، بمن فيهم الطلبة ذوو الإعاقة/الاحتياجات الخاصة","يتابع توافر متطلبات الأمن والسلامة في (المختبرات المدرسية، مركز مصادر التعلم ... الخ)، ومدى التزام مالكي وسائقي وسائل النقل المدرسية باشتراطات بنود العقود المبرمة","يتابع نظافة المبنى المدرسي وصيانته بصورة منتظمة، ويعمل على معالجة التحديات المرتبطة بالمرافق والتجهيزات المدرسية","يتابع توفير وصيانة الأجهزة والوسائل التعليمية بما يضمن استدامتها","يتابع توظيف مرافق المبنى المدرسي وتجهيزاته في دعم عمليتي التعليم والتعلم"],
-ev:["سجلات الأمن والسلامة في المختبرات ومركز مصادر التعلم.","خطة الصيانة الدورية وسجلات النظافة.","سجل متابعة عقود النقل المدرسي.","سجل الأجهزة والوسائل التعليمية وحالة صيانتها."]},
-{n:"إدارة موارد المدرسة وفق أولوياتها، واحتياجات الطلبة بما يدعم عمليات التدريس والتعلم",f:"إدارة موارد المدرسة",
-ind:["يحدد الاحتياجات الداعمة لعمليتي التعليم والتعلم","يتابع توظيف الموارد المالية، وتوثيق مصروفاتها بما يتماشى مع أنظمة الصرف المتبعة","يوظف الموارد والتقنيات والبرامج الإلكترونية بما يدعم عمليتي التعليم والتعلم","يتابع توزيع الأدوار والمسئوليات بين العاملين وفقا لمهامهم الوظيفية","يعزز القدرات والابتكارات والمبادرات التطويرية بما يخدم تعلم الطلبة وفق الموارد والإمكانات المتاحة"],
-ev:["خطة الاحتياجات المدرسية والموازنة المعتمدة.","السجلات المالية ومستندات الصرف الموثقة.","تقارير توظيف التقنيات والبرامج الإلكترونية.","سجل توزيع الأدوار والمسؤوليات."]},
-{n:"تفعيل المجالس واللجان والفرق المدرسية في اتخاذ القرارات وتحسين الأداء المدرسي",f:"المجالس واللجان والفرق المدرسية",
-ind:["يشكل المجالس واللجان والفرق المدرسية وفق الدليل المعتمد","يفعل العمل التعاوني بين المجالس واللجان والفرق المدرسية","يعمل على رفع إنتاجية فرق العمل ويعزز مستوى كفاءتها","يتابع تنفيذ مهام واختصاصات المجالس واللجان والفرق المدرسية","يشارك في أعمال المجالس واللجان والفرق المدرسية ويتابع تنفيذ قراراتها"],
-ev:["قرارات تشكيل المجالس واللجان وفق الدليل المعتمد.","محاضر الاجتماعات وسجل متابعة القرارات.","تقارير إنجاز اللجان وفرق العمل.","سجل مهام واختصاصات اللجان."]},
-{n:"تفعيل الشراكة مع أولياء الأمور والمجتمع لدعم تعلم الطلبة",f:"الشراكة مع أولياء الأمور والمجتمع",
-ind:["يوظف البيانات والتقارير المدرسية في توجيه فرص الشراكة مع أولياء الأمور والمجتمع","يبني شراكات مع أولياء الأمور والمجتمع مرتبطة بأولويات تعلم الطلبة، وتطوير الأداء المدرسي","يتابع فاعلية وأثر برامج الشراكة بين المدرسة وأولياء الأمور والمجتمع","يمكن أولياء الأمور من دعم تعلم أبنائهم، ومتابعة تقدمهم الدراسي","يوثق الممارسات الناجحة في الشراكة مع أولياء الأمور والمجتمع"],
-ev:["خطة الشراكة المجتمعية ومحاضر مجلس أولياء الأمور.","اتفاقيات وسجلات المبادرات المشتركة.","استطلاعات رأي أولياء الأمور وتقارير الرضا.","سجل توثيق الممارسات الناجحة في الشراكة."]},
-{n:"الحوكمة وفق الأدوار والمسؤوليات",f:"الحوكمة والانضباط المدرسي",
-ind:["يطبق إجراءات إدارية موثقة على أعضاء المجتمع المدرسي","يشرف ويتابع انتظام وانضباط الكوادر العاملة والطلبة وفق القوانين واللوائح والأنظمة المعتمدة","يشرف على تأدية جميع فعاليات الطابور المدرسي وفق اللائحة المعتمدة","يعزز مبادئ الحوكمة (النزاهة، الشفافية، المساءلة) والالتزام بالقوانين والأنظمة واللوائح والقرارات المنظمة للعمل","يشرف ويتابع على توزيع أنصبة المواد الدراسية بين المعلمين بعدالة"],
-ev:["سجلات الحضور والانصراف والانضباط.","سجل الإجراءات الإدارية الموثقة.","جدول الطابور المدرسي وسجل متابعته.","جداول توزيع الأنصبة المعتمدة."]},
-{n:"الالتزام بأخلاقيات المهنة والقوانين والأنظمة واللوائح والقرارات المنظمة للعمل",f:"أخلاقيات المهنة والالتزام بالأنظمة واللوائح",
-ind:["يلتزم بأخلاقيات مهنة التعليم، والمحافظة على سرية المعلومات، واحترام حقوق العاملين والطلبة وأولياء الأمور","يتقبل التوجيهات والملاحظات الصادرة من المسؤول المباشر والمشرف واللجان الزائرة والالتزام بتنفيذها","يسهم في نشر ثقافة العمل بروح الفريق، وتعزيز بيئة مدرسية إيجابية وآمنة وداعمة للطلبة","يوفر البيانات والتقارير المتعلقة بالأداء المدرسي للجهات ذات العلاقة، وفقا للقوانين والأنظمة واللوائح والقرارات المنظمة للعمل","يشرف على مشاركة نتائج التقويم للطلبة وأولياء أمورهم وفقا للقوانين والأنظمة واللوائح والقرارات الصادرة في هذا الشأن"],
-ev:["ميثاق أخلاقيات المهنة وتعهدات سرية المعلومات.","سجل متابعة تنفيذ توجيهات المشرفين واللجان الزائرة.","تقارير ومراسلات توفير البيانات للجهات المعنية.","سجل إعلان نتائج التقويم للطلبة وأولياء الأمور."]}
-];
-const D=[
-{ne:"توظيف دقيق ومنهجي لأدوات التقويم الذاتي في تشخيص واقع الأداء المدرسي واستخلاص الفجوات بدقة عالية.",ni:"الحاجة إلى تفعيل أعمق لأدوات التقويم الذاتي الرقمية لضمان سرعة رصد مؤشرات الأداء اللحظية.",r:["الاستمرار في تحديث مؤشرات الأداء الرئيسية (KPIs) المرتبطة بنتائج التقويم الذاتي بصورة دورية.","تعزيز مشاركة أعضاء المجتمع المدرسي في تحليل أدلة التقويم الذاتي لرفع مستوى الشفافية والملكية المؤسسية.","بناء خطط إجرائية سريعة لمعالجة الفجوات الحرجة المرصودة في تقارير التقويم الذاتي."],s:"تقديم استشارة فنية وقالب إلكتروني لربط نتائج التقويم الذاتي بالبرامج العلاجية والإثرائية للمدرسة."},
-{ne:"شمولية ومرونة الخطة المدرسية وتكاملها الواضح مع الخطط التفصيلية للمواد والأنشطة الداعمة لنواتج التعلم.",ni:"ضرورة ربط بنود الخطة التشغيلية بمؤشرات أثر واضحة وقابلة للقياس الكمي والنوعي.",r:["تفعيل آليات المتابعة المستمرة لمدى تحقق الأهداف المرحلية للخطط المدرسية.","تضمين خطط التحسين برامج لاستقطاب ورعاية المبتكرين والمجيدين من الطلبة والهيئة التعليمية.","نشر ثقافة التخطيط المبني على الأدلة بين جميع أعضاء الهيئة التدريسية والإدارية."],s:"توفير نماذج استرشادية لتصميم خطط تحسين مدرسية تفاعلية مبنية على تحليل نواتج التعلم الفعلية."},
-{ne:"حرص قيادي متميز على تفعيل الزيارات الصفية التبادلية والمشتركة لدعم الممارسات التدريسية ومراعاة الفروق الفردية.",ni:"الحاجة إلى قياس أدق لأثر استراتيجيات التمايز على فئات الطلبة المختلفة داخل الحصة الدراسية.",r:["تكثيف المتابعة الميدانية لأثر استراتيجيات التمايز والخطط العلاجية والإثرائية للطلبة.","توثيق الممارسات الصفية الناجحة وتعميمها على مستوى الهيئة التعليمية للاستفادة منها.","توظيف نتائج البحوث التربوية الإجرائية في معالجة التحديات التعليمية الصفية."],s:"إسناد أدوات تقييم صفي مقننة للإدارة المدرسية لمأسسة المتابعة وتوجيه الدعم الفني المباشر للمعلمين."},
-{ne:"تنوع متميز في برامج الإنماء المهني واستجابتها للاحتياجات التدريبية الفعلية للهيئة التعليمية.",ni:"ضرورة تفعيل أدوات قياس أثر التدريب بشكل أعمق على الأداء الفعلي داخل غرفة الصف.",r:["ربط محاور برامج الإنماء المهني بنتائج التحليل الفصلي لتحصيل الطلبة وجوانب الضعف المرصودة.","تشجيع المعلمين على نقل الخبرات المكتسبة عبر حلقات نقاشية مصغرة (ورش نقل أثر التدريب).","دعم المبادرات الفردية والجماعية للبحوث الإجرائية وحل المشكلات الميدانية."],s:"توفير حقائب تدريبية مصغرة لورش قصيرة المدى تعتمد على التعلم بالقرناء داخل المدرسة."},
-{ne:"تفعيل منظم لمجتمعات التعلم المهنية يسهم بفاعلية في حل التحديات التعليمية المشتركة بين المعلمين.",ni:"الحاجة إلى توسيع دائرة التعاون مع المدارس المجاورة لتبادل الخبرات النوعية.",r:["تعزيز استدامة مجتمعات التعلم المهنية وربط مخرجاتها بجودة خطط المناهج والتدريس.","توثيق الممارسات الناجحة الناتجة عن جلسات مجتمعات التعلم ونشرها مؤسسياً.","قياس الأثر التحسيني لمجتمعات التعلم على مستويات تحصيل الطلبة بشكل دوري."],s:"تقديم إطار تنظيمي مقترح لإدارة جلسات مجتمعات التعلم المهني بكفاءة عالية وفق الدليل الوزاري."},
-{ne:"اهتمام عالٍ والتزام دقيق بالاشتراطات الصحية ومتطلبات الأمن والسلامة في المرافق المدرسية الحيوية.",ni:"الحاجة إلى تعزيز آليات صيانة بعض الوسائل التعليمية المتقدمة لضمان استدامة تشغيلها.",r:["إدامة تحديث قوائم التحقق الخاصة بالأمن والسلامة في جميع مرافق المدرسة.","تفعيل استثمار المرافق غير التقليدية في دعم الأنشطة الصفية واللامنهجية.","متابعة عقود النقل المدرسي بشكل دوري لضمان سلامة الطلبة."],s:"مراجعة وتطوير النماذج الرقمية لمتابعة الأمن والسلامة والصيانة المدرسية."},
-{ne:"توجيه واعٍ ودقيق للموارد المتاحة نحو الأولويات التعليمية الملحة واحتياجات الطلبة الفعلية.",ni:"ضرورة التوسع في استخدام التقنيات الحديثة لأتمتة العمليات الإدارية والمالية المرتبطة بالموارد.",r:["الاستمرار في تطبيق أعلى معايير الشفافية والتوثيق المالي والإداري.","تعزيز المبادرات الابتكارية لتوفير موارد إضافية داعمة للبيئة المدرسية من خلال الشراكات.","مراجعة توزيع الأدوار والمسؤوليات بصورة دورية لضمان مرونة العمل المدرسي."],s:"توفير استشارات فنية ونماذج إلكترونية مبسطة لإدارة وتوثيق الاحتياجات والموارد المدرسية."},
-{ne:"تشكيل متكامل ومنظم للجان والفرق المدرسية مع تفعيل عالٍ للعمل التعاوني واتخاذ القرارات المبنية على البيانات.",ni:"الحاجة إلى تقليص الفترة الزمنية بين اتخاذ القرار ومتابعة تنفيذه ميدانياً في بعض اللجان.",r:["ربط مخرجات اجتماعات اللجان بمستهدفات الخطة التشغيلية للمدرسة بصورة مباشرة.","إعداد تقارير دورية تقيس أثر قرارات المجالس واللجان في تحسين بيئة التعلم.","توثيق الممارسات الناجحة لفرق العمل المدرسية وتبادلها مؤسسياً."],s:"إعداد دليل إجرائي مختصر لمهام واختصاصات اللجان المدرسية لتجنب تداخل الأدوار ورفع كفاءة الإنجاز."},
-{ne:"بناء شراكات فاعلة ومرتبطة بأولويات تعلم الطلبة وتطوير مستوياتهم التحصيلية وسلوكهم.",ni:"الحاجة إلى توسيع نطاق استقطاب مؤسسات المجتمع المحلي لدعم البرامج الإثرائية للمدرسة.",r:["توثيق الممارسات الناجحة في الشراكة المجتمعية ونشرها عبر منصات التواصل المدرسي.","ابتكار برامج توعوية نوعية لأولياء الأمور لتمكينهم من مساندة أبنائهم في المنزل بكفاءة.","تقييم أثر برامج الشراكة المجتمعية بشكل دوري لتطويرها مستقبلاً."],s:"طرح أفكار لمبادرات شراكة مجتمعية نوعية ذات أثر مباشر على التحصيل الدراسي ودعم الفئات المستهدفة."},
-{ne:"التزام دقيق بتطبيق القوانين واللوائح والأنظمة المعتمدة مع عدالة وشفافية في توزيع الأنصبة والمهام.",ni:"الحاجة إلى زيادة توثيق بعض الإجراءات الإدارية وفق التحديثات اللائحية الأخيرة.",r:["تعزيز مفاهيم الحوكمة المؤسسية (النزاهة، الشفافية، المساءلة) في كافة التعاملات المدرسية اليومية.","الاستمرار في ضمان العدالة والشفافية عند توزيع الأعباء والأنصبة المدرسية.","تحديث سجلات الانضباط المدرسي بصفة مستمرة."],s:"إتاحة الاستشارات الإدارية الفورية للتعامل مع الحالات الإدارية الطارئة وفق اللوائح الوزارية المحدثة."},
-{ne:"تمثل قيادي رفيع لأخلاقيات مهنة التعليم مع تقبل مهني عالٍ للتوجيهات وإسهام ملموس في تعزيز بيئة مدرسية آمنة وداعمة.",ni:"استمرار تعزيز قنوات التواصل الإحصائي وسرعة إنجاز التقارير الدورية المرتبطة بالنتائج المدرسية.",r:["عقد لقاءات توعوية دورية لتعزيز ثقافة الالتزام المؤسسي والعمل بروح الفريق الواحد.","الاستمرار في دقة وسرعة تزويد الجهات الإشرافية والرقابية بالبيانات والتقارير وفق الجداول الزمنية.","إتاحة نتائج التقويم للطلبة وأولياء أمورهم بشفافية تامة ومنهجية واضحة."],s:"تعزيز قنوات التواصل الإيجابي وتقديم الشكر والتقدير القيادي لدعم بيئة العمل المدرسية."}
-];
-// بنوك عامة: الرمز # يُستبدل بمجال البند
-const T={
-evg:["سجلات ومحاضر موثقة ومحدثة ذات صلة بـ #.","تقارير متابعة دورية وتغذية راجعة مكتوبة حول #.","شواهد تنفيذ مؤرشفة ورقياً أو إلكترونياً لـ #.","ملف إنجاز يتضمن أدلة قياس الأثر في #."],
-ax:["مما انعكس أثره إيجاباً في # وتحسين الأداء المدرسي ونواتج تعلم الطلبة.","مما أسهم في استدامة التميز في # وبناء بيئة مدرسية فاعلة.","مما عزز كفاءة # ورفع مستوى الأداء المؤسسي."],
-ai:["مما أدى إلى محدودية الأثر في # وانخفاض كفاءة الأداء المدرسي.","مما أضعف مستوى # وانعكس على نواتج التعلم.","مما استدعى معالجة عاجلة لتطوير # وضمان جودة الأداء."],
-nx:["حرص قيادي واضح على تجويد العمل في مجال # مع توثيق منظم للإجراءات.","تميز في ممارسة # وفق الأدلة والأطر التنظيمية المعتمدة في الوزارة.","وضوح في الأدوار والمسؤوليات المرتبطة بـ # وتكامل مع الخطة المدرسية.","انعكاس إيجابي لممارسات # على بيئة التعلم وأداء الهيئتين الإدارية والتعليمية.","تفاعل إيجابي مع الملاحظات والتوجيهات الإشرافية المتعلقة بـ #.","توفر أدلة وشواهد موثقة ومحدثة تدعم الأداء في #.","مبادرات نوعية ومبتكرة في # تستحق التعميم على المدارس.","متابعة دورية منتظمة لـ # وفق جدول زمني محدد.","إشراك أعضاء المجتمع المدرسي في # بصورة تعزز الملكية والشفافية.","استثمار البيانات ونتائج المتابعة في تطوير # بصورة مستمرة.","التزام بالمواعيد الزمنية ودقة في توثيق مخرجات #.","قدرة على قياس أثر # بمؤشرات واضحة وقابلة للقياس.","استجابة سريعة لمتطلبات # والتحديات الطارئة المرتبطة به.","ثقافة مؤسسية راسخة تدعم استدامة الأداء في #.","لا توجد ملاحظات جوهرية على الأداء في #."],
-ni:["الحاجة إلى تنظيم أدق وتوثيق أشمل للإجراءات المرتبطة بـ #.","تفاوت في انتظام المتابعة في # بما يستدعي جدولة زمنية واضحة.","ضعف في ربط # بنتائج الأداء والخطة المدرسية.","قصور في توثيق الأدلة والشواهد المؤيدة لـ #.","محدودية قياس أثر # على نواتج تعلم الطلبة.","ضعف إشراك أعضاء المجتمع المدرسي في #.","غياب مؤشرات أداء واضحة لقياس التقدم في #.","بطء في معالجة التحديات المرتبطة بـ # وغياب خطة علاجية محددة.","الحاجة إلى تحديث الأدلة والسجلات المتعلقة بـ #.","تنفيذ جزئي لإجراءات # دون متابعة كافية للتنفيذ.","ضعف التغذية الراجعة المقدمة للعاملين في #.","اعتماد على جهود فردية في # دون مأسسة للعمل.","الحاجة إلى مواءمة # مع الأدلة والتعاميم الوزارية الحديثة."],
-rx:["الاستمرار في تجويد # وتحديث أدلته وشواهده بصورة دورية.","توثيق الممارسات الناجحة في # وتعميمها داخل المدرسة وعلى المدارس الأخرى.","تعزيز دور الفريق المدرسي في # وتوزيع الأدوار بما يضمن الاستدامة.","قياس أثر # بمؤشرات كمية ونوعية وربطه بنواتج تعلم الطلبة.","تبني مبادرات إبداعية جديدة في # وإدراجها في الخطة التشغيلية.","مشاركة تجربة المدرسة في # عبر مجتمعات التعلم المهنية واللقاءات التربوية.","توظيف التقنيات الحديثة في أتمتة وتوثيق # ورفع كفاءته.","تحفيز المتميزين في # وتكريمهم لتعزيز ثقافة التميز.","مراجعة # فصلياً في ضوء نتائج التقويم الذاتي.","التوسع في إشراك أولياء الأمور والمجتمع في # حيثما أمكن."],
-ri:["وضع خطة تحسين زمنية لـ # تتضمن أهدافاً ومسؤولين ومؤشرات قياس.","تحديد أدلة وشواهد واضحة لـ # وتنظيمها في ملف إنجاز مدرسي.","تكثيف المتابعة الدورية لـ # مع تقديم تغذية راجعة مكتوبة.","ربط # بنتائج التقويم الذاتي والخطة المدرسية ربطاً مباشراً.","حضور برامج إنماء مهني متخصصة تتعلق بـ #.","الاطلاع على الأدلة والتعاميم الوزارية المنظمة لـ # وتطبيقها.","الاستفادة من الخبرات الناجحة لمدارس أخرى في #.","إشراك أعضاء المجتمع المدرسي في # وتوزيع المهام بوضوح.","قياس أثر # على نواتج التعلم ورفع تقرير دوري للإدارة.","تحديد أولويات # العاجلة ومعالجتها خلال فترة زمنية محددة.","مراجعة نتائج المتابعة مع الفريق المعني ووضع إجراءات تصحيحية.","الالتزام بجدول زمني لمتابعة # وتوثيق نتائجها."],
-sp:["تقديم زيارات ميدانية داعمة لتطوير # وفق احتياجات المدرسة.","عقد لقاءات توجيهية فردية مع الإدارة المدرسية حول #.","توفير نماذج وأدوات إرشادية معتمدة تساعد في توثيق #.","ترشيح الإدارة المدرسية لبرامج تدريبية متخصصة في #.","تقديم استشارات فنية مباشرة عند الحاجة في #.","مشاركة نماذج من الممارسات الناجحة للمدارس المتميزة في #.","تيسير التواصل مع المشرفين والمختصين بالمديرية للإجابة عن استفسارات #.","تنظيم ورشة عمل مصغرة لأعضاء الفريق المدرسي حول #.","المشاركة في اجتماعات المتابعة وتقديم التغذية الراجعة حول #.","تزويد المدرسة بالأدلة والتعاميم المحدثة المنظمة لـ #.","متابعة تنفيذ التوصيات الإجرائية المتعلقة بـ # في زيارة لاحقة.","دعم تصميم نماذج إلكترونية لمتابعة # وتحليل بياناتها.","ربط المدرسة بمجتمع تعلم مهني لتبادل الخبرات في #.","المساندة في إعداد خطة تحسين لمجال # ومراجعتها."]
-};
-const GL={1:"متميز (1)",2:"جيد (2)",3:"ملائم (3)",4:"غير ملائم (4)",5:"يحتاج إلى تدخل (5)"};
-const SUB="ويظهر ذلك من خلال:",MAX=1000;
-const FL=[{k:"f1",t:"جوانب الإجادة في الأداء وأدلتها"},{k:"f2",t:"الجوانب التي تحتاج إلى تطوير في الأداء وأدلتها"},{k:"f3",t:"الملاحظات",b:"n"},{k:"f4",t:"الدعم المقدم",b:"s",a:1},{k:"f5",t:"التوصيات",b:"r",a:1}];
-const $=id=>document.getElementById(id),itemSel=$("item"),gradeSel=$("grade"),box=$("fields");
-ITEMS.forEach((d,i)=>itemSel.add(new Option((i+1)+". "+d.n,i)));
-[["جوانب الإجادة",[1,2]],["جوانب التحسين والتطوير",[3,4,5]]].forEach(([n,g])=>{const o=document.createElement("optgroup");o.label=n;g.forEach(v=>o.appendChild(new Option(GL[v],v)));gradeSel.appendChild(o)});
-const isEx=()=>+gradeSel.value<=2;
-const fx=(a,i)=>a.map(t=>t.replace(/#/g,ITEMS[i].f));
-function bank(k,i,x){const ex=x===undefined?isEx():x;
- if(k==="ev")return ITEMS[i].ev.concat(fx(T.evg,i));
- if(k==="at")return fx(ex?T.ax:T.ai,i);
- if(k==="n")return [D[i][ex?"ne":"ni"]].concat(fx(ex?T.nx:T.ni,i));
- if(k==="r")return D[i].r.concat(fx(ex?T.rx:T.ri,i));
- return [D[i].s].concat(fx(T.sp,i))}
-function opts(sel,ph,arr){sel.innerHTML="";sel.add(new Option(ph,""));arr.forEach(t=>sel.add(new Option(t,t)))}
-let tt;function toast(m){const t=$("toast");t.textContent=m;t.classList.add("on");clearTimeout(tt);tt=setTimeout(()=>t.classList.remove("on"),1700)}
-async function copy(x){if(!x.trim()){toast("لا يوجد نص للنسخ");return}
- try{await navigator.clipboard.writeText(x)}catch(e){const a=document.createElement("textarea");a.value=x;document.body.appendChild(a);a.select();try{document.execCommand("copy")}catch(_){}a.remove()}
- toast("تم النسخ")}
-FL.forEach((f,n)=>{const c=document.createElement("div");c.className="card";
- c.innerHTML='<div class="ttl"><span class="num">'+(n+1)+'</span><span style="flex:1">'+f.t+'*</span><span class="note" id="n-'+f.k+'">0 / '+MAX+'</span></div>'+(f.b?'<select data-k="'+f.k+'"></select>':'')+'<textarea id="'+f.k+'"></textarea><div class="row"><button class="pri" data-copy="'+f.k+'">نسخ هذا الحقل</button>'+(f.a?'<button data-auto="'+f.k+'">تلقائي</button>':'')+'<button class="sm" data-clear="'+f.k+'">مسح</button></div>';box.appendChild(c)});
-function cnt(k){const n=$(k).value.length,c=$("n-"+k);c.textContent=n+" / "+MAX;c.style.color=n>MAX?"#dc2626":""}
-function fillSelects(){const i=+itemSel.value;
- opts($("evsel"),"اختر دليلاً يُضاف إلى العبارة...",bank("ev",i));
- opts($("atsel"),"اختر الأثر المترتب...",bank("at",i));
- FL.forEach(f=>{if(f.b)opts(document.querySelector('select[data-k="'+f.k+'"]'),"أضف من القائمة ("+bank(f.b,i).length+" عبارة)...",bank(f.b,i))})}
-function pick(a,n){return a.slice().sort(()=>Math.random()-.5).slice(0,n)}
-function autoOne(k){const f=FL.find(z=>z.k===k),i=+itemSel.value;$(k).value=pick(bank(f.b,i),3).map(t=>"- "+t).join("\n");cnt(k)}
-function autoAll(){autoOne("f4");autoOne("f5")}
-let E=[],DV=[];
-function rebuild(){
- const imp=E.filter(e=>!e.ex),src=imp.length?imp:E;
- const u=a=>a.filter((x,j)=>a.indexOf(x)===j);
- $("f4").value=u(E.map(e=>e.s)).map(t=>"- "+t).join("\n");
- $("f5").value=u(src.flatMap(e=>e.r)).map(t=>"- "+t).join("\n");
- cnt("f4");cnt("f5")}
-function regen(){E.forEach(e=>{e.s=pick(bank("s",e.i,e.ex),1)[0];e.r=pick(bank("r",e.i,e.ex),1+Math.round(Math.random())) });rebuild();toast("تم تحديث الدعم والتوصيات")}
-function refresh(){const i=+itemSel.value,g=+gradeSel.value,ex=isEx(),tag=$("tag");
- tag.className="tag "+(ex?"ok":"bad");tag.textContent=ex?"مجال الإجادة":"مجال التحسين والتطوير";
- $("ib").textContent=ITEMS[i].ind[g-1];fillSelects();
- DV=[];$("draft").value=ITEMS[i].ind[g-1]+" "+SUB;
- $("addto").textContent="إضافة إلى: "+(ex?"جوانب الإجادة":"الجوانب التي تحتاج إلى تطوير")}
-itemSel.onchange=gradeSel.onchange=refresh;
-function addEv(ta,t){let v=ta.value.trim();if(v.includes(t))return;v=v.replace(/[.。]$/,"");v+=v.endsWith(SUB)?" "+t:"، "+t;ta.value=v+"."}
-$("evsel").onchange=e=>{const s=e.target;if(!s.value)return;DV.push(s.value);addEv($("draft"),s.value);
- const a=pick(bank("at",+itemSel.value),1)[0];addEv($("draft"),a);$("atsel").value=a;s.value="";toast("تمت إضافة الدليل والأثر")};
-$("atsel").onchange=e=>{const s=e.target;if(!s.value)return;addEv($("draft"),s.value);s.value=""};
-$("dreset").onclick=()=>{DV=[];$("draft").value=ITEMS[+itemSel.value].ind[+gradeSel.value-1]+" "+SUB};
-$("addto").onclick=()=>{const d=$("draft").value.trim();if(!d||d.endsWith(SUB)){toast("اختر دليلاً واحداً على الأقل");return}
- const t=$(isEx()?"f1":"f2"),o=t.value.trim();t.value=(o?o+"\n":"")+d;cnt(t.id);
- const i0=+itemSel.value,x0=isEx();E.push({i:i0,g:+gradeSel.value,ex:x0,v:DV.slice(),k:0});DV=[];
- rebuild();
- toast(t.value.length>MAX?"الحقل تجاوز 1000 حرف: اختصر النص":"تمت الإضافة");$("dreset").click()};
-box.addEventListener("change",e=>{const s=e.target;if(s.tagName!=="SELECT"||!s.value)return;const k=s.dataset.k,ta=$(k);
- const L=ta.value.split("\n").map(z=>z.replace(/^[-•]\s*/,"").trim()).filter(Boolean);if(!L.includes(s.value))L.push(s.value);
- ta.value=L.map(z=>"- "+z).join("\n");cnt(k);s.value=""});
-box.addEventListener("input",e=>{if(e.target.tagName==="TEXTAREA")cnt(e.target.id)});
-box.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;
- if(b.dataset.copy)copy($(b.dataset.copy).value.trim());
- if(b.dataset.auto)regen();
- if(b.dataset.clear){const k=b.dataset.clear;$(k).value="";cnt(k);
-  if(k==="f1"){E=E.filter(e=>!e.ex);rebuild()}if(k==="f2"){E=E.filter(e=>e.ex);rebuild()}toast("تم المسح")}});
-const clip=t=>t.replace(/[.،]$/,"");
-const TIER={3:"وضع خطة تحسين زمنية",4:"وضع خطة علاجية عاجلة",5:"وضع خطة تدخل فوري"};
-function mkS(e){const b=bank("s",e.i,e.ex),s=clip(b[e.k%b.length]),v=e.v[0];return s+(v?" مع التركيز على: "+clip(v):"")+"."}
-function mkR(e){const d=D[e.i],v=e.v.length?e.v[e.v.length-1]:"",a=[d.r[(e.g+e.k)%3]];
- if(v)a.push(e.ex?"الاستمرار في توثيق وتحديث «"+clip(v)+"» وتعميمه كممارسة ناجحة.":TIER[e.g]+" لاستكمال «"+clip(v)+"» وربطه بمؤشرات قياس واضحة.");
- else{const t=bank("r",e.i,e.ex).slice(3);a.push(t[(e.g+e.i+e.k)%t.length])}return a}
-function rebuild(){const imp=E.filter(e=>!e.ex),src=imp.length?imp:E,u=a=>a.filter((x,j)=>a.indexOf(x)===j);
- $("f4").value=u(E.map(mkS)).map(t=>"- "+t).join("\n");
- $("f5").value=u(src.flatMap(mkR)).map(t=>"- "+t).join("\n");cnt("f4");cnt("f5")}
-function regen(){E.forEach(e=>e.k++);rebuild();toast("تم تحديث الدعم والتوصيات")}
-$("all").onclick=()=>{const p=[];FL.forEach(f=>{const v=$(f.k).value.trim();if(v)p.push(f.t+":\n"+v)});copy(p.join("\n\n"))};
-refresh();
-</script>
+<body class="min-h-screen flex flex-col bg-slate-50 text-slate-900">
+
+    <!-- شريط التنبيهات الذكي (Toast Notification) -->
+    <div id="toast-container" class="fixed bottom-5 left-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+    <!-- الترويسة العلوية (Header) -->
+    <header class="bg-gradient-to-l from-navy-900 via-navy-800 to-navy-700 text-white shadow-lg border-b-4 border-gold-500 sticky top-0 z-40 no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+            <div class="flex flex-wrap items-center justify-between gap-4">
+                <!-- الشعار والهوية -->
+                <div class="flex items-center gap-3.5">
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center shadow-md text-navy-950 font-extrabold text-2xl border border-gold-300">
+                        <i class="fa-solid fa-compass-drafting"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <h1 class="text-xl sm:text-2xl font-extrabold tracking-tight text-white">مِعيار <span class="text-gold-400 font-light">|</span> <span class="text-gold-400 text-lg sm:text-xl font-bold">MI’YAR</span></h1>
+                            <span class="hidden sm:inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-gold-500/20 text-gold-300 border border-gold-400/30">
+                                استمارة 2026/2027م
+                            </span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-300 font-medium">مساعد الزيارة الإشرافية الذكي لمدير ومساعد مدير مدرسة — سلطنة عُمان</p>
+                    </div>
+                </div>
+
+                <!-- أزرار الإجراءات السريعة في الهيدر -->
+                <div class="flex items-center gap-2 flex-wrap">
+                    <button onclick="openBankModal()" class="px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-semibold border border-white/15 transition flex items-center gap-2">
+                        <i class="fa-solid fa-database text-gold-400"></i>
+                        <span>بنك العبارات والمكتبة</span>
+                    </button>
+                    <button onclick="scrollToReport()" class="px-3.5 py-2 rounded-xl bg-gold-500 hover:bg-gold-600 text-navy-950 text-xs sm:text-sm font-bold shadow transition flex items-center gap-2">
+                        <i class="fa-solid fa-file-lines"></i>
+                        <span>التقرير الرسمي (<span id="header-items-count">0</span>)</span>
+                    </button>
+                    <button onclick="resetFullVisit()" title="بدء زيارة جديدة" class="p-2 rounded-xl bg-red-500/20 hover:bg-red-500/30 text-red-200 border border-red-400/20 transition">
+                        <i class="fa-solid fa-rotate-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- المحتوى الرئيسي -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+
+        <!-- 1. بطاقة بيانات الزيارة الأساسية (قابلة للطي) -->
+        <section class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden no-print">
+            <div onclick="toggleMetaSection()" class="bg-slate-900 text-white px-5 py-3.5 flex items-center justify-between cursor-pointer hover:bg-slate-800 transition">
+                <div class="flex items-center gap-3">
+                    <span class="w-8 h-8 rounded-xl bg-gold-500 text-navy-950 font-bold flex items-center justify-center text-sm shadow">1</span>
+                    <div>
+                        <h2 class="text-base sm:text-lg font-bold">البيانات الأساسية للزيارة الإشرافية</h2>
+                        <p id="meta-summary-line" class="text-xs text-slate-300">يرجى استكمال بيانات المدرسة والمستهدف بالزيارة والمشرف الإداري</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="text-xs bg-white/10 px-2.5 py-1 rounded-lg text-gold-300 font-medium hidden sm:inline">العام الدراسي 2026/2027م</span>
+                    <i id="meta-chevron" class="fa-solid fa-chevron-up text-slate-300 transition-transform duration-300"></i>
+                </div>
+            </div>
+
+            <div id="meta-body" class="p-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 bg-white">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1.5">المديرية / المحافظة التعليمية</label>
+                    <input type="text" id="meta-directorate" oninput="saveMeta()" placeholder="مثال: المديرية العامة للتربية والتعليم بمحافظة شمال الباطنة" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm focus:border-navy-700 focus:ring-2 focus:ring-navy-700/20 outline-none transition">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1.5">اسم المدرسة <span class="text-red-500">*</span></label>
+                    <input type="text" id="meta-school" oninput="saveMeta()" placeholder="أدخل اسم المدرسة..." class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm focus:border-navy-700 focus:ring-2 focus:ring-navy-700/20 outline-none transition">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1.5">اسم المستهدف بالزيارة <span class="text-red-500">*</span></label>
+                    <input type="text" id="meta-target-name" oninput="saveMeta()" placeholder="الاسم الثلاثي والقبيلة..." class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm focus:border-navy-700 focus:ring-2 focus:ring-navy-700/20 outline-none transition">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1.5">المسمى الوظيفي</label>
+                    <select id="meta-role" onchange="saveMeta()" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm bg-white select-styled focus:border-navy-700 focus:ring-2 focus:ring-navy-700/20 outline-none transition">
+                        <option value="مدير مدرسة">مدير مدرسة</option>
+                        <option value="المدير المساعد">المدير المساعد</option>
+                        <option value="قائم بأعمال مدير مدرسة">قائم بأعمال مدير مدرسة</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1.5">نوع الزيارة الإشرافية</label>
+                    <select id="meta-visit-type" onchange="saveMeta()" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm bg-white select-styled focus:border-navy-700 focus:ring-2 focus:ring-navy-700/20 outline-none transition">
+                        <option value="زيارة إشرافية استطلاعية / تشخيصية">زيارة إشرافية استطلاعية / تشخيصية</option>
+                        <option value="زيارة إشرافية تطويرية / متابعة">زيارة إشرافية تطويرية / متابعة</option>
+                        <option value="زيارة إشرافية تقييمية ختامية">زيارة إشرافية تقييمية ختامية</option>
+                        <option value="زيارة مساندة ودعم فني">زيارة مساندة ودعم فني</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1.5">تاريخ الزيارة</label>
+                    <input type="date" id="meta-date" onchange="saveMeta()" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm focus:border-navy-700 focus:ring-2 focus:ring-navy-700/20 outline-none transition">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1.5">وقت الزيارة / الحصص</label>
+                    <input type="text" id="meta-time" oninput="saveMeta()" placeholder="مثال: 08:00 ص - 11:30 ص (الحصص 1 - 5)" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm focus:border-navy-700 focus:ring-2 focus:ring-navy-700/20 outline-none transition">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1.5">اسم المشرف الإداري <span class="text-red-500">*</span></label>
+                    <input type="text" id="meta-supervisor" oninput="saveMeta()" placeholder="اسم المشرف الإداري..." class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm focus:border-navy-700 focus:ring-2 focus:ring-navy-700/20 outline-none transition">
+                </div>
+            </div>
+        </section>
+
+        <!-- 2 & 3. محرر القوائم المنسدلة المتسلسلة والمترابطة ديناميكياً (Cascading & Dependent Dropdowns) -->
+        <section class="grid grid-cols-1 lg:grid-cols-12 gap-6 no-print">
+            
+            <!-- العمود الأيمن: خطوات الاختيار المتسلسل (7 أعمدة) -->
+            <div class="lg:col-span-7 space-y-5">
+                
+                <!-- بطاقة الخطوات 1 - 2 - 3: البند -> المؤشر -> مستوى التقدير -->
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 space-y-5">
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                        <div class="flex items-center gap-2.5">
+                            <span class="w-8 h-8 rounded-xl bg-navy-700 text-white font-bold flex items-center justify-center text-sm shadow">2</span>
+                            <div>
+                                <h2 class="text-base sm:text-lg font-bold text-navy-900">التسلسل المرجعي للاستمارة (البند ➔ المؤشر ➔ التقدير)</h2>
+                                <p class="text-xs text-slate-500">اختر البند والمؤشر ومستوى التقدير ليتم توجيه القوائم المنسدلة اللاحقة آلياً</p>
+                            </div>
+                        </div>
+                        <span id="editing-badge" class="hidden px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800 border border-amber-300">
+                            <i class="fa-solid fa-pen-to-square ml-1"></i> وضع تعديل بند محفوظ
+                        </span>
+                    </div>
+
+                    <!-- الخطوة 1: اختيار المجال والبند -->
+                    <div class="space-y-1.5">
+                        <label for="dd-criterion" class="flex items-center justify-between text-sm font-bold text-navy-900">
+                            <span><span class="inline-block w-6 h-6 rounded-full bg-navy-700 text-white text-xs text-center leading-6 ml-1.5">1</span> اختيار المجال والبند (البنود الـ 11 الرسمية):</span>
+                            <span id="criterion-domain-tag" class="text-xs font-semibold px-2.5 py-0.5 rounded-md bg-slate-100 text-slate-600">القيادة المدرسية</span>
+                        </label>
+                        <select id="dd-criterion" onchange="onCriterionChange()" class="w-full rounded-xl border-2 border-slate-300 bg-slate-50/50 px-3.5 py-3 text-sm font-bold text-navy-900 select-styled focus:border-navy-700 focus:bg-white focus:ring-2 focus:ring-navy-700/20 outline-none transition">
+                            <!-- يتم تعبئتها ديناميكياً -->
+                        </select>
+                    </div>
+
+                    <!-- الخطوة 2: اختيار المؤشر التابع للبند -->
+                    <div class="space-y-1.5">
+                        <label for="dd-indicator" class="flex items-center justify-between text-sm font-bold text-navy-900">
+                            <span><span class="inline-block w-6 h-6 rounded-full bg-navy-700 text-white text-xs text-center leading-6 ml-1.5">2</span> اختيار المؤشر التابع للبند (5 مؤشرات حرفية):</span>
+                            <span id="indicator-code-tag" class="text-xs font-bold px-2.5 py-0.5 rounded-md bg-blue-50 text-blue-700 border border-blue-200">المؤشر 1.1</span>
+                        </label>
+                        <select id="dd-indicator" onchange="onIndicatorChange()" class="w-full rounded-xl border-2 border-slate-300 bg-slate-50/50 px-3.5 py-3 text-sm font-semibold text-slate-800 select-styled focus:border-navy-700 focus:bg-white focus:ring-2 focus:ring-navy-700/20 outline-none transition">
+                            <!-- يتم تعبئتها ديناميكياً -->
+                        </select>
+                    </div>
+
+                    <!-- الخطوة 3: اختيار مستوى التقدير المعتمد -->
+                    <div class="space-y-2">
+                        <label for="dd-rating" class="flex items-center justify-between text-sm font-bold text-navy-900">
+                            <span><span class="inline-block w-6 h-6 rounded-full bg-gold-500 text-navy-950 text-xs text-center leading-6 ml-1.5 font-extrabold">3</span> مستوى التقدير المعتمد في الاستمارة:</span>
+                            <span class="text-xs text-slate-500">يُحدّد تلقائياً مسار (الإجادة) أو (التحسين)</span>
+                        </label>
+                        <select id="dd-rating" onchange="onRatingChange()" class="w-full rounded-xl border-2 border-gold-500/70 bg-amber-50/30 px-3.5 py-3 text-sm font-extrabold text-navy-900 select-styled focus:border-gold-600 focus:bg-white focus:ring-2 focus:ring-gold-500/25 outline-none transition">
+                            <option value="1">1 — متميز (أداء استثنائي يتجاوز التوقعات ويحقق أثراً مستداماً)</option>
+                            <option value="2">2 — جيد (أداء فاعل ومنتظم يحقق التوقعات بوضوح)</option>
+                            <option value="3">3 — ملائم (أداء يفي بالحد المقبول ويحتاج إلى تطوير وتحسين)</option>
+                            <option value="4">4 — غير ملائم (أداء دون المستوى المطلوب ويظهر فجوات واضحة)</option>
+                            <option value="5">5 — يحتاج إلى تدخل (قصور جوهري يستدعي تدخلاً إشرافياً عاجلاً)</option>
+                        </select>
+
+                        <!-- بطاقة الوصف الدقيق لمستوى التقدير الموافق للمؤشر -->
+                        <div id="rubric-card" class="rounded-xl p-4 border-2 transition-all duration-300 bg-emerald-50/80 border-emerald-200">
+                            <div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+                                <div class="flex items-center gap-2">
+                                    <span id="rubric-badge" class="px-2.5 py-1 rounded-lg text-xs font-extrabold bg-emerald-600 text-white">
+                                        تقدير (1): متميز
+                                    </span>
+                                    <span id="rubric-mode-label" class="text-xs font-bold text-emerald-800">
+                                        <i class="fa-solid fa-star ml-1"></i> المسار التلقائي: جانب إجادة وتميّز
+                                    </span>
+                                </div>
+                                <!-- زر التبديل السريع بين الإجادة والتحسين -->
+                                <button type="button" onclick="toggleAspectMode()" id="btn-toggle-aspect" class="px-3 py-1 rounded-lg text-xs font-bold bg-white hover:bg-slate-100 text-navy-800 border border-slate-300 shadow-sm transition flex items-center gap-1.5">
+                                    <i class="fa-solid fa-repeat text-gold-600"></i>
+                                    <span id="btn-toggle-aspect-text">تبديل إلى رصد جانب تحسين إضافي</span>
+                                </button>
+                            </div>
+                            <p id="rubric-description" class="text-xs sm:text-sm text-slate-800 leading-relaxed font-medium">
+                                <!-- الوصف التفصيلي لمستوى التقدير لهذا المؤشر -->
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- بطاقة الخطوات (أ) إلى (و): القوائم المنسدلة المترابطة لصياغة التقرير -->
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 space-y-5">
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                        <div class="flex items-center gap-2.5">
+                            <span class="w-8 h-8 rounded-xl bg-navy-700 text-white font-bold flex items-center justify-center text-sm shadow">3</span>
+                            <div>
+                                <h2 class="text-base sm:text-lg font-bold text-navy-900">القوائم المنسدلة المترابطة لبناء التقرير الإشرافي</h2>
+                                <p class="text-xs text-slate-500">اختر من القوائم المهنية المترابطة أو عدّل النص مباشرة ليتكامل في التقرير</p>
+                            </div>
+                        </div>
+                        <span id="active-aspect-pill" class="px-3 py-1 rounded-full text-xs font-extrabold bg-emerald-100 text-emerald-800 border border-emerald-300">
+                            وضع الإجادة
+                        </span>
+                    </div>
+
+                    <!-- القائمة (أ): جانب الإجادة أو التحسين -->
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2.5">
+                        <div class="flex items-center justify-between">
+                            <label id="label-aspect" class="text-sm font-extrabold text-emerald-800 flex items-center gap-2">
+                                <span class="px-2 py-0.5 rounded bg-emerald-600 text-white text-xs">أ</span>
+                                <span>جانب الإجادة والتميّز (مرتبط بالمؤشر والتقدير):</span>
+                            </label>
+                            <button type="button" onclick="openQuickAddModal('aspect')" class="text-xs font-bold text-navy-700 hover:text-navy-900 bg-white px-2.5 py-1 rounded-lg border border-slate-300 shadow-2xs transition">
+                                <i class="fa-solid fa-plus ml-1"></i> إضافة عبارة للبنك
+                            </button>
+                        </div>
+                        <select id="dd-aspect" onchange="onSubDropdownChange('aspect')" class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm font-medium text-slate-800 select-styled focus:border-navy-700 outline-none">
+                        </select>
+                        <textarea id="txt-aspect" rows="2" oninput="updateLiveComposer()" placeholder="يمكنك تعديل صياغة جانب الإجادة أو التحسين هنا..." class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-sm text-slate-800 focus:border-navy-700 outline-none"></textarea>
+                    </div>
+
+                    <!-- القائمة (ب): الدليل والشاهد (مصنفة: وثائقية، رقمية، ميدانية + تعدد الاختيار) -->
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2.5">
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <label class="text-sm font-extrabold text-navy-900 flex items-center gap-2">
+                                <span class="px-2 py-0.5 rounded bg-navy-700 text-white text-xs">ب</span>
+                                <span>الدليل والشاهد (وثائقي / رقمي / ميداني):</span>
+                            </label>
+                            <div class="flex items-center gap-1.5">
+                                <button type="button" onclick="appendSelectedEvidence()" class="text-xs font-bold text-emerald-700 hover:bg-emerald-50 bg-white px-2.5 py-1 rounded-lg border border-emerald-300 transition" title="إضافة الدليل المختار إلى حقل الأدلة دون مسح السابق">
+                                    <i class="fa-solid fa-layer-group ml-1"></i> إلحاق دليل إضافي
+                                </button>
+                                <button type="button" onclick="openQuickAddModal('evidence')" class="text-xs font-bold text-navy-700 hover:text-navy-900 bg-white px-2.5 py-1 rounded-lg border border-slate-300 transition">
+                                    <i class="fa-solid fa-plus ml-1"></i> للبنك
+                                </button>
+                            </div>
+                        </div>
+                        <select id="dd-evidence" onchange="onSubDropdownChange('evidence')" class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm font-medium text-slate-800 select-styled focus:border-navy-700 outline-none">
+                        </select>
+                        <textarea id="txt-evidence" rows="2" oninput="updateLiveComposer()" placeholder="الأدلة والشواهد المرصودة (يمكنك اختيار أكثر من دليل بالضغط على إلحاق دليل إضافي)..." class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-sm text-slate-800 focus:border-navy-700 outline-none"></textarea>
+                    </div>
+
+                    <!-- القائمة (ج): الأثر المترتب -->
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2.5">
+                        <div class="flex items-center justify-between">
+                            <label id="label-impact" class="text-sm font-extrabold text-navy-900 flex items-center gap-2">
+                                <span class="px-2 py-0.5 rounded bg-navy-700 text-white text-xs">ج</span>
+                                <span>الأثر المتحقق على الأداء المدرسي ونواتج التعلم:</span>
+                            </label>
+                            <button type="button" onclick="openQuickAddModal('impact')" class="text-xs font-bold text-navy-700 hover:text-navy-900 bg-white px-2.5 py-1 rounded-lg border border-slate-300 transition">
+                                <i class="fa-solid fa-plus ml-1"></i> للبنك
+                            </button>
+                        </div>
+                        <select id="dd-impact" onchange="onSubDropdownChange('impact')" class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm font-medium text-slate-800 select-styled focus:border-navy-700 outline-none">
+                        </select>
+                        <textarea id="txt-impact" rows="2" oninput="updateLiveComposer()" placeholder="الأثر المترتب..." class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-sm text-slate-800 focus:border-navy-700 outline-none"></textarea>
+                    </div>
+
+                    <!-- القائمة (د): الملاحظة الإشرافية -->
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2.5">
+                        <div class="flex items-center justify-between">
+                            <label class="text-sm font-extrabold text-navy-900 flex items-center gap-2">
+                                <span class="px-2 py-0.5 rounded bg-navy-700 text-white text-xs">د</span>
+                                <span>الملاحظة الإشرافية الموضوعية:</span>
+                            </label>
+                            <button type="button" onclick="openQuickAddModal('observation')" class="text-xs font-bold text-navy-700 hover:text-navy-900 bg-white px-2.5 py-1 rounded-lg border border-slate-300 transition">
+                                <i class="fa-solid fa-plus ml-1"></i> للبنك
+                            </button>
+                        </div>
+                        <select id="dd-observation" onchange="onSubDropdownChange('observation')" class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm font-medium text-slate-800 select-styled focus:border-navy-700 outline-none">
+                        </select>
+                        <textarea id="txt-observation" rows="2" oninput="updateLiveComposer()" placeholder="الملاحظة الإشرافية..." class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-sm text-slate-800 focus:border-navy-700 outline-none"></textarea>
+                    </div>
+
+                    <!-- القائمة (هـ): الدعم المقدم أثناء الزيارة -->
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2.5">
+                        <div class="flex items-center justify-between">
+                            <label class="text-sm font-extrabold text-navy-900 flex items-center gap-2">
+                                <span class="px-2 py-0.5 rounded bg-navy-700 text-white text-xs">هـ</span>
+                                <span>الدعم الإشرافي المقدم أثناء الزيارة:</span>
+                            </label>
+                            <button type="button" onclick="openQuickAddModal('support')" class="text-xs font-bold text-navy-700 hover:text-navy-900 bg-white px-2.5 py-1 rounded-lg border border-slate-300 transition">
+                                <i class="fa-solid fa-plus ml-1"></i> للبنك
+                            </button>
+                        </div>
+                        <select id="dd-support" onchange="onSubDropdownChange('support')" class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm font-medium text-slate-800 select-styled focus:border-navy-700 outline-none">
+                        </select>
+                        <textarea id="txt-support" rows="2" oninput="updateLiveComposer()" placeholder="الدعم الفني والإداري المقدم..." class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-sm text-slate-800 focus:border-navy-700 outline-none"></textarea>
+                    </div>
+
+                    <!-- القائمة (و): التوصيات -->
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2.5">
+                        <div class="flex items-center justify-between">
+                            <label id="label-recommendation" class="text-sm font-extrabold text-navy-900 flex items-center gap-2">
+                                <span class="px-2 py-0.5 rounded bg-gold-600 text-white text-xs">و</span>
+                                <span>التوصيات الإشرافية (استدامة / تطوير):</span>
+                            </label>
+                            <button type="button" onclick="openQuickAddModal('recommendation')" class="text-xs font-bold text-navy-700 hover:text-navy-900 bg-white px-2.5 py-1 rounded-lg border border-slate-300 transition">
+                                <i class="fa-solid fa-plus ml-1"></i> للبنك
+                            </button>
+                        </div>
+                        <select id="dd-recommendation" onchange="onSubDropdownChange('recommendation')" class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm font-medium text-slate-800 select-styled focus:border-navy-700 outline-none">
+                        </select>
+                        <textarea id="txt-recommendation" rows="2" oninput="updateLiveComposer()" placeholder="التوصية الإجرائية..." class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-sm text-slate-800 focus:border-navy-700 outline-none"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- العمود الأيسر: محرك الصياغة الذكي والمعاينة الفورية (5 أعمدة) -->
+            <div class="lg:col-span-5">
+                <div class="sticky top-24 space-y-5">
+                    
+                    <!-- بطاقة محرك الصياغة الذكي (Live Smart Composer) -->
+                    <div class="bg-gradient-to-b from-navy-900 to-navy-800 text-white rounded-2xl shadow-xl border border-navy-700 overflow-hidden">
+                        <div class="p-4 bg-navy-950/60 border-b border-white/10 flex items-center justify-between">
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-8 h-8 rounded-xl bg-gold-500 text-navy-950 flex items-center justify-center font-bold">
+                                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-base">محرك الصياغة الذكي الفوري</h3>
+                                    <p class="text-[11px] text-slate-300">دمج آلي متسلسل: المؤشر ➔ الجانب ➔ الدليل ➔ الأثر ➔ الملاحظة ➔ الدعم ➔ التوصية</p>
+                                </div>
+                            </div>
+                            <button type="button" onclick="polishParagraph()" class="px-2.5 py-1.5 rounded-lg bg-gold-500/20 hover:bg-gold-500/30 text-gold-300 border border-gold-400/30 text-xs font-bold transition flex items-center gap-1" title="تحسين الربط اللغوي">
+                                <i class="fa-solid fa-sparkles"></i> تحسين لغوي
+                            </button>
+                        </div>
+
+                        <div class="p-5 space-y-4">
+                            <!-- شارة البند والمؤشر المختار -->
+                            <div class="bg-white/5 rounded-xl p-3 border border-white/10 text-xs space-y-1">
+                                <div class="flex items-center justify-between text-gold-400 font-bold">
+                                    <span id="preview-criterion-title">البند (1)</span>
+                                    <span id="preview-rating-pill" class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">1 - متميز</span>
+                                </div>
+                                <p id="preview-indicator-title" class="text-slate-200 leading-relaxed"></p>
+                            </div>
+
+                            <!-- مربع الفقرة الإشرافية المدمجة -->
+                            <div class="space-y-1.5">
+                                <div class="flex items-center justify-between">
+                                    <label class="text-xs font-bold text-slate-300">الفقرة الإشرافية المتكاملة (قابلة للتحرير المباشر):</label>
+                                    <span id="word-count" class="text-[11px] text-slate-400">0 كلمة</span>
+                                </div>
+                                <textarea id="live-composed-text" rows="11" class="w-full rounded-xl bg-white text-slate-900 p-4 text-sm leading-7 font-medium shadow-inner border-2 border-gold-500/40 focus:border-gold-400 outline-none"></textarea>
+                            </div>
+
+                            <!-- أزرار التحكم الفورية -->
+                            <div class="grid grid-cols-2 gap-2.5 pt-1">
+                                <button type="button" onclick="saveCurrentItemToReport()" id="btn-save-item" class="col-span-2 py-3 px-4 rounded-xl bg-gradient-to-l from-gold-500 to-gold-600 hover:from-gold-400 hover:to-gold-500 text-navy-950 font-extrabold text-sm shadow-lg transition flex items-center justify-center gap-2">
+                                    <i class="fa-solid fa-circle-check text-base"></i>
+                                    <span id="btn-save-item-text">اعتماد وإضافة البند إلى سجل الزيارة</span>
+                                </button>
+
+                                <button type="button" onclick="copyComposedText()" class="py-2.5 px-3 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs border border-white/15 transition flex items-center justify-center gap-1.5">
+                                    <i class="fa-regular fa-copy text-gold-400"></i>
+                                    <span>نسخ الصياغة</span>
+                                </button>
+
+                                <button type="button" onclick="prepareNextIndicator()" class="py-2.5 px-3 rounded-xl bg-blue-600/40 hover:bg-blue-600/60 text-white font-bold text-xs border border-blue-400/30 transition flex items-center justify-center gap-1.5">
+                                    <i class="fa-solid fa-forward-step text-blue-300"></i>
+                                    <span>المؤشر التالي</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- بطاقة إحصاءات التقدم السريعة -->
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-4">
+                        <h4 class="text-xs font-extrabold text-slate-500 uppercase tracking-wider mb-3">مؤشرات التغطية الإشرافية للزيارة الحالية</h4>
+                        <div class="grid grid-cols-3 gap-2 text-center">
+                            <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200">
+                                <div id="stat-total" class="text-xl font-extrabold text-navy-900">0</div>
+                                <div class="text-[11px] font-bold text-slate-500">بنود مرصودة</div>
+                            </div>
+                            <div class="p-2.5 rounded-xl bg-emerald-50 border border-emerald-200">
+                                <div id="stat-strengths" class="text-xl font-extrabold text-emerald-700">0</div>
+                                <div class="text-[11px] font-bold text-emerald-700">جوانب إجادة</div>
+                            </div>
+                            <div class="p-2.5 rounded-xl bg-amber-50 border border-amber-200">
+                                <div id="stat-improvements" class="text-xl font-extrabold text-amber-700">0</div>
+                                <div class="text-[11px] font-bold text-amber-700">جوانب تطوير</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. سجل البنود المعتمدة في الزيارة -->
+        <section class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden no-print">
+            <div class="px-5 py-4 bg-slate-900 text-white flex flex-wrap items-center justify-between gap-3">
+                <div class="flex items-center gap-3">
+                    <span class="w-8 h-8 rounded-xl bg-gold-500 text-navy-950 font-bold flex items-center justify-center text-sm">4</span>
+                    <div>
+                        <h2 class="text-base sm:text-lg font-bold">سجل البنود والمؤشرات المعتمدة في الزيارة</h2>
+                        <p class="text-xs text-slate-300">يمكنك إعادة الترتيب أو التعديل أو الحذف قبل تصدير التقرير الرسمي</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button onclick="exportJSONBackup()" class="px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-xs font-bold text-white border border-white/15 transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-download text-gold-400"></i> تصدير JSON
+                    </button>
+                    <label class="px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-xs font-bold text-white border border-white/15 transition flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-upload text-gold-400"></i> استيراد JSON
+                        <input type="file" accept=".json" onchange="importJSONBackup(event)" class="hidden">
+                    </label>
+                </div>
+            </div>
+
+            <div id="saved-items-container" class="p-5">
+                <!-- يتم عرض البطاقات المحفوظة هنا -->
+            </div>
+        </section>
+
+        <!-- 5. التقرير الإشرافي الرسمي النهائي (مطابق لاستمارة سلطنة عُمان 2026/2027) -->
+        <section id="official-report-section" class="bg-white rounded-2xl shadow-md border border-slate-300 overflow-hidden">
+            <!-- شريط أدوات التصدير والطباعة -->
+            <div class="px-5 py-4 bg-gradient-to-l from-navy-900 to-navy-700 text-white flex flex-wrap items-center justify-between gap-3 no-print">
+                <div class="flex items-center gap-3">
+                    <span class="w-8 h-8 rounded-xl bg-gold-500 text-navy-950 font-bold flex items-center justify-center text-sm">5</span>
+                    <div>
+                        <h2 class="text-base sm:text-lg font-bold">معاينة التقرير الإشرافي الرسمي المعتمد (2026/2027م)</h2>
+                        <p class="text-xs text-slate-200">جاهز للطباعة الرسمية أو التصدير بصيغة Word (.doc)</p>
+                    </div>
+                </div>
+                <div class="flex flex-wrap items-center gap-2">
+                    <button onclick="window.print()" class="px-4 py-2 rounded-xl bg-gold-500 hover:bg-gold-600 text-navy-950 font-extrabold text-xs sm:text-sm shadow transition flex items-center gap-2">
+                        <i class="fa-solid fa-print"></i> طباعة / تصدير PDF
+                    </button>
+                    <button onclick="exportToWord()" class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs sm:text-sm shadow transition flex items-center gap-2">
+                        <i class="fa-solid fa-file-word"></i> تصدير Word (.doc)
+                    </button>
+                </div>
+            </div>
+
+            <!-- منطقة الطباعة الرسمية -->
+            <div id="official-print-area" class="p-6 sm:p-10 bg-white text-slate-900">
+                <!-- ترويسة الوزارة الرسمية -->
+                <div class="border-b-2 border-slate-800 pb-4 mb-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-right">
+                    <div class="space-y-1">
+                        <p class="font-bold text-sm text-slate-800">سلطنة عُمان</p>
+                        <p class="font-bold text-sm text-slate-800">وزارة التعليم</p>
+                        <p id="rep-directorate" class="text-xs font-semibold text-slate-600">المديرية العامة للتربية والتعليم بالمحافظة</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="inline-block px-4 py-1.5 rounded-full bg-slate-100 border border-slate-300 text-xs font-bold text-slate-700 mb-1">
+                            منظومة الإشراف التربوي — العام الدراسي 2026/2027م
+                        </div>
+                        <h1 class="text-xl font-extrabold text-navy-900">استمارة تقرير زيارة إشرافية لمدير / مساعد مدير مدرسة</h1>
+                    </div>
+                    <div class="text-xs text-slate-600 space-y-1 sm:text-left">
+                        <p><span class="font-bold">التاريخ:</span> <span id="rep-date">—</span></p>
+                        <p><span class="font-bold">الوقت:</span> <span id="rep-time">—</span></p>
+                        <p><span class="font-bold">نوع الزيارة:</span> <span id="rep-visit-type">—</span></p>
+                    </div>
+                </div>
+
+                <!-- جدول البيانات الأساسية -->
+                <table class="w-full border-collapse border border-slate-400 text-xs sm:text-sm mb-6">
+                    <tbody>
+                        <tr class="bg-slate-100">
+                            <td class="border border-slate-400 p-2.5 font-bold w-1/6">اسم المدرسة:</td>
+                            <td id="rep-school" class="border border-slate-400 p-2.5 w-2/6 font-semibold">—</td>
+                            <td class="border border-slate-400 p-2.5 font-bold w-1/6">اسم المستهدف بالزيارة:</td>
+                            <td id="rep-target-name" class="border border-slate-400 p-2.5 w-2/6 font-semibold">—</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-slate-400 p-2.5 font-bold bg-slate-100">المسمى الوظيفي:</td>
+                            <td id="rep-role" class="border border-slate-400 p-2.5">—</td>
+                            <td class="border border-slate-400 p-2.5 font-bold bg-slate-100">المشرف الإداري:</td>
+                            <td id="rep-supervisor" class="border border-slate-400 p-2.5">—</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- أولاً: جوانب الإجادة وأدلتها وأثرها -->
+                <div class="mb-6">
+                    <h3 class="text-base font-extrabold bg-emerald-900 text-white px-4 py-2 rounded-t-lg flex items-center justify-between">
+                        <span>أولاً: جوانب الإجادة والتميّز وأدلتها وأثرها</span>
+                        <span class="text-xs font-normal opacity-90">(التقديرات: متميز / جيد)</span>
+                    </h3>
+                    <table class="w-full border-collapse border border-slate-400 text-xs sm:text-sm">
+                        <thead>
+                            <tr class="bg-emerald-50 text-emerald-950 font-bold">
+                                <th class="border border-slate-400 p-2.5 w-10 text-center">م</th>
+                                <th class="border border-slate-400 p-2.5 w-1/4">البند والمؤشر</th>
+                                <th class="border border-slate-400 p-2.5 w-1/4">جانب الإجادة</th>
+                                <th class="border border-slate-400 p-2.5 w-1/4">الدليل والشاهد</th>
+                                <th class="border border-slate-400 p-2.5 w-1/4">الأثر المتحقق</th>
+                            </tr>
+                        </thead>
+                        <tbody id="rep-strengths-body">
+                            <tr>
+                                <td colspan="5" class="border border-slate-400 p-4 text-center text-slate-500">لم يتم رصد جوانب إجادة بعد.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- ثانياً: الجوانب التي تحتاج إلى تطوير وتحسين وأدلتها وأثرها -->
+                <div class="mb-6">
+                    <h3 class="text-base font-extrabold bg-amber-800 text-white px-4 py-2 rounded-t-lg flex items-center justify-between">
+                        <span>ثانياً: الجوانب التي تحتاج إلى تطوير وتحسين وأدلتها وأثرها</span>
+                        <span class="text-xs font-normal opacity-90">(التقديرات: ملائم / غير ملائم / يحتاج إلى تدخل)</span>
+                    </h3>
+                    <table class="w-full border-collapse border border-slate-400 text-xs sm:text-sm">
+                        <thead>
+                            <tr class="bg-amber-50 text-amber-950 font-bold">
+                                <th class="border border-slate-400 p-2.5 w-10 text-center">م</th>
+                                <th class="border border-slate-400 p-2.5 w-1/4">البند والمؤشر</th>
+                                <th class="border border-slate-400 p-2.5 w-1/4">جانب التحسين والتطوير</th>
+                                <th class="border border-slate-400 p-2.5 w-1/4">الدليل والشاهد</th>
+                                <th class="border border-slate-400 p-2.5 w-1/4">الأثر المتوقع / الفجوة</th>
+                            </tr>
+                        </thead>
+                        <tbody id="rep-improvements-body">
+                            <tr>
+                                <td colspan="5" class="border border-slate-400 p-4 text-center text-slate-500">لم يتم رصد جوانب تحتاج إلى تطوير بعد.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- ثالثاً: الملاحظات الإشرافية والدعم المقدم والتوصيات -->
+                <div class="mb-6">
+                    <h3 class="text-base font-extrabold bg-navy-900 text-white px-4 py-2 rounded-t-lg">
+                        ثالثاً: الملاحظات الإشرافية والدعم المقدم والتوصيات الإجرائية
+                    </h3>
+                    <table class="w-full border-collapse border border-slate-400 text-xs sm:text-sm">
+                        <thead>
+                            <tr class="bg-slate-100 text-slate-900 font-bold">
+                                <th class="border border-slate-400 p-2.5 w-1/5">البند / المؤشر</th>
+                                <th class="border border-slate-400 p-2.5 w-4/15">الملاحظة الإشرافية</th>
+                                <th class="border border-slate-400 p-2.5 w-4/15">الدعم المقدم أثناء الزيارة</th>
+                                <th class="border border-slate-400 p-2.5 w-4/15">التوصيات</th>
+                            </tr>
+                        </thead>
+                        <tbody id="rep-actions-body">
+                            <tr>
+                                <td colspan="4" class="border border-slate-400 p-4 text-center text-slate-500">لا توجد بيانات مسجلة بعد.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- رابعاً: ملخص التقديرات المعتمدة للبنود المرصودة -->
+                <div class="mb-8">
+                    <h3 class="text-base font-extrabold bg-slate-800 text-white px-4 py-2 rounded-t-lg">
+                        رابعاً: ملخص مستويات التقدير المعتمدة وفق استمارة 2026/2027م
+                    </h3>
+                    <table class="w-full border-collapse border border-slate-400 text-xs sm:text-sm">
+                        <thead>
+                            <tr class="bg-slate-100 font-bold">
+                                <th class="border border-slate-400 p-2 text-right">البند والمؤشر</th>
+                                <th class="border border-slate-400 p-2 text-center w-16">1<br><span class="text-[10px]">متميز</span></th>
+                                <th class="border border-slate-400 p-2 text-center w-16">2<br><span class="text-[10px]">جيد</span></th>
+                                <th class="border border-slate-400 p-2 text-center w-16">3<br><span class="text-[10px]">ملائم</span></th>
+                                <th class="border border-slate-400 p-2 text-center w-16">4<br><span class="text-[10px]">غير ملائم</span></th>
+                                <th class="border border-slate-400 p-2 text-center w-20">5<br><span class="text-[10px]">يحتاج لتدخل</span></th>
+                            </tr>
+                        </thead>
+                        <tbody id="rep-ratings-body">
+                            <tr>
+                                <td colspan="6" class="border border-slate-400 p-4 text-center text-slate-500">لم تُعتمد تقديرات بعد.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- التوقيعات الرسمية -->
+                <div class="grid grid-cols-2 gap-8 pt-4 border-t border-slate-300 text-sm">
+                    <div class="text-center space-y-6">
+                        <p class="font-bold text-slate-800">توقيع المستهدف بالزيارة (<span id="sig-role">مدير المدرسة</span>)</p>
+                        <p id="sig-target-name" class="font-semibold text-slate-700">................................................</p>
+                        <p class="text-xs text-slate-500">التوقيع: ........................................</p>
+                    </div>
+                    <div class="text-center space-y-6">
+                        <p class="font-bold text-slate-800">توقيع المشرف الإداري</p>
+                        <p id="sig-supervisor-name" class="font-semibold text-slate-700">................................................</p>
+                        <p class="text-xs text-slate-500">التوقيع: ........................................</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- نافذة إدارة بنك المحتوى وإضافة عبارات مخصصة (Modal) -->
+    <div id="bank-modal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-xs z-50 hidden items-center justify-center p-4 no-print">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full overflow-hidden border border-slate-200 animate-fade-in">
+            <div class="px-6 py-4 bg-navy-900 text-white flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                    <i class="fa-solid fa-database text-gold-400 text-lg"></i>
+                    <h3 class="font-bold text-lg">بنك العبارات الإشرافية والمكتبة المخصصة</h3>
+                </div>
+                <button onclick="closeBankModal()" class="text-slate-300 hover:text-white text-xl">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="p-6 space-y-4 max-h-[80vh] overflow-y-auto">
+                <p class="text-xs sm:text-sm text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-200">
+                    أضف عباراتك الإشرافية الخاصة لأي بند ومؤشر، وسيتم حفظها محلياً وظهورها تلقائياً في القوائم المنسدلة المترابطة مستقبلاً.
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">البند:</label>
+                        <select id="modal-criterion" onchange="populateModalIndicators()" class="w-full rounded-xl border border-slate-300 p-2.5 text-xs font-bold bg-white select-styled"></select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">المؤشر:</label>
+                        <select id="modal-indicator" class="w-full rounded-xl border border-slate-300 p-2.5 text-xs font-semibold bg-white select-styled"></select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">القائمة المستهدفة:</label>
+                        <select id="modal-field-type" class="w-full rounded-xl border border-slate-300 p-2.5 text-xs font-bold bg-white select-styled">
+                            <option value="strengthAspect">جانب الإجادة (للتقدير 1 و 2)</option>
+                            <option value="improvementAspect">جانب التحسين والتطوير (للتقدير 3 و 4 و 5)</option>
+                            <option value="evidence">الدليل والشاهد (وثائقي / رقمي / ميداني)</option>
+                            <option value="strengthImpact">الأثر المتحقق (الإجادة)</option>
+                            <option value="improvementImpact">الأثر المتوقع / الفجوة (التحسين)</option>
+                            <option value="observation">الملاحظة الإشرافية</option>
+                            <option value="support">الدعم المقدم أثناء الزيارة</option>
+                            <option value="strengthRec">توصية استدامة وتميّز (الإجادة)</option>
+                            <option value="improvementRec">توصية إجرائية علاجية (التحسين)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">تصنيف الدليل (إن كان دليلاً):</label>
+                        <select id="modal-evidence-tag" class="w-full rounded-xl border border-slate-300 p-2.5 text-xs bg-white select-styled">
+                            <option value="[وثائقي]">[وثائقي] سجل / خطة / محضر</option>
+                            <option value="[رقمي]">[رقمي] البوابة التعليمية / نظام إلكتروني</option>
+                            <option value="[ميداني]">[ميداني] ملاحظة صفية / جولة مرافق</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">نص العبارة المخصصة:</label>
+                    <textarea id="modal-custom-text" rows="3" placeholder="اكتب العبارة المهنية بصياغة إشرافية رصينة..." class="w-full rounded-xl border border-slate-300 p-3 text-sm focus:border-navy-700 outline-none"></textarea>
+                </div>
+
+                <div class="flex justify-end gap-2 pt-2">
+                    <button onclick="closeBankModal()" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold">إغلاق</button>
+                    <button onclick="saveCustomBankEntry()" class="px-5 py-2 rounded-xl bg-navy-800 hover:bg-navy-900 text-white text-xs font-bold shadow">
+                        <i class="fa-solid fa-floppy-disk ml-1 text-gold-400"></i> حفظ في البنك وتحديث القوائم
+                    </button>
+                </div>
+
+                <!-- قائمة العبارات المضافة من قبل المستخدم -->
+                <div class="border-t border-slate-200 pt-4">
+                    <h4 class="text-xs font-extrabold text-slate-700 mb-2">العبارات المخصصة المحفوظة محلياً (<span id="custom-entries-count">0</span>):</h4>
+                    <div id="custom-entries-list" class="space-y-2 max-h-40 overflow-y-auto text-xs"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-navy-950 text-slate-400 text-center py-4 text-xs border-t border-slate-800 no-print">
+        <p>منصة <strong class="text-gold-400">مِعيار | MI’YAR</strong> — مساعد الزيارة الإشرافية الذكي وفق منظومة الإشراف التربوي بسلطنة عُمان للعام الدراسي 2026/2027م</p>
+    </footer>
+
+    <!-- قاعدة البيانات الشاملة للبنود الـ 11 والمؤشرات الـ 55 الحرفية ومنطق الترابط الديناميكي -->
+    <script>
+        /**
+         * قاعدة البيانات المرجعية الكاملة لاستمارة الزيارة الإشرافية لمدير ومساعد مدير مدرسة 2026/2027م
+         * تتضمن جميع البنود الـ 11 الرسمية ومؤشراتها الـ 55 الحرفية مع قوالب ذكية مخصصة لكل مؤشر
+         */
+        const OFFICIAL_FRAMEWORK = [
+            {
+                id: 1,
+                domain: "القيادة والتخطيط الاستراتيجي",
+                title: "البند (1): التخطيط المدرسي وتطوير الأداء",
+                indicators: [
+                    {
+                        code: "1.1",
+                        text: "يبني خطة تطوير المدرسة وفق نتائج التقويم الذاتي والمؤشرات التربوية بمشاركة المجتمع المدرسي.",
+                        focus: "بناء خطة تطوير المدرسة وفق التقويم الذاتي والمؤشرات التربوية بمشاركة المجتمع المدرسي",
+                        evidences: [
+                            "[وثائقي] وثيقة خطة تطوير المدرسة المعتمدة للعام الدراسي 2026/2027م ومحاضر اجتماعات فريق التطوير والتحسين.",
+                            "[رقمي] استمارات استطلاع آراء الطلبة وأولياء الأمور والهيئة التدريسية عبر النماذج الرقمية وتحليل بيانات التقويم الذاتي.",
+                            "[ميداني] مداولات الحوار الإشرافي مع مدير المدرسة وأعضاء مجلس أولياء الأمور حول أولويات الخطة المدرسية."
+                        ]
+                    },
+                    {
+                        code: "1.2",
+                        text: "يصوغ أهدافاً ذكية ومؤشرات أداء واضحة قابلة للقياس ومرتبطة بتحسين نواتج التعلم.",
+                        focus: "صياغة أهداف ذكية ومؤشرات أداء واضحة قابلة للقياس ومرتبطة بتحسين نواتج التعلم",
+                        evidences: [
+                            "[وثائقي] مصفوفة الأهداف الإجرائية ومؤشرات قياس الأداء في الخطة التشغيلية للمدرسة.",
+                            "[رقمي] لوحة متابعة مؤشرات التحصيل الدراسي وخط الأساس والمستهدفات الرقمية لكل مادة دراسية.",
+                            "[وثائقي] بطاقات وصف المشاريع والمبادرات التطويرية المرتبطة برفع المستوى التحصيلي للطلبة."
+                        ]
+                    },
+                    {
+                        code: "1.3",
+                        text: "يتابع تنفيذ الخطة المدرسية بصورة دورية ويُجري التعديلات اللازمة في ضوء التغذية الراجعة.",
+                        focus: "متابعة تنفيذ الخطة المدرسية دورياً وإجراء التعديلات اللازمة في ضوء التغذية الراجعة",
+                        evidences: [
+                            "[وثائقي] تقارير المتابعة الفصلية والشهرية لتنفيذ برامج الخطة المدرسية ونسب الإنجاز.",
+                            "[رقمي] سجل المتابعة الإلكتروني لمؤشرات تنفيذ الخطط الإجرائية وتحديثاتها المرحلية.",
+                            "[وثائقي] محاضر مراجعة الخطة المدرسية وإعادة توجيه الأولويات بناءً على نتائج التقييم التكويني."
+                        ]
+                    },
+                    {
+                        code: "1.4",
+                        text: "يُفعّل أدوات التقويم الذاتي المدرسي لتشخيص الواقع وتحديد أولويات التطوير بدقة.",
+                        focus: "تفعيل أدوات التقويم الذاتي المدرسي لتشخيص الواقع وتحديد أولويات التطوير",
+                        evidences: [
+                            "[وثائقي] ملف التقويم الذاتي المدرسي واستمارات تحليل نقاط القوة وأولويات التطوير.",
+                            "[رقمي] قاعدة بيانات نتائج استبانات التقويم الذاتي وتحليلها الإحصائي في النظام.",
+                            "[ميداني] مطابقة نتائج التشخيص الذاتي للمدرسة مع الواقع الفعلي للممارسات التعليمية والإدارية."
+                        ]
+                    },
+                    {
+                        code: "1.5",
+                        text: "يُواءم الخطط التشغيلية للجان والفرق المدرسية مع الخطة العامة للمدرسة وأولويات الوزارة.",
+                        focus: "مواءمة الخطط التشغيلية للجان والفرق المدرسية مع الخطة العامة للمدرسة وأولويات الوزارة",
+                        evidences: [
+                            "[وثائقي] خطط اللجان المدرسية والمواد الدراسية ومطابقتها مع أهداف الخطة المدرسية.",
+                            "[وثائقي] مصفوفة ربط المبادرات المدرسية بالتوجهات الاستراتيجية لوزارة التعليم 2026/2027م.",
+                            "[ميداني] مناقشة رؤساء اللجان ومنسقي المواد حول آليات ترجمة الخطة العامة إلى إجراءات صفية."
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 2,
+                domain: "قيادة التعليم والتعلم",
+                title: "البند (2): قيادة عمليات التعليم والتعلم",
+                indicators: [
+                    {
+                        code: "2.1",
+                        text: "يتابع انتظام سير العملية التعليمية وتفعيل زمن التعلم الفعلي داخل الغرف الصفية.",
+                        focus: "متابعة انتظام سير العملية التعليمية وتفعيل زمن التعلم الفعلي داخل الغرف الصفية",
+                        evidences: [
+                            "[وثائقي] سجل المتابعة اليومية لانتظام الحصص الدراسية وسجل حصص الاحتياط واستثمارها التعليمي.",
+                            "[ميداني] جولات المتابعة الصباحية والصفية لرصد انضباط بداية الحصص واستثمار زمن التعلم.",
+                            "[رقمي] تقارير الحضور والانضباط اليومي في البوابة التعليمية وجداول التوزيع."
+                        ]
+                    },
+                    {
+                        code: "2.2",
+                        text: "يُنفذ زيارات صفية هادفة ويقدم تغذية راجعة بنّاءة لتحسين ممارسات التدريس والتقويم.",
+                        focus: "تنفيذ زيارات صفية هادفة وتقديم تغذية راجعة بنّاءة لتحسين ممارسات التدريس والتقويم",
+                        evidences: [
+                            "[وثائقي] خطة الزيارات الصفية لإدارة المدرسة واستمارات الملاحظة الصفية الموقعة.",
+                            "[رقمي] سجل التغذية الراجعة الإلكترونية للمعلمين بعد الزيارات الصفية ومتابعة أثرها.",
+                            "[ميداني] مداولات ما بعد الزيارة الصفية مع المعلمين ومدى انعكاس التوصيات على الأداء الصفي."
+                        ]
+                    },
+                    {
+                        code: "2.3",
+                        text: "يُشجع توظيف استراتيجيات التدريس الحديثة والتعلم النشط ومهارات التفكير العليا.",
+                        focus: "تشجيع توظيف استراتيجيات التدريس الحديثة والتعلم النشط ومهارات التفكير العليا",
+                        evidences: [
+                            "[ميداني] حضور حصص دراسية توظف استراتيجيات التعلم النشط وحل المشكلات والتفكير الناقد.",
+                            "[وثائقي] نشرات توجيهية وحلقات نقاش تربوية حول استراتيجيات التدريس المتمركز حول المتعلم.",
+                            "[رقمي] ملفات الدروس التطبيقية والممارسات التدريسية المتميزة الموثقة في منصة المدرسة."
+                        ]
+                    },
+                    {
+                        code: "2.4",
+                        text: "يتابع تفعيل مصادر التعلم والمختبرات العلمية والتقنيات الرقمية في المواقف الصفية.",
+                        focus: "متابعة تفعيل مصادر التعلم والمختبرات العلمية والتقنيات الرقمية في المواقف الصفية",
+                        evidences: [
+                            "[وثائقي] سجلات تردد الفصول الدراسية على مركز مصادر التعلم والمختبرات العلمية.",
+                            "[ميداني] مشاهدة توظيف السبورة التفاعلية والمنصات الرقمية والتجارب العملية أثناء الزيارات.",
+                            "[رقمي] إحصاءات استخدام المحتوى التعليمي الرقمي والبرمجيات التفاعلية في الدروس."
+                        ]
+                    },
+                    {
+                        code: "2.5",
+                        text: "يُتابع معالجة الفاقد التعليمي وتنفيذ الخطط الإثرائية والعلاجية للطلبة وفق مستوياتهم.",
+                        focus: "متابعة معالجة الفاقد التعليمي وتنفيذ الخطط الإثرائية والعلاجية للطلبة وفق مستوياتهم",
+                        evidences: [
+                            "[وثائقي] سجلات تشخيص الفاقد التعليمي والخطط العلاجية والإثرائية المعتمدة لكل صف.",
+                            "[رقمي] ملفات تتبع تقدم الطلبة ذوي التحصيل المتدني والموهوبين في الاختبارات التشخيصية والبعدية.",
+                            "[ميداني] فحص عينات من أعمال الطلبة وأنشطتهم المتمايزة داخل الغرف الصفية."
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 3,
+                domain: "التحصيل الدراسي والتقويم",
+                title: "البند (3): متابعة التحصيل الدراسي ونواتج التعلم",
+                indicators: [
+                    {
+                        code: "3.1",
+                        text: "يُحلل نتائج التحصيل الدراسي للطلبة بدقة ويقارنها بالمستهدفات والمؤشرات الوطنية.",
+                        focus: "تحليل نتائج التحصيل الدراسي للطلبة ومقارنتها بالمستهدفات والمؤشرات الوطنية",
+                        evidences: [
+                            "[رقمي] تقارير تحليل النتائج الفصلية والنهائية المستخرجة من البوابة التعليمية والرسوم البيانية المقارنة.",
+                            "[وثائقي] دراسة تحليلية لمستويات الأداء في المواد الدراسية ومقارنتها بالأعوام السابقة والمؤشرات الوطنية.",
+                            "[ميداني] مناقشة نتائج التحليل الإحصائي مع المعلمين الأوائل لتحديد المواد والصفوف ذات الأولوية."
+                        ]
+                    },
+                    {
+                        code: "3.2",
+                        text: "يتابع مصداقية أدوات التقويم المستمر وتنوعها ومطابقتها لوثائق تقويم تعلم الطلبة.",
+                        focus: "متابعة مصداقية أدوات التقويم المستمر وتنوعها ومطابقتها لوثائق تقويم تعلم الطلبة",
+                        evidences: [
+                            "[وثائقي] عينات من الاختبارات القصيرة والأنشطة التقويمية وسجلات رصد الدرجات ومطابقتها لوثائق التقويم.",
+                            "[وثائقي] محاضر اجتماعات لجنة التحصيل الدراسي لمراجعة مواصفات الورقة الامتحانية وجداول المواصفات.",
+                            "[رقمي] مطابقة درجات التقويم المستمر مع نتائج الاختبارات النهائية لرصد الفجوات التقييمية."
+                        ]
+                    },
+                    {
+                        code: "3.3",
+                        text: "يُفعّل دور لجنة التحصيل الدراسي في اقتراح البرامج الداعمة ومتابعة أثرها.",
+                        focus: "تفعيل دور لجنة التحصيل الدراسي في اقتراح البرامج الداعمة ومتابعة أثرها",
+                        evidences: [
+                            "[وثائقي] محاضر اجتماعات لجنة التحصيل الدراسي وقراراتها الإجرائية وبرامجها الداعمة.",
+                            "[وثائقي] تقارير قياس أثر المبادرات والبرامج التحصيلية المنفذة خلال الفصل الدراسي.",
+                            "[ميداني] لقاء أعضاء لجنة التحصيل الدراسي والاطلاع على آليات متابعتهم للفصول الدراسية."
+                        ]
+                    },
+                    {
+                        code: "3.4",
+                        text: "يُتابع رعاية الطلبة المجيدين دراسياً وتنمية مهاراتهم للمنافسة في المسابقات الوطنية والدولية.",
+                        focus: "متابعة رعاية الطلبة المجيدين دراسياً وتنمية مهاراتهم للمنافسة في المسابقات",
+                        evidences: [
+                            "[وثائقي] سجل حصر الطلبة المجيدين دراسياً وبرامج الرعاية والإثراء المقدمة لهم.",
+                            "[رقمي] سجل مشاركات المدرسة وإنجازاتها في الأولمبياد العلمية والمسابقات التربوية 2026/2027م.",
+                            "[ميداني] عرض نماذج من مشاريع الطلبة المجيدين وابتكاراتهم العلمية."
+                        ]
+                    },
+                    {
+                        code: "3.5",
+                        text: "يُشرك أولياء الأمور في متابعة المستوى التحصيلي لأبنائهم وتقديم التغذية الراجعة المستمرة.",
+                        focus: "إشراك أولياء الأمور في متابعة المستوى التحصيلي لأبنائهم وتقديم التغذية الراجعة",
+                        evidences: [
+                            "[رقمي] سجلات التواصل الإلكتروني عبر البوابة التعليمية وتطبيق ولي الأمر والرسائل التوعوية.",
+                            "[وثائقي] محاضر اللقاءات التربوية مع أولياء الأمور لمناقشة تقارير الأداء الفصلي للطلبة.",
+                            "[ميداني] الاطلاع على ملفات المتابعة الفردية للطلبة الموقعة من أولياء الأمور."
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 4,
+                domain: "الإنماء المهني والموارد البشرية",
+                title: "البند (4): الإنماء المهني وتمكين الكوادر المدرسية",
+                indicators: [
+                    {
+                        code: "4.1",
+                        text: "يُحدد الاحتياجات التدريبية للهيئتين التدريسية والإدارية بناءً على نتائج الزيارات وتقويم الأداء.",
+                        focus: "تحديد الاحتياجات التدريبية للهيئتين التدريسية والإدارية بناءً على نتائج الزيارات وتقويم الأداء",
+                        evidences: [
+                            "[وثائقي] استمارات حصر الاحتياجات التدريبية ومصفوفة ربطها بنتائج الزيارات الصفية وتقويم الأداء.",
+                            "[رقمي] قاعدة بيانات الاحتياجات المهنية للعاملين بالمدرسة المصنفة حسب الأولوية.",
+                            "[وثائقي] تحليل الفجوات الأدائية لدى الكوادر التعليمية والإدارية."
+                        ]
+                    },
+                    {
+                        code: "4.2",
+                        text: "يُنفذ خطة إنماء مهني مدرسية متنوعة تلبي الاحتياجات الفعلية وتواكب المستجدات التربوية.",
+                        focus: "تنفيذ خطة إنماء مهني مدرسية متنوعة تلبي الاحتياجات الفعلية وتواكب المستجدات",
+                        evidences: [
+                            "[وثائقي] خطة الإنماء المهني المعتمدة وسجلات تنفيذ المشاغل وحلقات النقاش والورش التدريبية.",
+                            "[رقمي] حقائب تدريبية إلكترونية وتسجيلات للورش التربوية المنفذة في الذكاء الاصطناعي والتقويم.",
+                            "[ميداني] حضور جانب من حلقة نقاش أو مشغل تدريبي منفذ ضمن برنامج الإنماء المهني."
+                        ]
+                    },
+                    {
+                        code: "4.3",
+                        text: "يُفعّل مجتمعات التعلم المهنية وتبادل الزيارات والخبرات بين المعلمين داخل المدرسة وخارجها.",
+                        focus: "تفعيل مجتمعات التعلم المهنية وتبادل الزيارات والخبرات بين المعلمين",
+                        evidences: [
+                            "[وثائقي] سجلات مجتمعات التعلم المهنية (PLCs) وجداول تبادل الزيارات الصفية بين المعلمين.",
+                            "[وثائقي] تقارير الزيارات التبادلية مع المدارس المجاورة ونقل الممارسات المجيدة.",
+                            "[ميداني] ملاحظة تفاعل المعلمين في فرق التعلم المهنية لمناقشة تحديات التدريس."
+                        ]
+                    },
+                    {
+                        code: "4.4",
+                        text: "يقيس أثر برامج الإنماء المهني على تحسن الممارسات الصفية والإدارية للعاملين.",
+                        focus: "قياس أثر برامج الإنماء المهني على تحسن الممارسات الصفية والإدارية للعاملين",
+                        evidences: [
+                            "[وثائقي] استمارات قياس أثر التدريب في الميدان ومقارنة أداء المعلم قبل البرنامج التدريبي وبعده.",
+                            "[رقمي] تقارير متابعة نقل أثر التدريب الصفي في سجلات الإشراف الداخلي.",
+                            "[ميداني] شواهد تطبيق المهارات المكتسبة من المشاغل داخل الغرف الصفية."
+                        ]
+                    },
+                    {
+                        code: "4.5",
+                        text: "يُفوّض الصلاحيات بفاعلية ويبني قيادات صف ثانية من الكوادر المدرسية.",
+                        focus: "تفويض الصلاحيات بفاعلية وبناء قيادات صف ثانية من الكوادر المدرسية",
+                        evidences: [
+                            "[وثائقي] قرارات التكليف وتوزيع المهام والصلاحيات على المدير المساعد والمعلمين الأوائل ورؤساء اللجان.",
+                            "[وثائقي] بطاقات الوصف الوظيفي للمهام المفوضة وآليات المساءلة والمتابعة.",
+                            "[ميداني] مستوى تمكين الكوادر القيادية بالمدرسة ومشاركتهم الفاعلة في اتخاذ القرار."
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 5,
+                domain: "البيئة المدرسية ورعاية الطلبة",
+                title: "البند (5): البيئة المدرسية والرعاية الطلابية",
+                indicators: [
+                    {
+                        code: "5.1",
+                        text: "يُوفر بيئة مدرسية آمنة وجاذبة ونظيفة تراعي معايير الأمن والسلامة والصحة المدرسية.",
+                        focus: "توفير بيئة مدرسية آمنة وجاذبة ونظيفة تراعي معايير الأمن والسلامة والصحة المدرسية",
+                        evidences: [
+                            "[ميداني] جولة ميدانية شاملة لمرافق المدرسة (الفصول، المختبرات، الساحات، دورات المياه، طفايات الحريق).",
+                            "[وثائقي] سجل الأمن والسلامة وخطة الإخلاء وتقارير الصيانة الدورية والنظافة.",
+                            "[وثائقي] سجل الصحة المدرسية ومتابعة الحالات الصحية المزمنة للطلبة."
+                        ]
+                    },
+                    {
+                        code: "5.2",
+                        text: "يُعزز الانضباط السلوكي والقيم الوطنية والمواطنة الإيجابية لدى الطلبة.",
+                        focus: "تعزيز الانضباط السلوكي والقيم الوطنية والمواطنة الإيجابية لدى الطلبة",
+                        evidences: [
+                            "[وثائقي] لائحة شؤون الطلبة وسجلات متابعة الانتظام والانضباط السلوكي وبرامج تعزيز القيم.",
+                            "[ميداني] ملاحظة انضباط الطلبة في الطابور الصباحي والفسحة وتفاعلهم مع تحية العلم والنشيد السلطاني.",
+                            "[رقمي] تقارير رصد الغياب والتأخر الصباحي في البوابة التعليمية والإجراءات المتخذة."
+                        ]
+                    },
+                    {
+                        code: "5.3",
+                        text: "يُفعّل برامج التوجيه المهني والإرشاد النفسي والاجتماعي لرعاية الطلبة.",
+                        focus: "تفعيل برامج التوجيه المهني والإرشاد النفسي والاجتماعي لرعاية الطلبة",
+                        evidences: [
+                            "[وثائقي] خطط وبرامج الأخصائي الاجتماعي والنفسي وأخصائي التوجيه المهني وسجلات دراسة الحالة.",
+                            "[ميداني] الاطلاع على ركن التوجيه المهني وتوعية الطلبة باختيار المواد الدراسية والمسارات المهنية.",
+                            "[رقمي] توثيق المبادرات الإرشادية وبرامج الدعم النفسي والاجتماعي للطلبة."
+                        ]
+                    },
+                    {
+                        code: "5.4",
+                        text: "يدعم الأنشطة التربوية والمسابقات الطلابية لاكتشاف مواهب الطلبة وتنميتها.",
+                        focus: "دعم الأنشطة التربوية والمسابقات الطلابية لاكتشاف مواهب الطلبة وتنميتها",
+                        evidences: [
+                            "[وثائقي] خطة الأنشطة التربوية وحصر المواهب الطلابية وسجلات الجماعات المدرسية.",
+                            "[ميداني] مشاهدة فعاليات الأنشطة المدرسية والمعارض الطلابية والإذاعة المدرسية.",
+                            "[رقمي] سجل المشاركات الطلابية في المسابقات الثقافية والرياضية والفنية والعلمية."
+                        ]
+                    },
+                    {
+                        code: "5.5",
+                        text: "يُتابع جودة الخدمات المساندة (الحافلات المدرسية، الجمعية التعاونية، التغذية).",
+                        focus: "متابعة جودة الخدمات المساندة (الحافلات المدرسية، الجمعية التعاونية، التغذية)",
+                        evidences: [
+                            "[وثائقي] سجلات متابعة الحافلات المدرسية والتزامها باشتراطات الأمن والسلامة والمناوبة اليومية.",
+                            "[ميداني] فحص الجمعية التعاونية المدرسية والتأكد من مطابقة الأغذية للاشتراطات الصحية.",
+                            "[رقمي] تقارير المتابعة الدورية للخدمات المساندة ومعالجة الملاحظات المرصودة."
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 6,
+                domain: "الإدارة المالية والموارد",
+                title: "البند (6): إدارة الموارد المالية والمادية والتجهيزات",
+                indicators: [
+                    {
+                        code: "6.1",
+                        text: "يُدير الموازنة المالية للمدرسة بكفاءة وشفافية وفق اللوائح المالية المعتمدة.",
+                        focus: "إدارة الموازنة المالية للمدرسة بكفاءة وشفافية وفق اللوائح المالية المعتمدة",
+                        evidences: [
+                            "[وثائقي] السجلات المالية والفواتير وسندات الصرف والقبض ومحاضر اللجنة المالية بالمدرسة.",
+                            "[رقمي] مطابقة القيود المالية في النظام الإلكتروني مع الرصيد الفعلي والمستندات الورقية.",
+                            "[وثائقي] خطة توزيع المخصصات المالية حسب أولويات الاحتياج التعليمي للمدرسة."
+                        ]
+                    },
+                    {
+                        code: "6.2",
+                        text: "يُتابع جرد العُهد المدرسية والكتب الدراسية والأثاث والمحافظة عليها.",
+                        focus: "متابعة جرد العُهد المدرسية والكتب الدراسية والأثاث والمحافظة عليها",
+                        evidences: [
+                            "[وثائقي] سجلات العُهد المدرسية ومحاضر الجرد السنوي والفصلي وسجل توزيع الكتب الدراسية.",
+                            "[ميداني] معاينة مخازن الكتب والأثاث والتجهيزات ومطابقتها مع سجلات العهدة.",
+                            "[رقمي] تحديث بيانات العهدة المدرسية في النظام الإلكتروني."
+                        ]
+                    },
+                    {
+                        code: "6.3",
+                        text: "يُوظف الموارد المادية والتجهيزات المتاحة لدعم العملية التعليمية بكفاءة.",
+                        focus: "توظيف الموارد المادية والتجهيزات المتاحة لدعم العملية التعليمية بكفاءة",
+                        evidences: [
+                            "[ميداني] ملاحظة استثمار القاعات الدراسية والأجهزة التعليمية والوسائل المتاحة في التدريس.",
+                            "[وثائقي] خطة الصيانة الوقائية للأجهزة والتجهيزات المدرسية والاستفادة من الفائض.",
+                            "[وثائقي] مبادرات ترشيد الاستهلاك (الكهرباء، المياه، القرطاسية) وإعادة التدوير."
+                        ]
+                    },
+                    {
+                        code: "6.4",
+                        text: "يُتابع أعمال الصيانة الدورية للمبنى المدرسي ومرافقه ويرفع البلاغات في حينها.",
+                        focus: "متابعة أعمال الصيانة الدورية للمبنى المدرسي ومرافقه ورفع البلاغات في حينها",
+                        evidences: [
+                            "[رقمي] سجل البلاغات الإلكترونية للصيانة المرفوعة للمديرية وتواريخ متابعتها.",
+                            "[ميداني] تفقد حالة المبنى المدرسي والتكييف والإضاءة ودورات المياه وسرعة معالجة الأعطال.",
+                            "[وثائقي] ملف متابعة عقود النظافة والصيانة الدورية بالمدرسة."
+                        ]
+                    },
+                    {
+                        code: "6.5",
+                        text: "يستثمر الشراكات المجتمعية لتعزيز موارد المدرسة ودعم مشاريعها التطويرية.",
+                        focus: "استثمار الشراكات المجتمعية لتعزيز موارد المدرسة ودعم مشاريعها التطويرية",
+                        evidences: [
+                            "[وثائقي] سجل المساهمات المجتمعية ومبادرات القطاع الخاص ومؤسسات المجتمع المدني.",
+                            "[وثائقي] محاضر اجتماعات مجلس أولياء الأمور بشأن دعم المشاريع والبرامج المدرسية.",
+                            "[ميداني] معاينة المشاريع والتجهيزات المنفذة بالشراكة مع المجتمع المحلي."
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 7,
+                domain: "التحول الرقمي والابتكار",
+                title: "البند (7): توظيف التقانة والتحول الرقمي والابتكار",
+                indicators: [
+                    {
+                        code: "7.1",
+                        text: "يُفعّل الأنظمة الإلكترونية المعتمدة (البوابة التعليمية، أنظمة المراسلات، المنصات) بدقة وانتظام.",
+                        focus: "تفعيل الأنظمة الإلكترونية المعتمدة (البوابة التعليمية، المراسلات، المنصات) بدقة وانتظام",
+                        evidences: [
+                            "[رقمي] مؤشرات استخدام البوابة التعليمية ونظام المراسلات الإلكترونية وسرعة إنجاز المعاملات.",
+                            "[رقمي] دقة تحديث بيانات الطلبة والعاملين والجداول المدرسية في البوابة التعليمية.",
+                            "[ميداني] متابعة تعامل الهيئة الإدارية والتدريسية مع الأنظمة الرقمية المعتمدة."
+                        ]
+                    },
+                    {
+                        code: "7.2",
+                        text: "يُوظف التطبيقات الرقمية وأدوات الذكاء الاصطناعي في تحسين العمليات الإدارية والإشرافية.",
+                        focus: "توظيف التطبيقات الرقمية وأدوات الذكاء الاصطناعي في تحسين العمليات الإدارية والإشرافية",
+                        evidences: [
+                            "[رقمي] نماذج رقمية ولوحات بيانات تفاعلية (Dashboards) لمتابعة الأداء المدرسي.",
+                            "[رقمي] توظيف أدوات الذكاء الاصطناعي والتحول الرقمي في تحليل البيانات وأتمتة المتابعة.",
+                            "[ميداني] استعراض المبادرات الرقمية المطبقة في الإدارة المدرسية لتقليل العمل الورقي."
+                        ]
+                    },
+                    {
+                        code: "7.3",
+                        text: "يُشجع ثقافة الابتكار والمبادرات النوعية لدى العاملين والطلبة.",
+                        focus: "تشجيع ثقافة الابتكار والمبادرات النوعية لدى العاملين والطلبة",
+                        evidences: [
+                            "[وثائقي] سجل المبادرات التربوية والإدارية المبتكرة المنفذة بالمدرسة وبطاقات تقييمها.",
+                            "[ميداني] الاطلاع على مشاريع الابتكار الطلابي والروبوت والذكاء الاصطناعي بالمدرسة.",
+                            "[رقمي] توثيق المبادرات المدرسية المشاركة في الجوائز التربوية والمحافل العلمية."
+                        ]
+                    },
+                    {
+                        code: "7.4",
+                        text: "يُتابع نشر ثقافة المواطنة الرقمية والأمن السيبراني والاستخدام الآمن للتقنية.",
+                        focus: "متابعة نشر ثقافة المواطنة الرقمية والأمن السيبراني والاستخدام الآمن للتقنية",
+                        evidences: [
+                            "[وثائقي] خطة التوعية بالمواطنة الرقمية والأمن السيبراني للطلبة وأولياء الأمور.",
+                            "[ميداني] مشاهدة لوحات إرشادية وفعاليات توعوية حول الاستخدام الآمن والمسؤول للإنترنت.",
+                            "[رقمي] ورش تدريبية ومحاضرات رقمية منفذة حول حماية البيانات والوعي الرقمي."
+                        ]
+                    },
+                    {
+                        code: "7.5",
+                        text: "يُدير قنوات الإعلام المدرسي والمنصات الرقمية للمدرسة بمهنية لإبراز منجزاتها.",
+                        focus: "إدارة قنوات الإعلام المدرسي والمنصات الرقمية للمدرسة بمهنية لإبراز منجزاتها",
+                        evidences: [
+                            "[رقمي] الحسابات الرسمية للمدرسة في منصات التواصل الاجتماعي وجودة المحتوى التربوي المنشور.",
+                            "[وثائقي] خطة الإعلام المدرسي وضوابط النشر المعتمدة والالتزام بالهوية البصرية للوزارة.",
+                            "[ميداني] تفعيل جماعة الإعلام المدرسي في تغطية الفعاليات والمناشط التربوية."
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 8,
+                domain: "الشراكة المجتمعية والتواصل",
+                title: "البند (8): الشراكة مع الأسرة والمجتمع المحلي",
+                indicators: [
+                    {
+                        code: "8.1",
+                        text: "يُفعّل دور مجلس أولياء الأمور في دعم خطط المدرسة وبرامجها التربوية والسلوكية.",
+                        focus: "تفعيل دور مجلس أولياء الأمور في دعم خطط المدرسة وبرامجها التربوية والسلوكية",
+                        evidences: [
+                            "[وثائقي] محاضر اجتماعات مجلس أولياء الأمور وخطته السنوية وتقارير تنفيذ برامجه.",
+                            "[ميداني] لقاء رئيس أو أعضاء مجلس أولياء الأمور والاطلاع على مساهماتهم الميدانية.",
+                            "[رقمي] مبادرات المجلس المنفذة في تعزيز التحصيل الدراسي والانضباط السلوكي."
+                        ]
+                    },
+                    {
+                        code: "8.2",
+                        text: "يُنوّع قنوات التواصل الفاعل مع أولياء الأمور ويستجيب لمقترحاتهم وملاحظاتهم.",
+                        focus: "تنويع قنوات التواصل الفاعل مع أولياء الأمور والاستجابة لمقترحاتهم وملاحظاتهم",
+                        evidences: [
+                            "[رقمي] قنوات التواصل الرقمية (البوابة التعليمية، الرسائل النصية، الاستبانات الإلكترونية).",
+                            "[وثائقي] سجل استقبال أولياء الأمور وسجل المقترحات والشكاوى والإجراءات المتخذة حيالها.",
+                            "[ميداني] تخصيص أوقات واضحة ومعلنة لاستقبال أولياء الأمور وتيسير تواصلهم مع المعلمين."
+                        ]
+                    },
+                    {
+                        code: "8.3",
+                        text: "يبني شراكات فاعلة مع مؤسسات المجتمع المحلي الحكومية والخاصة لخدمة أهداف المدرسة.",
+                        focus: "بناء شراكات فاعلة مع مؤسسات المجتمع المحلي الحكومية والخاصة لخدمة أهداف المدرسة",
+                        evidences: [
+                            "[وثائقي] مذكرات التفاهم وبرامج التعاون المشترك مع المؤسسات الصحية والأمنية والثقافية والخاصة.",
+                            "[وثائقي] سجل الفعاليات والمحاضرات المنفذة بالتعاون مع مؤسسات المجتمع المحلي.",
+                            "[ميداني] شواهد البرامج المشتركة المنعكسة على توعية الطلبة وتنمية مهاراتهم."
+                        ]
+                    },
+                    {
+                        code: "8.4",
+                        text: "يُشرك أولياء الأمور وأفراد المجتمع ذوي الخبرة في إثراء المواقف التعليمية والأنشطة.",
+                        focus: "إشراك أولياء الأمور وأفراد المجتمع ذوي الخبرة في إثراء المواقف التعليمية والأنشطة",
+                        evidences: [
+                            "[وثائقي] سجل استضافة أولياء الأمور وأصحاب المهن والخبرات في الفصول والأنشطة المدرسية.",
+                            "[ميداني] توثيق تجارب مشاركة أولياء الأمور في القراءة التشاركية والتوجيه المهني.",
+                            "[رقمي] تقارير المبادرات المجتمعية لإثراء المناهج والأنشطة الطلابية."
+                        ]
+                    },
+                    {
+                        code: "8.5",
+                        text: "يُعزز دور المدرسة كمركز إشعاع ثقافي واجتماعي في المجتمع المحلي.",
+                        focus: "تعزيز دور المدرسة كمركز إشعاع ثقافي واجتماعي في المجتمع المحلي",
+                        evidences: [
+                            "[وثائقي] خطة المبادرات المجتمعية والتطوعية للمدرسة في خدمة البيئة والمجتمع المحيط.",
+                            "[ميداني] استضافة المدرسة للفعاليات المجتمعية والتوعوية والحملات الوطنية.",
+                            "[رقمي] التغطية الإعلامية للمبادرات التطوعية التي ينفذها طلبة المدرسة ومنتسبوها."
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 9,
+                domain: "الحوكمة والانضباط المؤسسي",
+                title: "البند (9): الحوكمة والالتزام باللوائح والنظم الإدارية",
+                indicators: [
+                    {
+                        code: "9.1",
+                        text: "يلتزم بتطبيق اللوائح والأنظمة والقرارات الوزارية والتعاميم المنظمة للعمل المدرسي.",
+                        focus: "الالتزام بتطبيق اللوائح والأنظمة والقرارات الوزارية والتعاميم المنظمة للعمل المدرسي",
+                        evidences: [
+                            "[وثائقي] سجل التعاميم والنشرات الوزارية وآليات تبليغها للعاملين وتوقيعهم بالعلم والتنفيذ.",
+                            "[رقمي] متابعة البريد الإلكتروني الرسمي وسرعة الاستجابة للمخاطبات والتكليفات الوزارية.",
+                            "[ميداني] مطابقة الإجراءات الإدارية المتبعة في المدرسة مع النظم واللوائح المعتمدة."
+                        ]
+                    },
+                    {
+                        code: "9.2",
+                        text: "يُشكّل اللجان والفرق المدرسية وفق الضوابط المعتمدة ويُفعّل أدوارها واجتماعاتها.",
+                        focus: "تشكيل اللجان والفرق المدرسية وفق الضوابط المعتمدة وتفعيل أدوارها واجتماعاتها",
+                        evidences: [
+                            "[وثائقي] قرارات تشكيل المجالس واللجان المدرسية للعام الدراسي 2026/2027م.",
+                            "[وثائقي] سجلات محاضر اجتماعات اللجان المدرسية ومتابعة تنفيذ قراراتها وتوصياتها.",
+                            "[ميداني] فاعلية عمل اللجان المدرسية وتوزيع الأدوار بعدالة بين العاملين."
+                        ]
+                    },
+                    {
+                        code: "9.3",
+                        text: "يُتابع الانضباط الوظيفي للعاملين بالمدرسة ويُطبق إجراءات المساءلة الإدارية بعدالة وشفافية.",
+                        focus: "متابعة الانضباط الوظيفي للعاملين وتطبيق إجراءات المساءلة الإدارية بعدالة وشفافية",
+                        evidences: [
+                            "[رقمي] سجلات الحضور والانصراف الإلكتروني (البصمة/البوابة) وتقارير الإجازات والاستئذان.",
+                            "[وثائقي] سجلات المساءلة الإدارية ولفت النظر والتنبيهات الموثقة وفق الإجراءات القانونية.",
+                            "[ميداني] مستوى التزام العاملين بمواعيد الدوام الرسمي والمناوبة اليومية والحصص."
+                        ]
+                    },
+                    {
+                        code: "9.4",
+                        text: "يُنظم السجلات والملفات الإدارية إلكترونياً وورقياً وفق معايير الجودة والحفظ.",
+                        focus: "تنظيم السجلات والملفات الإدارية إلكترونياً وورقياً وفق معايير الجودة والحفظ",
+                        evidences: [
+                            "[وثائقي] فهرسة وتنظيم الملفات والسجلات الإدارية وسهولة الوصول إلى البيانات.",
+                            "[رقمي] الأرشفة الإلكترونية المنظمة للملفات والتقارير والسجلات المدرسية.",
+                            "[ميداني] فحص عينة من السجلات الإدارية والتأكد من اكتمالها وحداثة بياناتها."
+                        ]
+                    },
+                    {
+                        code: "9.5",
+                        text: "يُطبق مبادئ النزاهة والشفافية وتكافؤ الفرص في توزيع الأعباء والحوافز والتقويم.",
+                        focus: "تطبيق مبادئ النزاهة والشفافية وتكافؤ الفرص في توزيع الأعباء والحوافز والتقويم",
+                        evidences: [
+                            "[وثائقي] الجدول المدرسي وتوزيع الأنصبة التدريسية والمهام الإضافية بين المعلمين.",
+                            "[وثائقي] معايير اختيار المجيدين والمكرمين بالمدرسة وآليات تقويم الأداء الوظيفي.",
+                            "[ميداني] الرضا الوظيفي والمناخ التنظيمي الإيجابي السائد بين العاملين بالمدرسة."
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 10,
+                domain: "التقويم المؤسسي وإدارة التغيير",
+                title: "البند (10): إدارة التغيير وتحسين الجودة المدرسية",
+                indicators: [
+                    {
+                        code: "10.1",
+                        text: "يُشخص التحديات المدرسية بأسلوب علمي ويقترح حلولاً إبداعية قابلة للتطبيق.",
+                        focus: "تشخيص التحديات المدرسية بأسلوب علمي واقتراح حلول إبداعية قابلة للتطبيق",
+                        evidences: [
+                            "[وثائقي] دراسات الحالة وتحليل المشكلات المدرسية (مثل تحليل السبب الجذري) وخطط المعالجة.",
+                            "[وثائقي] مبادرات التطوير الداخلي المصممة لمواجهة التحديات التعليمية أو السلوكية.",
+                            "[ميداني] مناقشة مدير المدرسة حول أبرز التحديات التي واجهت المدرسة وكيفية التغلب عليها."
+                        ]
+                    },
+                    {
+                        code: "10.2",
+                        text: "يقود عمليات التغيير والتطوير المدرسي بمرونة ويُهيئ العاملين لتبني المبادرات الجديدة.",
+                        focus: "قيادة عمليات التغيير والتطوير المدرسي بمرونة وتهيئة العاملين لتبني المبادرات الجديدة",
+                        evidences: [
+                            "[وثائقي] خطة إدارة التغيير والتواصل الداخلي لتوضيح أهداف المشاريع التطويرية للعاملين.",
+                            "[ميداني] مستوى تقبل العاملين للتطوير ومشاركتهم الإيجابية في تنفيذ المستجدات التربوية.",
+                            "[رقمي] استطلاعات رأي العاملين حول المناخ المدرسي ودعم الإدارة للأفكار التطويرية."
+                        ]
+                    },
+                    {
+                        code: "10.3",
+                        text: "يُطبق معايير ضمان الجودة المدرسية ويوثق الشواهد والأدلة بصورة منهجية.",
+                        focus: "تطبيق معايير ضمان الجودة المدرسية وتوثيق الشواهد والأدلة بصورة منهجية",
+                        evidences: [
+                            "[وثائقي] ملفات الجودة المدرسية المصنفة وفق معايير التقييم المدرسي المعتمدة.",
+                            "[رقمي] مستودع الأدلة والشواهد الرقمية المحدثة لكل مجال من مجالات العمل المدرسي.",
+                            "[ميداني] مطابقة الممارسات اليومية بالمدرسة مع متطلبات ضمان الجودة."
+                        ]
+                    },
+                    {
+                        code: "10.4",
+                        text: "يستثمر نتائج التقارير الإشرافية وتقارير تقويم الأداء المدرسي في وضع خطط التحسين.",
+                        focus: "استثمار نتائج التقارير الإشرافية وتقارير تقويم الأداء المدرسي في وضع خطط التحسين",
+                        evidences: [
+                            "[وثائقي] مصفوفة متابعة توصيات الزيارات الإشرافية السابقة وما تم تنفيذه منها.",
+                            "[وثائقي] الخطة الإجرائية لمعالجة ملاحظات تقويم الأداء المدرسي وتوزيع أدوار التنفيذ.",
+                            "[ميداني] شواهد التحسن الملموس في المجالات التي وردت كتوصيات في الزيارات السابقة."
+                        ]
+                    },
+                    {
+                        code: "10.5",
+                        text: "يُعزز ثقافة التميز المؤسسي والمشاركة في الجوائز والمسابقات التربوية.",
+                        focus: "تعزيز ثقافة التميز المؤسسي والمشاركة في الجوائز والمسابقات التربوية",
+                        evidences: [
+                            "[وثائقي] ملف مشاركات المدرسة والعاملين والطلبة في جوائز الإجادة التربوية والمبادرات.",
+                            "[ميداني] إبراز لوحات الشرف وتكريم المبادرات المتميزة داخل البيئة المدرسية.",
+                            "[رقمي] توثيق الممارسات التربوية القابلة للتعميم على مستوى المحافظة التعليمية."
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 11,
+                domain: "القيادة الذاتية والتأثير المهني",
+                title: "البند (11): السمات القيادية والتطوير الذاتي للمستهدف",
+                indicators: [
+                    {
+                        code: "11.1",
+                        text: "يُظهر التزاماً بالرؤية التربوية والقيم المهنية ويمثل قدوة حسنة للعاملين والطلبة.",
+                        focus: "الالتزام بالرؤية التربوية والقيم المهنية وتمثيل القدوة الحسنة للعاملين والطلبة",
+                        evidences: [
+                            "[ميداني] السلوك القيادي والانضباط الشخصي والتعامل الراقي للمستهدف أثناء الزيارة الإشرافية.",
+                            "[ميداني] حضوره الفاعل في الطابور الصباحي والفعاليات المدرسية وتفاعله الإيجابي مع الطلبة.",
+                            "[وثائقي] وضوح الرؤية والرسالة والقيم المؤسسية في ممارساته اليومية وقراراته."
+                        ]
+                    },
+                    {
+                        code: "11.2",
+                        text: "يمتلك مهارات التواصل الفعال وبناء العلاقات الإنسانية الإيجابية داخل المجتمع المدرسي.",
+                        focus: "امتلاك مهارات التواصل الفعال وبناء العلاقات الإنسانية الإيجابية داخل المجتمع المدرسي",
+                        evidences: [
+                            "[ميداني] ملاحظة أسلوب الحوار والتواصل الفعال مع الهيئة الإدارية والتدريسية والطلبة وأولياء الأمور.",
+                            "[وثائقي] مبادرات تعزيز المناخ الأسري الإيجابي وتحفيز العاملين وتقدير جهودهم.",
+                            "[رقمي] وضوح قنوات التواصل الداخلي وشفافية نقل المعلومات داخل المدرسة."
+                        ]
+                    },
+                    {
+                        code: "11.3",
+                        text: "يتخذ القرارات التربوية والإدارية في الوقت المناسب استناداً إلى البيانات والمعلومات الدقيقة.",
+                        focus: "اتخاذ القرارات التربوية والإدارية في الوقت المناسب استناداً إلى البيانات الدقيقة",
+                        evidences: [
+                            "[وثائقي] محاضر الاجتماعات والقرارات الإدارية المبنية على تحليل البيانات والشواهد.",
+                            "[ميداني] سرعة التعامل الحكيم مع المواقف الطارئة والتحديات اليومية في المدرسة.",
+                            "[رقمي] توظيف مؤشرات الأداء الرقمية في دعم اتخاذ القرار التربوي."
+                        ]
+                    },
+                    {
+                        code: "11.4",
+                        text: "يحرص على تطوير ذاته مهنياً ومواكبة الاتجاهات الحديثة في القيادة التربوية.",
+                        focus: "الحرص على التطوير الذاتي المهني ومواكبة الاتجاهات الحديثة في القيادة التربوية",
+                        evidences: [
+                            "[وثائقي] سجل الدورات التدريبية والبرامج القيادية وورش العمل التي حضرها المستهدف.",
+                            "[رقمي] شهادات التطوير المهني والمشاركات في المؤتمرات والملتقيات التربوية.",
+                            "[ميداني] توظيف المعارف والمهارات القيادية الحديثة في إدارة العمل المدرسي."
+                        ]
+                    },
+                    {
+                        code: "11.5",
+                        text: "يتقبل التغذية الراجعة الإشرافية بإيجابية ويترجمها إلى ممارسات تطويرية ملموسة.",
+                        focus: "تقبل التغذية الراجعة الإشرافية بإيجابية وترجمتها إلى ممارسات تطويرية ملموسة",
+                        evidences: [
+                            "[ميداني] التفاعل الإيجابي والمهني للمستهدف خلال جلسة الحوار الإشرافي وتبادل الرؤى.",
+                            "[وثائقي] خطة المتابعة الذاتية لتنفيذ توصيات المشرف الإداري والتربوي.",
+                            "[ميداني] شواهد الاستجابة السريعة للتوجيهات الإشرافية وتحويلها إلى واقع عملي."
+                        ]
+                    }
+                ]
+            }
+        ];
+
+        /**
+         * أوصاف مستويات التقدير الخمسة المعتمدة في الاستمارة الرسمية 2026/2027م
+         */
+        const RATING_RUBRICS = {
+            "1": {
+                code: "1",
+                label: "متميز",
+                fullTitle: "1 — متميز",
+                mode: "strength",
+                badgeBg: "bg-emerald-600",
+                cardBg: "bg-emerald-50/90 border-emerald-300",
+                textColor: "text-emerald-900",
+                buildDesc: (ind) => `أداء قيادي استثنائي ومستدام في (${ind.focus})؛ حيث تتوافر شواهد وأدلة نوعية مكتملة ومتنوعة (وثائقية ورقمية وميدانية)، مع وجود قياس دقيق للأثر الإيجابي على جودة العمليات المدرسية ونواتج التعلم، وقابلية الممارسة للتعميم كنموذج مجيد.`
+            },
+            "2": {
+                code: "2",
+                label: "جيد",
+                fullTitle: "2 — جيد",
+                mode: "strength",
+                badgeBg: "bg-teal-600",
+                cardBg: "bg-teal-50/90 border-teal-300",
+                textColor: "text-teal-900",
+                buildDesc: (ind) => `أداء قيادي فاعل ومنتظم يحقق التوقعات المطلوبة في (${ind.focus})؛ مدعوم بأدلة وشواهد واضحة وموثقة، ويُظهر أثراً إيجابياً ملموساً في الميدان المدرسي مع وجود فرص لتعزيز الاستدامة والارتقاء به إلى مستوى التميز.`
+            },
+            "3": {
+                code: "3",
+                label: "ملائم",
+                fullTitle: "3 — ملائم",
+                mode: "improvement",
+                badgeBg: "bg-amber-500",
+                cardBg: "bg-amber-50/90 border-amber-300",
+                textColor: "text-amber-900",
+                buildDesc: (ind) => `أداء يفي بالحد المقبول في (${ind.focus})؛ تتوافر ممارسات وسجلات أساسية إلا أنها تفتقر إلى التفعيل المنتظم أو العمق التحليلي أو قياس الأثر المستمر، مما يتطلب خطة تحسين وتطوير واضحة للارتقاء بمستوى الإنجاز.`
+            },
+            "4": {
+                code: "4",
+                label: "غير ملائم",
+                fullTitle: "4 — غير ملائم",
+                mode: "improvement",
+                badgeBg: "bg-orange-600",
+                cardBg: "bg-orange-50/90 border-orange-300",
+                textColor: "text-orange-900",
+                buildDesc: (ind) => `أداء دون المستوى المطلوب في (${ind.focus})؛ يُظهر فجوات واضحة في التخطيط أو التنفيذ أو التوثيق، وضعفاً في انعكاس الممارسة على الواقع المدرسي، مما يستدعي معالجة إجرائية ومتابعة إشرافية قريبة.`
+            },
+            "5": {
+                code: "5",
+                label: "يحتاج إلى تدخل",
+                fullTitle: "5 — يحتاج إلى تدخل",
+                mode: "improvement",
+                badgeBg: "bg-red-600",
+                cardBg: "bg-red-50/90 border-red-300",
+                textColor: "text-red-900",
+                buildDesc: (ind) => `قصور جوهري أو غياب واضح للممارسة في (${ind.focus})؛ مع عدم توافر الشواهد الداعمة أو وجود خلل يؤثر سلباً على انتظام العمل المدرسي أو جودة التعلم، مما يتطلب تدخلاً إشرافياً عاجلاً وخطة دعم مكثفة ومؤطرة زمنياً.`
+            }
+        };
+
+        /**
+         * مولد القوائم المنسدلة الديناميكية المرتبطة بكل مؤشر ومستوى تقدير
+         */
+        function generateDynamicOptionsForIndicator(criterion, indicator, ratingCode, aspectMode) {
+            const focus = indicator.focus;
+            const customEntries = getCustomBankEntries().filter(
+                e => e.criterionId === criterion.id && e.indicatorCode === indicator.code
+            );
+
+            // 1. خيارات جانب الإجادة أو التحسين
+            let aspects = [];
+            if (aspectMode === "strength") {
+                aspects = [
+                    `التميز والمنهجية الواضحة في ${focus} وفق مؤشرات أداء دقيقة ومفعّلة في الميدان المدرسي.`,
+                    `الفاعلية والانتظام في ${focus} مع إشراك فرق العمل المدرسية وتوظيف البيانات لدعم القرار.`,
+                    `الابتكار والاستدامة في تطبيق ممارسات ${focus} بما يواكب مستجدات منظومة الإشراف التربوي 2026/2027م.`,
+                    `التكامل بين التخطيط والتنفيذ والمتابعة المرحلية في مجال ${focus} وتحقيق مستهدفاته بكفاءة.`
+                ];
+                customEntries.filter(e => e.fieldType === "strengthAspect").forEach(e => aspects.unshift(e.text));
+            } else {
+                aspects = [
+                    `الحاجة إلى تعزيز المنهجية والانتظام في ${focus} وتفعيل آليات المتابعة الدورية وقياس الأثر.`,
+                    `وجود فجوة بين التخطيط النظري والتطبيق الميداني في ${focus} تتطلب تفعيل الأدوات الإجرائية.`,
+                    `الحاجة إلى تطوير آليات التوثيق والتحليل المبني على البيانات في ${focus} لضمان شمولية التنفيذ.`,
+                    `ضرورة تكثيف المتابعة الإشرافية الداخلية وتوزيع الأدوار بوضوح لتجويد الأداء في ${focus}.`
+                ];
+                customEntries.filter(e => e.fieldType === "improvementAspect").forEach(e => aspects.unshift(e.text));
+            }
+
+            // 2. خيارات الأدلة والشواهد (مخصصة لكل مؤشر + مضاف إليها المخصص)
+            let evidences = [...indicator.evidences];
+            customEntries.filter(e => e.fieldType === "evidence").forEach(e => evidences.unshift(e.text));
+
+            // 3. خيارات الأثر المترتب (متحقق للإجادة / متوقع أو فجوة للتحسين)
+            let impacts = [];
+            if (aspectMode === "strength") {
+                impacts = [
+                    `مما كان له الأثر الإيجابي المباشر في رفع كفاءة الأداء المؤسسي وتحسين جودة العمليات التعليمية بالمدرسة.`,
+                    `مما انعكس أثره بوضوح على انتظام العمل المدرسي، وارتقاء مستوى التحصيل الدراسي، وتعزيز رضا المستفيدين.`,
+                    `مما أسهم في ترسيخ ثقافة الجودة والمساءلة المهنية واستدامة الممارسات التربوية المجيدة في البيئة المدرسية.`,
+                    `مما عزز من فاعلية فرق العمل المدرسية وحقق تقدماً ملموساً في المؤشرات التربوية المستهدفة للعام 2026/2027م.`
+                ];
+                customEntries.filter(e => e.fieldType === "strengthImpact").forEach(e => impacts.unshift(e.text));
+            } else {
+                impacts = [
+                    `مما سيكون له الأثر في تجويد الممارسات المرتبطة بـ (${focus}) ورفع كفاءة الإنجاز المدرسي عند تنفيذ التحسينات.`,
+                    `مما سينعكس أثره إيجاباً على سد الفجوة الأدائية، وتحسين نواتج التعلم، وضمان انتظام العمليات التربوية بالمدرسة.`,
+                    `حيث أدت الفجوة الحالية إلى محدودية الأثر الميداني وتفاوت مستوى التنفيذ، ومعالجتها ستسهم في استقرار الأداء وتطوره.`,
+                    `مما سيعزز من موثوقية البيانات ودقة المتابعة ويرتقي بمستوى المؤشر إلى مستويات الإجادة خلال المرحلة القادمة.`
+                ];
+                customEntries.filter(e => e.fieldType === "improvementImpact").forEach(e => impacts.unshift(e.text));
+            }
+
+            // 4. خيارات الملاحظة الإشرافية الموضوعية
+            let observations = [
+                `تم الاطلاع خلال الزيارة على الشواهد المرتبطة بالمؤشر (${indicator.code})، ولوحظ وضوح الجهود المبذولة في ${focus} مع مناقشة آليات تطويرها.`,
+                `أظهرت مراجعة السجلات والواقع الميداني في المؤشر (${indicator.code}) تفاعلاً إيجابياً من إدارة المدرسة وحرصاً على متابعة ${focus}.`,
+                `من خلال فحص الوثائق والملاحظة الميدانية للمؤشر (${indicator.code})، تبيّن الحاجة إلى توحيد آليات المتابعة وربطها بمؤشرات قياس الأثر.`,
+                `تم رصد واقع الأداء في (${focus}) ومقارنته بمعايير استمارة الزيارة الإشرافية 2026/2027م للوقوف على نقاط القوة وأولويات التطوير.`
+            ];
+            customEntries.filter(e => e.fieldType === "observation").forEach(e => observations.unshift(e.text));
+
+            // 5. خيارات الدعم المقدم أثناء الزيارة
+            let supports = [
+                `عقد جلسة حوار إشرافي وتقديم تغذية راجعة تفصيلية حول آليات تطوير ${focus} وفق معايير الاستمارة المعتمدة.`,
+                `تزويد إدارة المدرسة بنماذج وأدوات إجرائية محوسبة لدعم عمليات المتابعة والتحليل في مجال ${focus}.`,
+                `تقديم الاستشارة الفنية والتربوية حول بناء مؤشرات قياس الأثر وربط الخطط التشغيلية بالواقع الفعلي للمدرسة.`,
+                `مناقشة آليات تفعيل فرق العمل واللجان المدرسية وتوزيع الأدوار لتعزيز الكفاءة في ${focus}.`
+            ];
+            customEntries.filter(e => e.fieldType === "support").forEach(e => supports.unshift(e.text));
+
+            // 6. خيارات التوصيات (استدامة للإجادة / إجرائية علاجية للتحسين)
+            let recommendations = [];
+            if (aspectMode === "strength") {
+                recommendations = [
+                    `استدامة التميز في ${focus} وتوثيق التجربة كممارسة تربوية مجيدة لنقل الخبرة وتعميمها على مدارس المحافظة.`,
+                    `الاستمرار في تطوير أدوات المتابعة الرقمية وقياس الأثر المرحلي في ${focus} للحفاظ على مستوى الإجادة المتحقق.`,
+                    `إبراز المبادرات النوعية المنفذة في ${focus} ضمن ملتقيات تبادل الخبرات التربوية للعام الدراسي 2026/2027م.`
+                ];
+                customEntries.filter(e => e.fieldType === "strengthRec").forEach(e => recommendations.unshift(e.text));
+            } else {
+                recommendations = [
+                    `إعداد خطة تحسين إجرائية مؤطرة زمنياً لمعالجة الفجوات في ${focus}، وتفعيل المتابعة الدورية لقياس الأثر.`,
+                    `تفعيل أدوات الرصد والتحليل المستمر في ${focus}، وربط الإجراءات التصحيحية بمؤشرات أداء قابلة للقياس.`,
+                    `تكثيف المتابعة الإشرافية الداخلية من قبل إدارة المدرسة وتوجيه فرق العمل لتنفيذ متطلبات ${focus} بدقة وانتظام.`
+                ];
+                customEntries.filter(e => e.fieldType === "improvementRec").forEach(e => recommendations.unshift(e.text));
+            }
+
+            return { aspects, evidences, impacts, observations, supports, recommendations };
+        }
+
+        /**
+         * حالة التطبيق (Application State)
+         */
+        let appState = {
+            meta: {
+                directorate: "المديرية العامة للتربية والتعليم بمحافظة شمال الباطنة",
+                school: "",
+                targetName: "",
+                role: "مدير مدرسة",
+                visitType: "زيارة إشرافية تطويرية / متابعة",
+                date: new Date().toISOString().split('T')[0],
+                time: "08:00 ص - 11:30 ص",
+                supervisor: ""
+            },
+            currentSelection: {
+                criterionId: 1,
+                indicatorCode: "1.1",
+                rating: "1",
+                aspectMode: "strength" // 'strength' or 'improvement'
+            },
+            editingItemId: null,
+            savedItems: []
+        };
+
+        const STORAGE_KEY = "miyar_oman_2026_2027_state";
+        const BANK_STORAGE_KEY = "miyar_oman_2026_2027_custom_bank";
+
+        /**
+         * تهيئة التطبيق عند تحميل الصفحة
+         */
+        window.onload = function () {
+            loadStateFromStorage();
+            populateMetaInputs();
+            populateCriteriaDropdown();
+            syncDropdownsFromState();
+            renderSavedItems();
+            renderOfficialReport();
+        };
+
+        /**
+         * حفظ واسترجاع الحالة من LocalStorage
+         */
+        function saveStateToStorage() {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+            } catch (e) {
+                console.error("خطأ في الحفظ المحلي:", e);
+            }
+        }
+
+        function loadStateFromStorage() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                if (raw) {
+                    const parsed = JSON.parse(raw);
+                    appState = { ...appState, ...parsed };
+                }
+            } catch (e) {
+                console.error("خطأ في استرجاع البيانات:", e);
+            }
+        }
+
+        function getCustomBankEntries() {
+            try {
+                const raw = localStorage.getItem(BANK_STORAGE_KEY);
+                return raw ? JSON.parse(raw) : [];
+            } catch (e) {
+                return [];
+            }
+        }
+
+        function saveCustomBankEntries(entries) {
+            localStorage.setItem(BANK_STORAGE_KEY, JSON.stringify(entries));
+        }
+
+        /**
+         * إدارة البيانات الأساسية للزيارة
+         */
+        function toggleMetaSection() {
+            const body = document.getElementById("meta-body");
+            const chevron = document.getElementById("meta-chevron");
+            body.classList.toggle("hidden");
+            chevron.classList.toggle("rotate-180");
+        }
+
+        function populateMetaInputs() {
+            document.getElementById("meta-directorate").value = appState.meta.directorate || "";
+            document.getElementById("meta-school").value = appState.meta.school || "";
+            document.getElementById("meta-target-name").value = appState.meta.targetName || "";
+            document.getElementById("meta-role").value = appState.meta.role || "مدير مدرسة";
+            document.getElementById("meta-visit-type").value = appState.meta.visitType || "زيارة إشرافية تطويرية / متابعة";
+            document.getElementById("meta-date").value = appState.meta.date || new Date().toISOString().split('T')[0];
+            document.getElementById("meta-time").value = appState.meta.time || "";
+            document.getElementById("meta-supervisor").value = appState.meta.supervisor || "";
+            updateMetaSummaryLine();
+        }
+
+        function saveMeta() {
+            appState.meta.directorate = document.getElementById("meta-directorate").value.trim();
+            appState.meta.school = document.getElementById("meta-school").value.trim();
+            appState.meta.targetName = document.getElementById("meta-target-name").value.trim();
+            appState.meta.role = document.getElementById("meta-role").value;
+            appState.meta.visitType = document.getElementById("meta-visit-type").value;
+            appState.meta.date = document.getElementById("meta-date").value;
+            appState.meta.time = document.getElementById("meta-time").value.trim();
+            appState.meta.supervisor = document.getElementById("meta-supervisor").value.trim();
+            
+            updateMetaSummaryLine();
+            saveStateToStorage();
+            renderOfficialReport();
+        }
+
+        function updateMetaSummaryLine() {
+            const s = appState.meta.school || "لم يُحدد اسم المدرسة";
+            const t = appState.meta.targetName || "لم يُحدد المستهدف";
+            const r = appState.meta.role || "";
+            document.getElementById("meta-summary-line").textContent = `المدرسة: ${s} | المستهدف: ${t} (${r}) | التاريخ: ${appState.meta.date || "—"}`;
+        }
+
+        /**
+         * تعبئة القوائم المنسدلة المتسلسلة (Cascading Dropdowns)
+         */
+        function populateCriteriaDropdown() {
+            const ddCriterion = document.getElementById("dd-criterion");
+            ddCriterion.innerHTML = "";
+            OFFICIAL_FRAMEWORK.forEach(c => {
+                const opt = document.createElement("option");
+                opt.value = c.id;
+                opt.textContent = `${c.title} — [${c.domain}]`;
+                ddCriterion.appendChild(opt);
+            });
+        }
+
+        function syncDropdownsFromState() {
+            const ddCriterion = document.getElementById("dd-criterion");
+            ddCriterion.value = appState.currentSelection.criterionId;
+            onCriterionChange(true);
+        }
+
+        function onCriterionChange(isInitialSync = false) {
+            const criterionId = parseInt(document.getElementById("dd-criterion").value, 10);
+            appState.currentSelection.criterionId = criterionId;
+            const criterion = OFFICIAL_FRAMEWORK.find(c => c.id === criterionId) || OFFICIAL_FRAMEWORK[0];
+
+            document.getElementById("criterion-domain-tag").textContent = criterion.domain;
+
+            // تعبئة المؤشرات الخمسة التابعة للبند
+            const ddIndicator = document.getElementById("dd-indicator");
+            ddIndicator.innerHTML = "";
+            criterion.indicators.forEach(ind => {
+                const opt = document.createElement("option");
+                opt.value = ind.code;
+                opt.textContent = `المؤشر (${ind.code}): ${ind.text}`;
+                ddIndicator.appendChild(opt);
+            });
+
+            if (isInitialSync && criterion.indicators.some(i => i.code === appState.currentSelection.indicatorCode)) {
+                ddIndicator.value = appState.currentSelection.indicatorCode;
+            } else {
+                appState.currentSelection.indicatorCode = criterion.indicators[0].code;
+                ddIndicator.value = appState.currentSelection.indicatorCode;
+            }
+
+            onIndicatorChange(isInitialSync);
+        }
+
+        function onIndicatorChange(isInitialSync = false) {
+            const criterion = getCurrentCriterion();
+            const indicatorCode = document.getElementById("dd-indicator").value;
+            appState.currentSelection.indicatorCode = indicatorCode;
+            const indicator = getCurrentIndicator();
+
+            document.getElementById("indicator-code-tag").textContent = `المؤشر ${indicator.code}`;
+            document.getElementById("preview-criterion-title").textContent = criterion.title;
+            document.getElementById("preview-indicator-title").textContent = `(${indicator.code}) ${indicator.text}`;
+
+            if (isInitialSync) {
+                document.getElementById("dd-rating").value = appState.currentSelection.rating;
+            }
+            onRatingChange(isInitialSync);
+        }
+
+        function onRatingChange(keepCustomMode = false) {
+            const ratingCode = document.getElementById("dd-rating").value;
+            appState.currentSelection.rating = ratingCode;
+            const rubric = RATING_RUBRICS[ratingCode];
+
+            // التوجيه التلقائي للإجادة (1 أو 2) أو التحسين (3 أو 4 أو 5)
+            if (!keepCustomMode) {
+                appState.currentSelection.aspectMode = rubric.mode;
+            }
+
+            updateRubricAndAspectUI();
+            populateDependentSubDropdowns();
+            saveStateToStorage();
+        }
+
+        function toggleAspectMode() {
+            appState.currentSelection.aspectMode =
+                appState.currentSelection.aspectMode === "strength" ? "improvement" : "strength";
+            updateRubricAndAspectUI();
+            populateDependentSubDropdowns();
+            showToast(
+                appState.currentSelection.aspectMode === "strength"
+                    ? "تم التبديل إلى وضع رصد (جانب الإجادة والتميّز)"
+                    : "تم التبديل إلى وضع رصد (جانب التحسين والتطوير)",
+                "info"
+            );
+        }
+
+        function updateRubricAndAspectUI() {
+            const ratingCode = appState.currentSelection.rating;
+            const rubric = RATING_RUBRICS[ratingCode];
+            const indicator = getCurrentIndicator();
+            const isStrength = appState.currentSelection.aspectMode === "strength";
+
+            // تحديث بطاقة وصف مستوى التقدير
+            const card = document.getElementById("rubric-card");
+            card.className = `rounded-xl p-4 border-2 transition-all duration-300 ${rubric.cardBg}`;
+
+            const badge = document.getElementById("rubric-badge");
+            badge.className = `px-2.5 py-1 rounded-lg text-xs font-extrabold text-white ${rubric.badgeBg}`;
+            badge.textContent = `تقدير (${rubric.code}): ${rubric.label}`;
+
+            document.getElementById("rubric-description").textContent = rubric.buildDesc(indicator);
+
+            // تحديث شارات المسار
+            const modeLabel = document.getElementById("rubric-mode-label");
+            const btnToggleText = document.getElementById("btn-toggle-aspect-text");
+            const activePill = document.getElementById("active-aspect-pill");
+            const labelAspect = document.getElementById("label-aspect");
+            const labelImpact = document.getElementById("label-impact");
+            const labelRec = document.getElementById("label-recommendation");
+            const previewRatingPill = document.getElementById("preview-rating-pill");
+
+            previewRatingPill.textContent = `${rubric.code} - ${rubric.label}`;
+
+            if (isStrength) {
+                modeLabel.className = "text-xs font-bold text-emerald-800";
+                modeLabel.innerHTML = `<i class="fa-solid fa-star ml-1"></i> المسار النشط: جانب إجادة وتميّز`;
+                btnToggleText.textContent = "تبديل لرصد جانب تحسين إضافي";
+
+                activePill.className = "px-3 py-1 rounded-full text-xs font-extrabold bg-emerald-100 text-emerald-800 border border-emerald-300";
+                activePill.textContent = "وضع الإجادة والتميّز";
+
+                labelAspect.className = "text-sm font-extrabold text-emerald-800 flex items-center gap-2";
+                labelAspect.innerHTML = `<span class="px-2 py-0.5 rounded bg-emerald-600 text-white text-xs">أ</span><span>جانب الإجادة والتميّز (مرتبط بالمؤشر والتقدير):</span>`;
+
+                labelImpact.innerHTML = `<span class="px-2 py-0.5 rounded bg-emerald-700 text-white text-xs">ج</span><span>الأثر المتحقق على الأداء المدرسي ونواتج التعلم:</span>`;
+                labelRec.innerHTML = `<span class="px-2 py-0.5 rounded bg-emerald-700 text-white text-xs">و</span><span>التوصيات الإشرافية (استدامة ونقل خبرة):</span>`;
+            } else {
+                modeLabel.className = "text-xs font-bold text-amber-800";
+                modeLabel.innerHTML = `<i class="fa-solid fa-wrench ml-1"></i> المسار النشط: جانب تحسين وتطوير`;
+                btnToggleText.textContent = "تبديل لرصد جانب إجادة إضافي";
+
+                activePill.className = "px-3 py-1 rounded-full text-xs font-extrabold bg-amber-100 text-amber-800 border border-amber-300";
+                activePill.textContent = "وضع التحسين والتطوير";
+
+                labelAspect.className = "text-sm font-extrabold text-amber-800 flex items-center gap-2";
+                labelAspect.innerHTML = `<span class="px-2 py-0.5 rounded bg-amber-600 text-white text-xs">أ</span><span>جانب التحسين والتطوير (مرتبط بالمؤشر والتقدير):</span>`;
+
+                labelImpact.innerHTML = `<span class="px-2 py-0.5 rounded bg-amber-700 text-white text-xs">ج</span><span>الأثر المتوقع والمستهدف / بيان أثر الفجوة:</span>`;
+                labelRec.innerHTML = `<span class="px-2 py-0.5 rounded bg-amber-700 text-white text-xs">و</span><span>التوصيات الإشرافية (إجرائية وعلاجية):</span>`;
+            }
+        }
+
+        function populateDependentSubDropdowns() {
+            const criterion = getCurrentCriterion();
+            const indicator = getCurrentIndicator();
+            const options = generateDynamicOptionsForIndicator(
+                criterion,
+                indicator,
+                appState.currentSelection.rating,
+                appState.currentSelection.aspectMode
+            );
+
+            fillSelectAndTextarea("dd-aspect", "txt-aspect", options.aspects);
+            fillSelectAndTextarea("dd-evidence", "txt-evidence", options.evidences);
+            fillSelectAndTextarea("dd-impact", "txt-impact", options.impacts);
+            fillSelectAndTextarea("dd-observation", "txt-observation", options.observations);
+            fillSelectAndTextarea("dd-support", "txt-support", options.supports);
+            fillSelectAndTextarea("dd-recommendation", "txt-recommendation", options.recommendations);
+
+            updateLiveComposer();
+        }
+
+        function fillSelectAndTextarea(selectId, textareaId, items) {
+            const sel = document.getElementById(selectId);
+            const txt = document.getElementById(textareaId);
+            sel.innerHTML = "";
+            items.forEach((item, idx) => {
+                const opt = document.createElement("option");
+                opt.value = item;
+                opt.textContent = `${idx + 1}. ${item}`;
+                sel.appendChild(opt);
+            });
+            txt.value = items[0] || "";
+        }
+
+        function onSubDropdownChange(field) {
+            const map = {
+                aspect: ["dd-aspect", "txt-aspect"],
+                evidence: ["dd-evidence", "txt-evidence"],
+                impact: ["dd-impact", "txt-impact"],
+                observation: ["dd-observation", "txt-observation"],
+                support: ["dd-support", "txt-support"],
+                recommendation: ["dd-recommendation", "txt-recommendation"]
+            };
+            const [selId, txtId] = map[field];
+            document.getElementById(txtId).value = document.getElementById(selId).value;
+            updateLiveComposer();
+        }
+
+        function appendSelectedEvidence() {
+            const selVal = document.getElementById("dd-evidence").value;
+            const txt = document.getElementById("txt-evidence");
+            if (!txt.value.includes(selVal)) {
+                txt.value = txt.value.trim() ? `${txt.value.trim()} بالإضافة إلى ${selVal}` : selVal;
+                updateLiveComposer();
+                showToast("تم إلحاق الدليل الإضافي بنجاح", "success");
+            } else {
+                showToast("هذا الدليل مدرج بالفعل في الحقل", "warning");
+            }
+        }
+
+        /**
+         * محرك الصياغة الذكي الفوري (Live Smart Composer)
+         */
+        function updateLiveComposer() {
+            const criterion = getCurrentCriterion();
+            const indicator = getCurrentIndicator();
+            const rating = RATING_RUBRICS[appState.currentSelection.rating];
+            const isStrength = appState.currentSelection.aspectMode === "strength";
+
+            const aspect = document.getElementById("txt-aspect").value.trim();
+            const evidence = document.getElementById("txt-evidence").value.trim();
+            const impact = document.getElementById("txt-impact").value.trim();
+            const observation = document.getElementById("txt-observation").value.trim();
+            const support = document.getElementById("txt-support").value.trim();
+            const recommendation = document.getElementById("txt-recommendation").value.trim();
+
+            const aspectPrefix = isStrength ? "يتمثل جانب الإجادة في" : "يتمثل جانب التحسين والتطوير في";
+
+            const composed =
+`في ضوء متابعة ${criterion.title} — المؤشر (${indicator.code}): «${indicator.text}» (مستوى التقدير: ${rating.code} - ${rating.label})؛ ${aspectPrefix} ${aspect} وقد استند ذلك إلى الشواهد والأدلة المتمثلة في: ${evidence} ${impact}
+• الملاحظة الإشرافية: ${observation}
+• الدعم المقدم أثناء الزيارة: ${support}
+• التوصية الإجرائية: ${recommendation}`;
+
+            const box = document.getElementById("live-composed-text");
+            box.value = composed;
+            updateWordCount();
+        }
+
+        function updateWordCount() {
+            const text = document.getElementById("live-composed-text").value.trim();
+            const words = text ? text.split(/\s+/).length : 0;
+            document.getElementById("word-count").textContent = `${words} كلمة`;
+        }
+
+        function polishParagraph() {
+            const box = document.getElementById("live-composed-text");
+            let text = box.value;
+            text = text
+                .replace(/\.\s*\./g, ".")
+                .replace(/\s{2,}/g, " ")
+                .replace(/؛\s*؛/g, "؛")
+                .trim();
+            box.value = text;
+            updateWordCount();
+            showToast("تم تدقيق وتنسيق علامات الترقيم والروابط اللغوية", "success");
+        }
+
+        function copyComposedText() {
+            const box = document.getElementById("live-composed-text");
+            box.select();
+            document.execCommand("copy");
+            showToast("تم نسخ الفقرة الإشرافية إلى الحافظة", "success");
+        }
+
+        function prepareNextIndicator() {
+            const criterion = getCurrentCriterion();
+            const idx = criterion.indicators.findIndex(i => i.code === appState.currentSelection.indicatorCode);
+            if (idx < criterion.indicators.length - 1) {
+                const nextInd = criterion.indicators[idx + 1];
+                document.getElementById("dd-indicator").value = nextInd.code;
+                onIndicatorChange(false);
+                showToast(`تم الانتقال إلى المؤشر (${nextInd.code})`, "info");
+            } else {
+                const critIdx = OFFICIAL_FRAMEWORK.findIndex(c => c.id === criterion.id);
+                if (critIdx < OFFICIAL_FRAMEWORK.length - 1) {
+                    const nextCrit = OFFICIAL_FRAMEWORK[critIdx + 1];
+                    document.getElementById("dd-criterion").value = nextCrit.id;
+                    onCriterionChange(false);
+                    showToast(`تم الانتقال إلى ${nextCrit.title}`, "info");
+                } else {
+                    showToast("وصلت إلى آخر مؤشر في الاستمارة الرسمية (11.5)", "info");
+                }
+            }
+        }
+
+        /**
+         * حفظ واعتماد البند في سجل الزيارة
+         */
+        function saveCurrentItemToReport() {
+            const criterion = getCurrentCriterion();
+            const indicator = getCurrentIndicator();
+            const ratingCode = appState.currentSelection.rating;
+            const ratingObj = RATING_RUBRICS[ratingCode];
+
+            const itemData = {
+                id: appState.editingItemId || Date.now(),
+                criterionId: criterion.id,
+                criterionTitle: criterion.title,
+                indicatorCode: indicator.code,
+                indicatorText: indicator.text,
+                ratingCode: ratingCode,
+                ratingLabel: ratingObj.label,
+                aspectMode: appState.currentSelection.aspectMode,
+                aspect: document.getElementById("txt-aspect").value.trim(),
+                evidence: document.getElementById("txt-evidence").value.trim(),
+                impact: document.getElementById("txt-impact").value.trim(),
+                observation: document.getElementById("txt-observation").value.trim(),
+                support: document.getElementById("txt-support").value.trim(),
+                recommendation: document.getElementById("txt-recommendation").value.trim(),
+                composedParagraph: document.getElementById("live-composed-text").value.trim()
+            };
+
+            if (appState.editingItemId) {
+                const index = appState.savedItems.findIndex(i => i.id === appState.editingItemId);
+                if (index !== -1) {
+                    appState.savedItems[index] = itemData;
+                }
+                appState.editingItemId = null;
+                document.getElementById("editing-badge").classList.add("hidden");
+                document.getElementById("btn-save-item-text").textContent = "اعتماد وإضافة البند إلى سجل الزيارة";
+                showToast("تم تحديث البند المعدل في سجل الزيارة بنجاح", "success");
+            } else {
+                appState.savedItems.push(itemData);
+                showToast(`تم اعتماد المؤشر (${indicator.code}) وإضافته إلى التقرير الرسمي`, "success");
+            }
+
+            saveStateToStorage();
+            renderSavedItems();
+            renderOfficialReport();
+        }
+
+        function editSavedItem(id) {
+            const item = appState.savedItems.find(i => i.id === id);
+            if (!item) return;
+
+            appState.editingItemId = id;
+            appState.currentSelection = {
+                criterionId: item.criterionId,
+                indicatorCode: item.indicatorCode,
+                rating: item.ratingCode,
+                aspectMode: item.aspectMode
+            };
+
+            document.getElementById("dd-criterion").value = item.criterionId;
+            onCriterionChange(true);
+            document.getElementById("dd-indicator").value = item.indicatorCode;
+            onIndicatorChange(true);
+            document.getElementById("dd-rating").value = item.ratingCode;
+            onRatingChange(true);
+
+            document.getElementById("txt-aspect").value = item.aspect;
+            document.getElementById("txt-evidence").value = item.evidence;
+            document.getElementById("txt-impact").value = item.impact;
+            document.getElementById("txt-observation").value = item.observation;
+            document.getElementById("txt-support").value = item.support;
+            document.getElementById("txt-recommendation").value = item.recommendation;
+            document.getElementById("live-composed-text").value = item.composedParagraph;
+            updateWordCount();
+
+            document.getElementById("editing-badge").classList.remove("hidden");
+            document.getElementById("btn-save-item-text").textContent = "حفظ التعديلات على البند المحدد";
+
+            window.scrollTo({ top: 180, behavior: "smooth" });
+            showToast(`تم تحميل المؤشر (${item.indicatorCode}) للتعديل`, "info");
+        }
+
+        function deleteSavedItem(id) {
+            appState.savedItems = appState.savedItems.filter(i => i.id !== id);
+            if (appState.editingItemId === id) {
+                appState.editingItemId = null;
+                document.getElementById("editing-badge").classList.add("hidden");
+                document.getElementById("btn-save-item-text").textContent = "اعتماد وإضافة البند إلى سجل الزيارة";
+            }
+            saveStateToStorage();
+            renderSavedItems();
+            renderOfficialReport();
+            showToast("تم حذف البند من سجل الزيارة", "warning");
+        }
+
+        function moveSavedItem(index, direction) {
+            const newIndex = index + direction;
+            if (newIndex < 0 || newIndex >= appState.savedItems.length) return;
+            const temp = appState.savedItems[index];
+            appState.savedItems[index] = appState.savedItems[newIndex];
+            appState.savedItems[newIndex] = temp;
+            saveStateToStorage();
+            renderSavedItems();
+            renderOfficialReport();
+        }
+
+        /**
+         * عرض سجل البنود المحفوظة وتحديث الإحصاءات
+         */
+        function renderSavedItems() {
+            const container = document.getElementById("saved-items-container");
+            const total = appState.savedItems.length;
+            const strengths = appState.savedItems.filter(i => i.aspectMode === "strength").length;
+            const improvements = appState.savedItems.filter(i => i.aspectMode === "improvement").length;
+
+            document.getElementById("header-items-count").textContent = total;
+            document.getElementById("stat-total").textContent = total;
+            document.getElementById("stat-strengths").textContent = strengths;
+            document.getElementById("stat-improvements").textContent = improvements;
+
+            if (total === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-10 px-4 border-2 border-dashed border-slate-200 rounded-2xl bg-slate-50/50">
+                        <i class="fa-solid fa-folder-open text-4xl text-slate-300 mb-3"></i>
+                        <p class="text-sm font-bold text-slate-600">لا توجد بنود معتمدة في سجل الزيارة حتى الآن</p>
+                        <p class="text-xs text-slate-500 mt-1">اختر البند والمؤشر والتقدير من القوائم المنسدلة أعلاه ثم اضغط على «اعتماد وإضافة البند إلى سجل الزيارة»</p>
+                    </div>`;
+                return;
+            }
+
+            container.innerHTML = `<div class="space-y-3">` + appState.savedItems.map((item, idx) => {
+                const isStr = item.aspectMode === "strength";
+                const borderClass = isStr ? "border-emerald-200 bg-emerald-50/30" : "border-amber-200 bg-amber-50/30";
+                const pillClass = isStr ? "bg-emerald-100 text-emerald-800 border-emerald-300" : "bg-amber-100 text-amber-800 border-amber-300";
+                const typeLabel = isStr ? "جانب إجادة" : "جانب تطوير وتحسين";
+
+                return `
+                <div class="rounded-xl border ${borderClass} p-4 transition hover:shadow-sm">
+                    <div class="flex flex-wrap items-start justify-between gap-2 mb-2">
+                        <div class="space-y-1">
+                            <div class="flex flex-wrap items-center gap-2">
+                                <span class="px-2 py-0.5 rounded-md bg-navy-900 text-white text-xs font-bold">#${idx + 1}</span>
+                                <span class="text-xs font-extrabold text-navy-900">${item.criterionTitle}</span>
+                                <span class="px-2.5 py-0.5 rounded-full text-xs font-bold border ${pillClass}">${typeLabel} (${item.ratingCode} - ${item.ratingLabel})</span>
+                            </div>
+                            <p class="text-xs sm:text-sm font-bold text-slate-800">المؤشر (${item.indicatorCode}): ${item.indicatorText}</p>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <button onclick="moveSavedItem(${idx}, -1)" ${idx === 0 ? "disabled" : ""} class="p-1.5 rounded-lg bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 disabled:opacity-30 text-xs" title="تحريك لأعلى">
+                                <i class="fa-solid fa-arrow-up"></i>
+                            </button>
+                            <button onclick="moveSavedItem(${idx}, 1)" ${idx === total - 1 ? "disabled" : ""} class="p-1.5 rounded-lg bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 disabled:opacity-30 text-xs" title="تحريك لأسفل">
+                                <i class="fa-solid fa-arrow-down"></i>
+                            </button>
+                            <button onclick="editSavedItem(${item.id})" class="px-2.5 py-1.5 rounded-lg bg-blue-50 text-blue-700 hover:bg-blue-100 border border-blue-200 text-xs font-bold">
+                                <i class="fa-solid fa-pen"></i> تعديل
+                            </button>
+                            <button onclick="deleteSavedItem(${item.id})" class="px-2.5 py-1.5 rounded-lg bg-red-50 text-red-700 hover:bg-red-100 border border-red-200 text-xs font-bold">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-700 leading-relaxed bg-white p-3 rounded-lg border border-slate-200 whitespace-pre-line">${escapeHTML(item.composedParagraph)}</p>
+                </div>`;
+            }).join("") + `</div>`;
+        }
+
+        /**
+         * تحديث التقرير الإشرافي الرسمي المطابق لاستمارة سلطنة عُمان 2026/2027م
+         */
+        function renderOfficialReport() {
+            const m = appState.meta;
+            document.getElementById("rep-directorate").textContent = m.directorate || "المديرية العامة للتربية والتعليم بالمحافظة";
+            document.getElementById("rep-school").textContent = m.school || "—";
+            document.getElementById("rep-target-name").textContent = m.targetName || "—";
+            document.getElementById("rep-role").textContent = m.role || "مدير مدرسة";
+            document.getElementById("rep-visit-type").textContent = m.visitType || "—";
+            document.getElementById("rep-date").textContent = m.date || "—";
+            document.getElementById("rep-time").textContent = m.time || "—";
+            document.getElementById("rep-supervisor").textContent = m.supervisor || "—";
+
+            document.getElementById("sig-role").textContent = m.role || "مدير المدرسة";
+            document.getElementById("sig-target-name").textContent = m.targetName || "................................................";
+            document.getElementById("sig-supervisor-name").textContent = m.supervisor || "................................................";
+
+            const strengthItems = appState.savedItems.filter(i => i.aspectMode === "strength");
+            const improvementItems = appState.savedItems.filter(i => i.aspectMode === "improvement");
+
+            // 1. جدول جوانب الإجادة
+            const strBody = document.getElementById("rep-strengths-body");
+            if (strengthItems.length === 0) {
+                strBody.innerHTML = `<tr><td colspan="5" class="border border-slate-400 p-3 text-center text-slate-500">لم يتم رصد جوانب إجادة في هذه الزيارة.</td></tr>`;
+            } else {
+                strBody.innerHTML = strengthItems.map((item, idx) => `
+                    <tr>
+                        <td class="border border-slate-400 p-2 text-center font-bold">${idx + 1}</td>
+                        <td class="border border-slate-400 p-2"><strong>${item.criterionTitle}</strong><br><span class="text-xs">(${item.indicatorCode}) ${item.indicatorText}</span></td>
+                        <td class="border border-slate-400 p-2">${escapeHTML(item.aspect)}</td>
+                        <td class="border border-slate-400 p-2">${escapeHTML(item.evidence)}</td>
+                        <td class="border border-slate-400 p-2">${escapeHTML(item.impact)}</td>
+                    </tr>
+                `).join("");
+            }
+
+            // 2. جدول جوانب التطوير والتحسين
+            const impBody = document.getElementById("rep-improvements-body");
+            if (improvementItems.length === 0) {
+                impBody.innerHTML = `<tr><td colspan="5" class="border border-slate-400 p-3 text-center text-slate-500">لم يتم رصد جوانب تحتاج إلى تطوير في هذه الزيارة.</td></tr>`;
+            } else {
+                impBody.innerHTML = improvementItems.map((item, idx) => `
+                    <tr>
+                        <td class="border border-slate-400 p-2 text-center font-bold">${idx + 1}</td>
+                        <td class="border border-slate-400 p-2"><strong>${item.criterionTitle}</strong><br><span class="text-xs">(${item.indicatorCode}) ${item.indicatorText}</span></td>
+                        <td class="border border-slate-400 p-2">${escapeHTML(item.aspect)}</td>
+                        <td class="border border-slate-400 p-2">${escapeHTML(item.evidence)}</td>
+                        <td class="border border-slate-400 p-2">${escapeHTML(item.impact)}</td>
+                    </tr>
+                `).join("");
+            }
+
+            // 3. جدول الملاحظات والدعم والتوصيات
+            const actBody = document.getElementById("rep-actions-body");
+            if (appState.savedItems.length === 0) {
+                actBody.innerHTML = `<tr><td colspan="4" class="border border-slate-400 p-3 text-center text-slate-500">لا توجد ملاحظات أو توصيات مسجلة بعد.</td></tr>`;
+            } else {
+                actBody.innerHTML = appState.savedItems.map(item => `
+                    <tr>
+                        <td class="border border-slate-400 p-2 font-semibold">المؤشر (${item.indicatorCode})<br><span class="text-[11px] text-slate-600">${item.criterionTitle}</span></td>
+                        <td class="border border-slate-400 p-2">${escapeHTML(item.observation)}</td>
+                        <td class="border border-slate-400 p-2">${escapeHTML(item.support)}</td>
+                        <td class="border border-slate-400 p-2">${escapeHTML(item.recommendation)}</td>
+                    </tr>
+                `).join("");
+            }
+
+            // 4. جدول ملخص التقديرات الخمسة
+            const ratBody = document.getElementById("rep-ratings-body");
+            if (appState.savedItems.length === 0) {
+                ratBody.innerHTML = `<tr><td colspan="6" class="border border-slate-400 p-3 text-center text-slate-500">لم تُعتمد تقديرات بعد.</td></tr>`;
+            } else {
+                ratBody.innerHTML = appState.savedItems.map(item => `
+                    <tr>
+                        <td class="border border-slate-400 p-2"><strong>(${item.indicatorCode})</strong> ${item.indicatorText}</td>
+                        ${["1", "2", "3", "4", "5"].map(code => `
+                            <td class="border border-slate-400 p-2 text-center font-extrabold text-base ${item.ratingCode === code ? 'bg-slate-200 text-navy-900' : ''}">
+                                ${item.ratingCode === code ? "✔" : ""}
+                            </td>
+                        `).join("")}
+                    </tr>
+                `).join("");
+            }
+        }
+
+        /**
+         * تصدير إلى Word (.doc) و JSON Backup
+         */
+        function exportToWord() {
+            const content = document.getElementById("official-print-area").innerHTML;
+            const header = `
+                <html xmlns:o='urn:schemas-microsoft-com:office:office'
+                      xmlns:w='urn:schemas-microsoft-com:office:word'
+                      xmlns='http://www.w3.org/TR/REC-html40' dir='rtl' lang='ar'>
+                <head><meta charset='utf-8'><title>تقرير زيارة إشرافية 2026-2027</title>
+                <style>
+                    body { font-family: 'Traditional Arabic', 'Arial', sans-serif; direction: rtl; text-align: right; }
+                    table { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+                    th, td { border: 1px solid #334155; padding: 6px 8px; font-size: 13pt; vertical-align: top; }
+                    th { background-color: #f1f5f9; font-weight: bold; }
+                    h1, h3 { color: #0f172a; }
+                </style></head><body>`;
+            const footer = "</body></html>";
+            const sourceHTML = header + content + footer;
+
+            const blob = new Blob(['\ufeff', sourceHTML], { type: 'application/msword' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            const schoolName = appState.meta.school || "المدرسة";
+            link.href = url;
+            link.download = `تقرير_زيارة_إشرافية_${schoolName}_2026_2027.doc`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+            showToast("تم تصدير التقرير بصيغة Word (.doc) بنجاح", "success");
+        }
+
+        function exportJSONBackup() {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(appState, null, 2));
+            const link = document.createElement("a");
+            link.setAttribute("href", dataStr);
+            link.setAttribute("download", `miyar_visit_backup_${appState.meta.date || "2026"}.json`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            showToast("تم تنزيل النسخة الاحتياطية JSON", "success");
+        }
+
+        function importJSONBackup(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                try {
+                    const imported = JSON.parse(e.target.result);
+                    if (imported && imported.meta && Array.isArray(imported.savedItems)) {
+                        appState = imported;
+                        saveStateToStorage();
+                        populateMetaInputs();
+                        syncDropdownsFromState();
+                        renderSavedItems();
+                        renderOfficialReport();
+                        showToast("تم استيراد بيانات الزيارة بنجاح", "success");
+                    } else {
+                        showToast("صيغة الملف غير صالحة", "error");
+                    }
+                } catch (err) {
+                    showToast("تعذر قراءة ملف JSON", "error");
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        /**
+         * إدارة نافذة بنك المحتوى والمكتبة المخصصة
+         */
+        function openBankModal() {
+            const modalCrit = document.getElementById("modal-criterion");
+            modalCrit.innerHTML = "";
+            OFFICIAL_FRAMEWORK.forEach(c => {
+                const opt = document.createElement("option");
+                opt.value = c.id;
+                opt.textContent = c.title;
+                modalCrit.appendChild(opt);
+            });
+            modalCrit.value = appState.currentSelection.criterionId;
+            populateModalIndicators();
+            document.getElementById("modal-indicator").value = appState.currentSelection.indicatorCode;
+            renderCustomBankEntriesList();
+
+            const modal = document.getElementById("bank-modal");
+            modal.classList.remove("hidden");
+            modal.classList.add("flex");
+        }
+
+        function openQuickAddModal(fieldType) {
+            openBankModal();
+            const isStr = appState.currentSelection.aspectMode === "strength";
+            const map = {
+                aspect: isStr ? "strengthAspect" : "improvementAspect",
+                evidence: "evidence",
+                impact: isStr ? "strengthImpact" : "improvementImpact",
+                observation: "observation",
+                support: "support",
+                recommendation: isStr ? "strengthRec" : "improvementRec"
+            };
+            document.getElementById("modal-field-type").value = map[fieldType] || "observation";
+        }
+
+        function closeBankModal() {
+            const modal = document.getElementById("bank-modal");
+            modal.classList.add("hidden");
+            modal.classList.remove("flex");
+        }
+
+        function populateModalIndicators() {
+            const critId = parseInt(document.getElementById("modal-criterion").value, 10);
+            const crit = OFFICIAL_FRAMEWORK.find(c => c.id === critId) || OFFICIAL_FRAMEWORK[0];
+            const modalInd = document.getElementById("modal-indicator");
+            modalInd.innerHTML = "";
+            crit.indicators.forEach(ind => {
+                const opt = document.createElement("option");
+                opt.value = ind.code;
+                opt.textContent = `(${ind.code}) ${ind.text}`;
+                modalInd.appendChild(opt);
+            });
+        }
+
+        function saveCustomBankEntry() {
+            const criterionId = parseInt(document.getElementById("modal-criterion").value, 10);
+            const indicatorCode = document.getElementById("modal-indicator").value;
+            const fieldType = document.getElementById("modal-field-type").value;
+            const evidenceTag = document.getElementById("modal-evidence-tag").value;
+            let text = document.getElementById("modal-custom-text").value.trim();
+
+            if (!text) {
+                showToast("يرجى كتابة نص العبارة أولاً", "warning");
+                return;
+            }
+            if (fieldType === "evidence" && !text.startsWith("[")) {
+                text = `${evidenceTag} ${text}`;
+            }
+
+            const entries = getCustomBankEntries();
+            entries.unshift({
+                id: Date.now(),
+                criterionId,
+                indicatorCode,
+                fieldType,
+                text
+            });
+            saveCustomBankEntries(entries);
+            document.getElementById("modal-custom-text").value = "";
+            renderCustomBankEntriesList();
+            populateDependentSubDropdowns();
+            showToast("تم حفظ العبارة في البنك وتحديث القوائم المنسدلة", "success");
+        }
+
+        function deleteCustomBankEntry(id) {
+            const entries = getCustomBankEntries().filter(e => e.id !== id);
+            saveCustomBankEntries(entries);
+            renderCustomBankEntriesList();
+            populateDependentSubDropdowns();
+            showToast("تم حذف العبارة المخصصة", "info");
+        }
+
+        function renderCustomBankEntriesList() {
+            const entries = getCustomBankEntries();
+            document.getElementById("custom-entries-count").textContent = entries.length;
+            const list = document.getElementById("custom-entries-list");
+            if (entries.length === 0) {
+                list.innerHTML = `<p class="text-slate-400 italic">لا توجد عبارات مخصصة مضافة بعد.</p>`;
+                return;
+            }
+            list.innerHTML = entries.map(e => `
+                <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-200 flex items-center justify-between gap-2">
+                    <div>
+                        <span class="font-bold text-navy-800">[المؤشر ${e.indicatorCode}]</span>
+                        <span class="text-slate-700">${escapeHTML(e.text)}</span>
+                    </div>
+                    <button onclick="deleteCustomBankEntry(${e.id})" class="text-red-500 hover:text-red-700 px-2">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
+            `).join("");
+        }
+
+        /**
+         * دوال مساعدة
+         */
+        function getCurrentCriterion() {
+            return OFFICIAL_FRAMEWORK.find(c => c.id === appState.currentSelection.criterionId) || OFFICIAL_FRAMEWORK[0];
+        }
+
+        function getCurrentIndicator() {
+            const crit = getCurrentCriterion();
+            return crit.indicators.find(i => i.code === appState.currentSelection.indicatorCode) || crit.indicators[0];
+        }
+
+        function scrollToReport() {
+            document.getElementById("official-report-section").scrollIntoView({ behavior: "smooth" });
+        }
+
+        function resetFullVisit() {
+            // استخدام شريط تأكيد مدمج بدلاً من confirm()
+            const container = document.getElementById("toast-container");
+            const toast = document.createElement("div");
+            toast.className = "pointer-events-auto bg-navy-900 text-white px-4 py-3 rounded-xl shadow-2xl border border-gold-500 flex items-center gap-3 text-xs";
+            toast.innerHTML = `
+                <span>هل تريد تصفير سجل الزيارة الحالية وبدء زيارة جديدة؟</span>
+                <button onclick="executeResetVisit(); this.parentElement.remove();" class="px-2.5 py-1 rounded bg-red-600 hover:bg-red-500 font-bold">نعم، تصفير</button>
+                <button onclick="this.parentElement.remove();" class="px-2.5 py-1 rounded bg-white/15 hover:bg-white/25">إلغاء</button>
+            `;
+            container.appendChild(toast);
+        }
+
+        function executeResetVisit() {
+            appState.savedItems = [];
+            appState.editingItemId = null;
+            saveStateToStorage();
+            renderSavedItems();
+            renderOfficialReport();
+            showToast("تم تصفير سجل الزيارة لبدء زيارة إشرافية جديدة", "info");
+        }
+
+        function showToast(message, type = "info") {
+            const container = document.getElementById("toast-container");
+            const colors = {
+                success: "bg-emerald-900 border-emerald-500 text-white",
+                warning: "bg-amber-900 border-amber-500 text-white",
+                error: "bg-red-900 border-red-500 text-white",
+                info: "bg-navy-900 border-gold-500 text-white"
+            };
+            const icons = {
+                success: "fa-circle-check text-emerald-400",
+                warning: "fa-triangle-exclamation text-amber-400",
+                error: "fa-circle-xmark text-red-400",
+                info: "fa-circle-info text-gold-400"
+            };
+            const toast = document.createElement("div");
+            toast.className = `pointer-events-auto px-4 py-3 rounded-xl shadow-xl border ${colors[type]} flex items-center gap-2.5 text-xs sm:text-sm font-semibold transition-all duration-300`;
+            toast.innerHTML = `<i class="fa-solid ${icons[type]}"></i><span>${message}</span>`;
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = "0";
+                setTimeout(() => toast.remove(), 300);
+            }, 3200);
+        }
+
+        function escapeHTML(str) {
+            if (!str) return "";
+            return str
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;");
+        }
+    </script>
 </body>
 </html>
-
