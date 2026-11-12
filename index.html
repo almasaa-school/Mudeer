@@ -1,512 +1,810 @@
+إليك الكود البرمجي الكامل والمتكامل لمنصة «مِعيار | MI’YAR — مساعد الزيارة الإشرافية الذكي (مدير ومساعد مدير مدرسة 2026/2027م)»، مصمماً وفق الهيكل الصحيح للاستمارة (البند ← المؤشرات الخمسة الفرعية المرقمة لكل بند ← التقدير)، مع احتواء تلقائي لمربعات النصوص، وحقول البوابة التعليمية الخمسة، وبنك المحتوى الشامل:
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مساعد الزيارة الإشرافية | إعداد وتجميع العبارات</title>
-    <!-- تحميل Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- تحميل خطوط Tajawal و Cairo -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-    <!-- أيقونات Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Tajawal', 'Cairo', 'sans-serif'],
-                        heading: ['Cairo', 'Tajawal', 'sans-serif'],
-                    },
-                    colors: {
-                        brand: {
-                            DEFAULT: '#2b6353', // لون التصميم المرفق
-                            dark: '#1e463a',
-                            light: '#e8f0ed'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-
+    <title>مِعيار | مساعد الزيارة الإشرافية الذكي</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Google Fonts: Tajawal & Cairo -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Tajawal', 'Cairo', sans-serif;
-            background-color: #f4f6f8;
+            background-color: #f4f7f6;
             color: #1e293b;
-        }
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 6px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: #f1f5f9;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 4px;
         }
         textarea {
             resize: vertical;
             min-height: 120px;
+            overflow-y: hidden;
         }
     </style>
 </head>
-<body class="min-h-screen pb-24">
+<body class="bg-slate-50 min-h-screen pb-16">
 
-    <!-- شريط التنبيهات -->
-    <div id="toast-container" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 flex flex-col gap-2 pointer-events-none"></div>
-
-    <!-- المحتوى الرئيسي -->
-    <main class="max-w-4xl mx-auto px-4 py-6 space-y-6">
-
-        <!-- ترويسة المساعد (مطابقة للصورة المرفقة) -->
-        <div class="bg-brand text-white rounded-2xl p-6 shadow-md relative overflow-hidden">
-            <div class="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-16 -mt-16"></div>
-            <div class="absolute bottom-0 left-0 w-24 h-24 bg-white/5 rounded-full -ml-12 -mb-12"></div>
-            
-            <div class="relative z-10 flex flex-col items-center sm:items-start text-center sm:text-right space-y-3">
-                <h1 class="text-2xl font-bold font-heading">مساعد الزيارة الإشرافية</h1>
-                <div class="bg-white/10 rounded-xl p-4 w-full border border-white/10 text-sm leading-relaxed space-y-1">
-                    <p><span class="font-bold text-gray-200">إعداد وتجميع:</span> أحمد بن عبدالله بن سعيد العلي <span class="text-xs opacity-80">(مساعد مدير مدرسة المسعى للبنين 9-5)</span></p>
-                    <p><span class="font-bold text-gray-200">متابعة وإشراف:</span> د. حسن بن علي بن إبراهيم البلوشي <span class="text-xs opacity-80">(مدير مدرسة المسعى للبنين 9-5)</span></p>
-                    <div class="text-xs text-white/70 mt-2 pt-2 border-t border-white/10">للمشرفين والقيادات المدرسية - البوابة التعليمية</div>
-                </div>
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white shadow-xl border-b-4 border-amber-500">
+        <div class="max-w-6xl mx-auto px-4 py-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="text-center md:text-right">
+                <span class="bg-amber-500 text-slate-950 text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider">سلطنة عُمان • وزارة التعليم</span>
+                <h1 class="text-2xl md:text-3xl font-black mt-2 tracking-tight">مِعيار | <span class="text-amber-400">مساعد الزيارة الإشرافية الذكي</span></h1>
+                <p class="text-slate-300 text-sm mt-1">استمارة الزيارة الإشرافية لمدير ومساعد مدير مدرسة (2026/2027م)</p>
+            </div>
+            <div class="bg-slate-800/80 border border-slate-700 rounded-xl p-3 text-xs text-slate-300 backdrop-blur-sm">
+                <p class="font-bold text-amber-400 mb-1">إعداد وتطوير:</p>
+                <p>أحمد بن عبدالله بن سعيد العلي <span class="text-slate-400">(المدير المساعد)</span></p>
+                <p class="mt-1 text-slate-400">مدرسة المسعى للتعليم الأساسي (٥-٩)</p>
             </div>
         </div>
+    </header>
 
-        <!-- بطاقة منشئ العبارة (البند + التقدير + الدليل) -->
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
-            <div class="bg-gray-50 border-b border-gray-200 px-5 py-4 flex items-center justify-between">
-                <h2 class="text-lg font-bold text-gray-800 flex items-center gap-2">
-                    <i class="fa-solid fa-wand-magic-sparkles text-brand"></i>
-                    منشئ العبارة (البند + التقدير + الدليل)
+    <!-- Main Container -->
+    <main class="max-w-6xl mx-auto px-4 mt-8 space-y-8">
+
+        <!-- Generator Card -->
+        <section class="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden">
+            <div class="bg-slate-900 text-white px-6 py-4 flex items-center justify-between">
+                <h2 class="text-lg font-bold flex items-center gap-2">
+                    <span class="w-3 h-3 bg-amber-500 rounded-full inline-block"></span>
+                    منشئ العبارة الإشرافية المترابطة
                 </h2>
+                <span class="text-xs text-slate-400">تعبئة ذكية متوافقة مع البوابة التعليمية</span>
             </div>
 
-            <div class="p-5 space-y-5">
-                <!-- الصف الأول: البند والتقدير -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="p-6 space-y-6">
+                <!-- Row 1: Select Domain / Standard -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-1.5">البند</label>
-                        <select id="build-criterion" onchange="onCriterionChange()" class="w-full rounded-xl border-gray-300 shadow-sm focus:border-brand focus:ring focus:ring-brand/20 px-4 py-2.5 bg-gray-50 text-sm font-semibold text-gray-800 appearance-none">
-                            <!-- يتم تعبئتها بالجافاسكريبت -->
+                        <label class="block text-sm font-bold text-slate-700 mb-2">1. اختر البند الإشرافي:</label>
+                        <select id="selectBand" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-base font-medium focus:ring-2 focus:ring-indigo-600 focus:outline-none">
+                            <option value="">-- اختر البند الرئيسي من الاستمارة --</option>
                         </select>
                     </div>
                     <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-1.5">التقدير</label>
-                        <select id="build-rating" onchange="generateStatement()" class="w-full rounded-xl border-gray-300 shadow-sm focus:border-brand focus:ring focus:ring-brand/20 px-4 py-2.5 bg-gray-50 text-sm font-semibold text-gray-800 appearance-none">
-                            <option value="1">1. متميز</option>
-                            <option value="2">2. جيد</option>
-                            <option value="3">3. ملائم</option>
-                            <option value="4">4. غير ملائم</option>
-                            <option value="5">5. يحتاج إلى تدخل</option>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">2. اختر المؤشر الفرعي (1 إلى 5):</label>
+                        <select id="selectIndicator" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-base font-medium focus:ring-2 focus:ring-indigo-600 focus:outline-none" disabled>
+                            <option value="">-- اختر البند أولاً --</option>
                         </select>
                     </div>
                 </div>
 
-                <!-- وصف المؤشرات -->
-                <div class="bg-brand-light/50 rounded-xl p-3 border border-brand-light text-xs sm:text-sm text-brand-dark font-medium">
-                    <span class="font-bold">مجال الإجادة / مؤشرات البند: </span>
-                    <span id="indicator-text">...</span>
+                <!-- Row 2: Select Level & Type -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">3. مستوى التقدير:</label>
+                        <select id="selectGrade" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-base font-medium focus:ring-2 focus:ring-indigo-600 focus:outline-none">
+                            <option value="1">1 - متميز</option>
+                            <option value="2">2 - جيد</option>
+                            <option value="3" selected>3 - ملائم</option>
+                            <option value="4">4 - غير ملائم</option>
+                            <option value="5">5 - يحتاج إلى تدخل</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">4. طبيعة الجانب المراد توثيقه:</label>
+                        <div class="flex gap-4 mt-2">
+                            <label class="flex items-center gap-2 cursor-pointer bg-emerald-50 border border-emerald-200 px-4 py-2.5 rounded-xl flex-1 font-bold text-emerald-800">
+                                <input type="radio" name="perfType" value="excellence" checked class="w-4 h-4 text-emerald-600"> جوانب الإجادة
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer bg-amber-50 border border-amber-200 px-4 py-2.5 rounded-xl flex-1 font-bold text-amber-800">
+                                <input type="radio" name="perfType" value="improvement" class="w-4 h-4 text-amber-600"> جوانب التحسين
+                            </label>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- الصف الثاني: الدليل -->
-                <div>
-                    <label class="block text-sm font-bold text-gray-700 mb-1.5">الدليل (يُضاف إلى العبارة نفسها)</label>
-                    <select id="build-evidence" onchange="generateStatement()" class="w-full rounded-xl border-gray-300 shadow-sm focus:border-brand focus:ring focus:ring-brand/20 px-4 py-2.5 bg-gray-50 text-sm font-semibold text-gray-800 appearance-none">
-                        <!-- يتم تعبئتها بالجافاسكريبت -->
-                    </select>
+                <!-- Row 3: Evidence, Impact, Note, Support, Recommendation -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg-grid-cols-3 gap-6 pt-4 border-t border-slate-100">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 mb-1">الدليل المرتبط:</label>
+                        <select id="selectEvidence" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm">
+                            <option value="">-- اختر الدليل المناسب --</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 mb-1">الأثر المترتب:</label>
+                        <select id="selectImpact" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm">
+                            <option value="">-- اختر الأثر المناسب --</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 mb-1">الملاحظة الإشرافية:</label>
+                        <select id="selectNote" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm">
+                            <option value="">-- اختر الملاحظة المناسبة --</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 mb-1">الدعم المقدم (الفعلي):</label>
+                        <select id="selectSupport" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm">
+                            <option value="">-- اختر الدعم المقدم --</option>
+                        </select>
+                    </div>
+                    <div class="md:col-span-2">
+                        <label class="block text-xs font-bold text-slate-600 mb-1">التوصية الإجرائية:</label>
+                        <select id="selectRecommendation" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm">
+                            <option value="">-- اختر التوصية المناسبة --</option>
+                        </select>
+                    </div>
                 </div>
 
-                <!-- مربع النص المولد -->
-                <div>
-                    <label class="block text-sm font-bold text-gray-700 mb-1.5">النص المُصاغ (يمكنك تعديله)</label>
-                    <textarea id="build-statement" rows="3" class="w-full rounded-xl border-gray-300 shadow-sm focus:border-brand focus:ring focus:ring-brand/20 p-4 text-sm text-gray-800 bg-gray-50 leading-relaxed" placeholder="سيتم توليد العبارة هنا تلقائياً..."></textarea>
+                <!-- Preview & Insert Button -->
+                <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-3">
+                    <span class="text-xs font-bold text-indigo-700 uppercase tracking-wider block">معاينة العبارة المتكاملة:</span>
+                    <p id="previewText" class="text-sm font-medium text-slate-800 leading-relaxed bg-white p-3 rounded-lg border border-slate-200 min-h-[50px]">
+                        قم بتحديد البند والمؤشر والخيارات أعلاه لتظهر المعاينة هنا...
+                    </p>
+                    <div class="flex flex-wrap gap-3 pt-2">
+                        <button type="button" id="btnInsertExcellence" class="bg-emerald-700 hover:bg-emerald-800 text-white font-bold px-5 py-2.5 rounded-xl text-sm transition shadow-md flex items-center gap-2">
+                            <span>+ إضافة إلى جوانب الإجادة</span>
+                        </button>
+                        <button type="button" id="btnInsertImprovement" class="bg-amber-700 hover:bg-amber-800 text-white font-bold px-5 py-2.5 rounded-xl text-sm transition shadow-md flex items-center gap-2">
+                            <span>+ إضافة إلى جوانب التحسين والتطوير</span>
+                        </button>
+                        <button type="button" id="btnResetForm" class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold px-4 py-2.5 rounded-xl text-sm transition">
+                            إعادة ضبط
+                        </button>
+                    </div>
                 </div>
+            </div>
+        </section>
 
-                <!-- أزرار الإضافة والضبط -->
-                <div class="flex flex-col sm:flex-row gap-3 pt-2">
-                    <button onclick="resetBuilder()" class="px-6 py-3 rounded-xl border border-gray-300 bg-white hover:bg-gray-50 text-gray-700 font-bold text-sm transition flex-1 text-center">
-                        إعادة ضبط
-                    </button>
-                    <button id="btn-add" onclick="addToTarget()" class="px-6 py-3 rounded-xl bg-brand hover:bg-brand-dark text-white font-bold text-sm shadow-md transition flex-[2] text-center flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-plus"></i>
-                        <span id="btn-add-text">إضافة إلى: جوانب الإجادة</span>
-                    </button>
+        <!-- Education Portal Form Fields -->
+        <section class="space-y-6">
+            <div class="bg-indigo-900 text-white px-6 py-3 rounded-xl flex items-center justify-between">
+                <h3 class="font-bold text-base">حقول استمارة البوابة التعليمية (مطابقة تماماً للرسمية)</h3>
+                <span class="text-xs bg-indigo-800 px-3 py-1 rounded-lg">الحد الأقصى لكل حقل: 1000 حرف</span>
+            </div>
+
+            <!-- Field 1 -->
+            <div class="bg-white rounded-2xl shadow-md border border-slate-200 p-5 space-y-3">
+                <div class="flex justify-between items-center">
+                    <label class="font-black text-slate-800 text-base flex items-center gap-2">
+                        <span class="w-7 h-7 bg-emerald-700 text-white rounded-lg flex items-center justify-center text-sm font-bold">1</span>
+                        جوانب الإجادة في الأداء وأدلتها*
+                    </label>
+                    <span id="count1" class="text-xs text-slate-400 font-mono">1000 / 0</span>
+                </div>
+                <textarea id="field1" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-4 text-base focus:ring-2 focus:ring-indigo-600 focus:outline-none" placeholder="اكتب أو أضف عبارات جوانب الإجادة هنا..."></textarea>
+                <div class="flex gap-2">
+                    <button type="button" onclick="copyField('field1')" class="bg-emerald-700 text-white px-4 py-1.5 rounded-lg text-xs font-bold hover:bg-emerald-800 transition">نسخ هذا الحقل</button>
+                    <button type="button" onclick="clearField('field1', 'count1')" class="bg-slate-200 text-slate-700 px-3 py-1.5 rounded-lg text-xs font-bold hover:bg-slate-300 transition">مسح</button>
                 </div>
             </div>
-        </div>
 
-        <!-- تعليمات (كما في الصورة) -->
-        <div class="text-gray-500 text-xs sm:text-sm leading-relaxed text-center px-4">
-            الحقول بنفس أسماء وترتيب حقول البوابة التعليمية، ولكل حقل حد أقصى 1000 حرف. أنشئ عبارة لكل بند ثم أضفها: عبارات التقديرين 1 و 2 تذهب إلى «جوانب الإجادة»، وعبارات التقديرات 3 و 4 و 5 تذهب إلى «الجوانب التي تحتاج إلى تطوير». يمكنك تعديل أي نص يدوياً قبل النسخ.
-        </div>
+            <!-- Field 2 -->
+            <div class="bg-white rounded-2xl shadow-md border border-slate-200 p-5 space-y-3">
+                <div class="flex justify-between items-center">
+                    <label class="font-black text-slate-800 text-base flex items-center gap-2">
+                        <span class="w-7 h-7 bg-amber-700 text-white rounded-lg flex items-center justify-center text-sm font-bold">2</span>
+                        الجوانب التي تحتاج إلى تطوير في الأداء وأدلتها*
+                    </label>
+                    <span id="count2" class="text-xs text-slate-400 font-mono">1000 / 0</span>
+                </div>
+                <textarea id="field2" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-4 text-base focus:ring-2 focus:ring-indigo-600 focus:outline-none" placeholder="اكتب أو أضف جوانب التحسين هنا..."></textarea>
+                <div class="flex gap-2">
+                    <button type="button" onclick="copyField('field2')" class="bg-amber-700 text-white px-4 py-1.5 rounded-lg text-xs font-bold hover:bg-amber-800 transition">نسخ هذا الحقل</button>
+                    <button type="button" onclick="clearField('field2', 'count2')" class="bg-slate-200 text-slate-700 px-3 py-1.5 rounded-lg text-xs font-bold hover:bg-slate-300 transition">مسح</button>
+                </div>
+            </div>
 
-        <!-- القسم 1: جوانب الإجادة -->
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-5">
-            <div class="flex items-center justify-between mb-3">
-                <label class="text-base font-bold text-gray-800 flex items-center gap-2">
-                    <span class="w-6 h-6 rounded-full bg-brand text-white flex items-center justify-center text-xs">1</span>
-                    جوانب الإجادة في الأداء وأدلتها*
-                </label>
-                <span id="count-excellence" class="text-xs font-semibold text-gray-500 bg-gray-100 px-2.5 py-1 rounded-md">0 / 1000</span>
+            <!-- Field 3 -->
+            <div class="bg-white rounded-2xl shadow-md border border-slate-200 p-5 space-y-3">
+                <div class="flex justify-between items-center">
+                    <label class="font-black text-slate-800 text-base flex items-center gap-2">
+                        <span class="w-7 h-7 bg-indigo-700 text-white rounded-lg flex items-center justify-center text-sm font-bold">3</span>
+                        الملاحظات*
+                    </label>
+                    <span id="count3" class="text-xs text-slate-400 font-mono">1000 / 0</span>
+                </div>
+                <textarea id="field3" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-4 text-base focus:ring-2 focus:ring-indigo-600 focus:outline-none" placeholder="سجل الملاحظات الإشرافية هنا..."></textarea>
+                <div class="flex gap-2">
+                    <button type="button" onclick="copyField('field3')" class="bg-indigo-700 text-white px-4 py-1.5 rounded-lg text-xs font-bold hover:bg-indigo-800 transition">نسخ هذا الحقل</button>
+                    <button type="button" onclick="clearField('field3', 'count3')" class="bg-slate-200 text-slate-700 px-3 py-1.5 rounded-lg text-xs font-bold hover:bg-slate-300 transition">مسح</button>
+                </div>
             </div>
-            <textarea id="text-excellence" maxlength="1000" oninput="updateCount('text-excellence', 'count-excellence')" class="w-full rounded-xl border-gray-200 bg-gray-50/50 p-4 text-sm focus:border-brand focus:ring focus:ring-brand/20 custom-scrollbar text-gray-700 leading-relaxed" placeholder="سيتم إضافة جوانب الإجادة هنا..."></textarea>
-            
-            <div class="flex gap-2 mt-3">
-                <button onclick="clearField('text-excellence', 'count-excellence')" class="px-4 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold text-xs transition border border-gray-200 flex-1">
-                    مسح
-                </button>
-                <button onclick="copyField('text-excellence')" class="px-4 py-2 rounded-lg bg-brand hover:bg-brand-dark text-white font-bold text-xs transition flex-[2] flex items-center justify-center gap-2 shadow-sm">
-                    <i class="fa-regular fa-copy"></i> نسخ هذا الحقل
-                </button>
-            </div>
-        </div>
 
-        <!-- القسم 2: جوانب التطوير -->
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-5">
-            <div class="flex items-center justify-between mb-3">
-                <label class="text-base font-bold text-gray-800 flex items-center gap-2">
-                    <span class="w-6 h-6 rounded-full bg-amber-600 text-white flex items-center justify-center text-xs">2</span>
-                    الجوانب التي تحتاج إلى تطوير في الأداء وأدلتها*
-                </label>
-                <span id="count-improvement" class="text-xs font-semibold text-gray-500 bg-gray-100 px-2.5 py-1 rounded-md">0 / 1000</span>
+            <!-- Field 4 -->
+            <div class="bg-white rounded-2xl shadow-md border border-slate-200 p-5 space-y-3">
+                <div class="flex justify-between items-center">
+                    <label class="font-black text-slate-800 text-base flex items-center gap-2">
+                        <span class="w-7 h-7 bg-blue-700 text-white rounded-lg flex items-center justify-center text-sm font-bold">4</span>
+                        الدعم المقدم*
+                    </label>
+                    <span id="count4" class="text-xs text-slate-400 font-mono">1000 / 0</span>
+                </div>
+                <textarea id="field4" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-4 text-base focus:ring-2 focus:ring-indigo-600 focus:outline-none" placeholder="سجل الدعم الإشرافي الفعلي المقدم هنا..."></textarea>
+                <div class="flex gap-2">
+                    <button type="button" onclick="copyField('field4')" class="bg-blue-700 text-white px-4 py-1.5 rounded-lg text-xs font-bold hover:bg-blue-800 transition">نسخ هذا الحقل</button>
+                    <button type="button" onclick="clearField('field4', 'count4')" class="bg-slate-200 text-slate-700 px-3 py-1.5 rounded-lg text-xs font-bold hover:bg-slate-300 transition">مسح</button>
+                </div>
             </div>
-            <textarea id="text-improvement" maxlength="1000" oninput="updateCount('text-improvement', 'count-improvement')" class="w-full rounded-xl border-gray-200 bg-gray-50/50 p-4 text-sm focus:border-brand focus:ring focus:ring-brand/20 custom-scrollbar text-gray-700 leading-relaxed" placeholder="سيتم إضافة جوانب التطوير هنا..."></textarea>
-            
-            <div class="flex gap-2 mt-3">
-                <button onclick="clearField('text-improvement', 'count-improvement')" class="px-4 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold text-xs transition border border-gray-200 flex-1">
-                    مسح
-                </button>
-                <button onclick="copyField('text-improvement')" class="px-4 py-2 rounded-lg bg-brand hover:bg-brand-dark text-white font-bold text-xs transition flex-[2] flex items-center justify-center gap-2 shadow-sm">
-                    <i class="fa-regular fa-copy"></i> نسخ هذا الحقل
-                </button>
-            </div>
-        </div>
 
-        <!-- القسم 3: الملاحظات -->
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-5">
-            <div class="flex items-center justify-between mb-3">
-                <label class="text-base font-bold text-gray-800 flex items-center gap-2">
-                    <span class="w-6 h-6 rounded-full bg-gray-700 text-white flex items-center justify-center text-xs">3</span>
-                    الملاحظات الإشرافية*
-                </label>
-                <span id="count-notes" class="text-xs font-semibold text-gray-500 bg-gray-100 px-2.5 py-1 rounded-md">0 / 1000</span>
+            <!-- Field 5 -->
+            <div class="bg-white rounded-2xl shadow-md border border-slate-200 p-5 space-y-3">
+                <div class="flex justify-between items-center">
+                    <label class="font-black text-slate-800 text-base flex items-center gap-2">
+                        <span class="w-7 h-7 bg-violet-700 text-white rounded-lg flex items-center justify-center text-sm font-bold">5</span>
+                        التوصيات*
+                    </label>
+                    <span id="count5" class="text-xs text-slate-400 font-mono">1000 / 0</span>
+                </div>
+                <textarea id="field5" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-4 text-base focus:ring-2 focus:ring-indigo-600 focus:outline-none" placeholder="سجل التوصيات الإجرائية القابلة للقياس هنا..."></textarea>
+                <div class="flex gap-2">
+                    <button type="button" onclick="copyField('field5')" class="bg-violet-700 text-white px-4 py-1.5 rounded-lg text-xs font-bold hover:bg-violet-800 transition">نسخ هذا الحقل</button>
+                    <button type="button" onclick="clearField('field5', 'count5')" class="bg-slate-200 text-slate-700 px-3 py-1.5 rounded-lg text-xs font-bold hover:bg-slate-300 transition">مسح</button>
+                </div>
             </div>
-            <textarea id="text-notes" maxlength="1000" oninput="updateCount('text-notes', 'count-notes')" class="w-full rounded-xl border-gray-200 bg-gray-50/50 p-4 text-sm focus:border-brand focus:ring focus:ring-brand/20 custom-scrollbar text-gray-700 leading-relaxed" placeholder="اكتب الملاحظات الإشرافية والدعم المقدم هنا..."></textarea>
-            
-            <div class="flex gap-2 mt-3">
-                <button onclick="clearField('text-notes', 'count-notes')" class="px-4 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold text-xs transition border border-gray-200 flex-1">
-                    مسح
-                </button>
-                <button onclick="copyField('text-notes')" class="px-4 py-2 rounded-lg bg-brand hover:bg-brand-dark text-white font-bold text-xs transition flex-[2] flex items-center justify-center gap-2 shadow-sm">
-                    <i class="fa-regular fa-copy"></i> نسخ هذا الحقل
-                </button>
-            </div>
-        </div>
+        </section>
 
     </main>
 
-    <!-- شريط سفلي لنسخ التقرير كاملاً -->
-    <div class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 p-4 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] z-40">
-        <div class="max-w-4xl mx-auto">
-            <button onclick="copyFullReport()" class="w-full py-3.5 rounded-xl bg-brand hover:bg-brand-dark text-white font-bold text-base shadow-md transition flex items-center justify-center gap-2">
-                <i class="fa-solid fa-copy"></i>
+    <!-- Floating Footer Bar -->
+    <footer class="fixed bottom-0 left-0 right-0 bg-slate-900/95 backdrop-blur border-t border-slate-800 py-3 px-4 z-50">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <span class="text-xs text-slate-300 hidden sm:inline">منصة مِعيار الإشرافية الذكية © 2026/2027م</span>
+            <button type="button" id="copyAllFields" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-black px-6 py-2.5 rounded-xl text-sm transition shadow-lg w-full sm:w-auto text-center">
                 نسخ التقرير الإشرافي كاملاً
             </button>
         </div>
-    </div>
+    </footer>
 
+    <!-- JavaScript Data & Logic -->
     <script>
-        // قاعدة البيانات المعتمدة (تم الاحتفاظ بها من كودك السابق)
-        const OFFICIAL_FRAMEWORK = [
+        // Database of 11 Bands and their 5 official sub-indicators
+        const supervisoryData = [
             {
                 id: 1,
-                domain: "القيادة والتخطيط الاستراتيجي",
-                title: "البند (1): التخطيط المدرسي وتطوير الأداء",
+                name: "1. توظيف نتائج التقويم الذاتي في التخطيط الإستراتيجي، وتحسين الأداء المدرسي",
                 indicators: [
-                    {
-                        code: "1.1",
-                        text: "يبني خطة تطوير المدرسة وفق نتائج التقويم الذاتي والمؤشرات التربوية بمشاركة المجتمع المدرسي.",
-                        focus: "بناء خطة تطوير المدرسة وفق التقويم الذاتي والمؤشرات التربوية بمشاركة المجتمع المدرسي",
-                        evidences: [
-                            "[وثائقي] وثيقة خطة تطوير المدرسة المعتمدة للعام الدراسي 2026/2027م ومحاضر اجتماعات فريق التطوير والتحسين.",
-                            "[رقمي] استمارات استطلاع آراء الطلبة وأولياء الأمور والهيئة التدريسية عبر النماذج الرقمية وتحليل بيانات التقويم الذاتي.",
-                            "[ميداني] مداولات الحوار الإشرافي مع مدير المدرسة وأعضاء مجلس أولياء الأمور حول أولويات الخطة المدرسية."
-                        ]
-                    },
-                    {
-                        code: "1.2",
-                        text: "يصوغ أهدافاً ذكية ومؤشرات أداء واضحة قابلة للقياس ومرتبطة بتحسين نواتج التعلم.",
-                        focus: "صياغة أهداف ذكية ومؤشرات أداء واضحة قابلة للقياس ومرتبطة بتحسين نواتج التعلم",
-                        evidences: [
-                            "[وثائقي] مصفوفة الأهداف الإجرائية ومؤشرات قياس الأداء في الخطة التشغيلية للمدرسة.",
-                            "[رقمي] لوحة متابعة مؤشرات التحصيل الدراسي وخط الأساس والمستهدفات الرقمية لكل مادة دراسية.",
-                            "[وثائقي] بطاقات وصف المشاريع والمبادرات التطويرية المرتبطة برفع المستوى التحصيلي للطلبة."
-                        ]
-                    }
+                    { id: 1, text: "١- يفعل أدوات التقويم الذاتي في متابعة تحسين وتطوير الأداء المدرسي وفق إجراءات منظمة قابلة للقياس" },
+                    { id: 2, text: "٢- ينفذ ويتابع جميع عمليات التقويم الذاتي، ويحدد جوانب التحسين بناء على أدلة واضحة" },
+                    { id: 3, text: "٣- يتابع توظيف نتائج التقويم الذاتي في بناء وتنفيذ التخطيط الاستراتيجي بما يتوافق مع الخطط المدرسية" },
+                    { id: 4, text: "٤- يوظف نتائج التقويم الذاتي في بناء الخطط المدرسية (الخطة المدرسية، برامج الإنماء المهني، خطط المواد الدراسية.... الخ) لرفع كفاءة الأداء المدرسي" },
+                    { id: 5, text: "٥- يتابع أثر تنفيذ التخطيط الاستراتيجي، وتوظيف نتائجه في تحسين وتطوير الأداء المدرسي" }
+                ],
+                evidences: [
+                    "وجود خطة للتقويم الذاتي تتضمن المجالات وأدوات جمع البيانات والمسؤوليات.",
+                    "توافر تقرير تقويم ذاتي يتضمن تحليلًا لمستوى الأداء مدعومًا بالشواهد والبيانات.",
+                    "وجود مصفوفة تربط نتائج التقويم الذاتي بأولويات التحسين في الخطة المدرسية.",
+                    "توثيق اجتماعات فريق التقويم الذاتي بمحاضر رسمية وتحديد فرص التطوير.",
+                    "مقارنة نتائج التقويم الذاتي في الفترات المختلفة لتحديد مسار التحسن."
+                ],
+                impacts: [
+                    "رفع كفاءة التخطيط المدرسي وتعزيز الترابط بين التشخيص والتنفيذ.",
+                    "توجيه الموارد والجهود نحو الأولويات الأكثر احتياجًا للتحسين.",
+                    "تعزيز ثقافة التقويم الذاتي والمساءلة المهنية بين أعضاء المجتمع المدرسي.",
+                    "تحسين توجيه برامج الإنماء المهني وفق الاحتياجات الفعلية."
+                ],
+                notes: [
+                    "تتسم إجراءات العمل بالحرص على التطوير، وتبرز الحاجة لتعزيز الربط بين النتائج والتخطيط.",
+                    "يلاحظ وجود اهتمام بتجميع بيانات الأداء، مع أهمية تطوير آليات تحليلها واستخلاص المؤشرات."
+                ],
+                supports: [
+                    "مناقشة آلية تنفيذ التقويم الذاتي ومراجعة خطوات جمع البيانات وتحليلها.",
+                    "تقديم نموذج تنظيمي لربط نتائج التقويم الذاتي بأولويات الخطة المدرسية.",
+                    "توجيه فريق التقويم الذاتي إلى تنويع مصادر الشواهد وأدوات التحقق."
+                ],
+                recommendations: [
+                    "استكمال توثيق جميع عمليات التقويم الذاتي وفق خطة زمنية محددة.",
+                    "ربط كل أولوية تطويرية بنتيجة محددة من نتائج التقويم الذاتي وتحديد مسؤول التنفيذ."
                 ]
             },
             {
                 id: 2,
-                domain: "قيادة التعليم والتعلم",
-                title: "البند (2): قيادة عمليات التعليم والتعلم",
+                name: "2. تفعيل التخطيط في تحسين وتطوير الأداء المدرسي، ونواتج تعلم الطلبة",
                 indicators: [
-                    {
-                        code: "2.1",
-                        text: "يتابع انتظام سير العملية التعليمية وتفعيل زمن التعلم الفعلي داخل الغرف الصفية.",
-                        focus: "متابعة انتظام سير العملية التعليمية وتفعيل زمن التعلم الفعلي داخل الغرف الصفية",
-                        evidences: [
-                            "[وثائقي] سجل المتابعة اليومية لانتظام الحصص الدراسية وسجل حصص الاحتياط واستثمارها التعليمي.",
-                            "[ميداني] جولات المتابعة الصباحية والصفية لرصد انضباط بداية الحصص واستثمار زمن التعلم.",
-                            "[رقمي] تقارير الحضور والانضباط اليومي في البوابة التعليمية وجداول التوزيع."
-                        ]
-                    }
+                    { id: 1, text: "١- يقود بناء وتحديث رؤية المدرسة ورسالتها بمشاركة أعضاء المجتمع المدرسي وأولياء الأمور، بما يتوافق مع أهداف التعلم" },
+                    { id: 2, text: "٢- يوجه ويشارك في إعداد خطة مدرسية واقعية ومرنة وشاملة تتكامل مع الخطط المدرسية الأخرى" },
+                    { id: 3, text: "٣- يتابع أعضاء المجتمع المدرسي في تنفيذ الإجراءات، وتقييم أهداف الخطة المدرسية والاستفادة من نتائجها في التحسين والتطوير المستمر" },
+                    { id: 4, text: "٤- يتابع أثر تنفيذ الخطط المدرسية (الخطة المدرسية، خطة الإنماء المهني، خطط المناهج الدراسية، الخ) في تحسين وتطوير الأداء المدرسي" },
+                    { id: 5, text: "٥- يُعزز الإبداع والابتكار في المجتمع المدرسي، ويحفز المجيدين منهم" }
+                ],
+                evidences: [
+                    "وثيقة رؤية ورسالة المدرسة المعتمدة ومحاضر مشاركة المجتمع في بنائها.",
+                    "وجود خطة مدرسية تتضمن أهدافًا واضحة ومؤشرات أداء ومستهدفات زمنية.",
+                    "سجلات متابعة تنفيذ البرامج والأنشطة المرتبطة بأهداف الخطة المدرسية.",
+                    "تقارير تحليل مستوى الإنجاز مقارنة بالمستهدف الزمني والموضوعي."
+                ],
+                impacts: [
+                    "توحيد توجهات المجتمع المدرسي نحو أهداف مشتركة وقابلة للقياس.",
+                    "رفع كفاءة استثمار الوقت والإمكانات في تنفيذ الأولويات المدرجة.",
+                    "تحسين متابعة الإنجاز واتخاذ الإجراءات التصحيحية في الوقت المناسب."
+                ],
+                notes: [
+                    "يلاحظ وجود اهتمام بالتخطيط المدرسي، مع أهمية تعزيز ثقافة التخطيط القائم على النتائج.",
+                    "تبرز الحاجة إلى توحيد آليات متابعة تنفيذ الخطط بين الفرق المعنية."
+                ],
+                supports: [
+                    "مناقشة آليات بناء الأهداف الإجرائية القابلة للقياس والمتابعة.",
+                    "تقديم نموذج لربط الأهداف بالمؤشرات والمستهدفات الزمنية."
+                ],
+                recommendations: [
+                    "مراجعة أهداف الخطة والتأكد من وضوحها وقابليتها للقياس والتحقق.",
+                    "استكمال مؤشرات الأداء والمستهدفات الزمنية لجميع البرامج والأنشطة."
                 ]
             },
             {
                 id: 3,
-                domain: "التحصيل الدراسي والتقويم",
-                title: "البند (3): متابعة التحصيل الدراسي ونواتج التعلم",
+                name: "3. الإشراف على عمليتي التعليم والتعلم بما يدعم تعلم الطلبة، ويراعي التمايز بينهم",
                 indicators: [
-                    {
-                        code: "3.1",
-                        text: "يُحلل نتائج التحصيل الدراسي للطلبة بدقة ويقارنها بالمستهدفات والمؤشرات الوطنية.",
-                        focus: "تحليل نتائج التحصيل الدراسي للطلبة ومقارنتها بالمستهدفات والمؤشرات الوطنية",
-                        evidences: [
-                            "[رقمي] تقارير تحليل النتائج الفصلية والنهائية المستخرجة من البوابة التعليمية والرسوم البيانية المقارنة.",
-                            "[وثائقي] دراسة تحليلية لمستويات الأداء في المواد الدراسية ومقارنتها بالأعوام السابقة والمؤشرات الوطنية.",
-                            "[ميداني] مناقشة نتائج التحليل الإحصائي مع المعلمين الأوائل لتحديد المواد والصفوف ذات الأولوية."
-                        ]
-                    }
+                    { id: 1, text: "١- يخطط وينفذ زيارات إشرافية مشتركة ومتكاملة مع المعلمين الأوائل، بما يضمن شمولية أعضاء الهيئة التعليمية" },
+                    { id: 2, text: "٢- يقيم بنود استمارة الزيارة الإشرافية بموضوعية، ويقدم توصيات إجرائية ويتابع تنفيذها" },
+                    { id: 3, text: "٣- يتابع فاعلية أساليب التدريس، لتحقيق أهداف المناهج الدراسية، والتمايز بين الطلبة" },
+                    { id: 4, text: "٤- يتابع أثر الإجراءات العلاجية والإثرائية في تحسين وتطوير نواتج تعلم الطلبة" },
+                    { id: 5, text: "٥- يوظف نتائج البحوث العلمية والأساليب الإشرافية المتنوعة ويتابع أثرها في تحسين وتطوير الأداء المدرسي" }
+                ],
+                evidences: [
+                    "خطة الزيارات الإشرافية المشتركة مع المعلمين الأوائل وسجلات المتابعة.",
+                    "استمارات الزيارة المكتملة المتضمنة أدلة وملاحظات وتوصيات إجرائية.",
+                    "نماذج من الخطط العلاجية والإثرائية المعتمدة ومتابعة تنفيذها."
+                ],
+                impacts: [
+                    "تعزيز جودة الممارسات التدريسية وارتباطها المباشر بأهداف التعلم.",
+                    "تحسين فرص التعلم بما يتناسب مع الفروق الفردية بين الطلبة.",
+                    "رفع كفاءة متابعة أداء المعلمين وتطوير ممارساتهم الصفية."
+                ],
+                notes: [
+                    "يلاحظ اهتمام الإدارة بمتابعة العملية التعليمية، وتبرز أهمية تعزيز متابعة أثر الممارسات التدريسية.",
+                    "تتطلب بعض التوصيات مزيدًا من التحديد الإجرائي لتسهيل متابعة تنفيذها."
+                ],
+                supports: [
+                    "مناقشة آلية تنظيم الزيارات الإشرافية المشتركة وتوثيقها.",
+                    "تقديم تغذية راجعة حول موضوعية تقدير المؤشرات وتقديم التوصيات."
+                ],
+                recommendations: [
+                    "استكمال تنفيذ خطة الزيارات الإشرافية وفق الأولويات المحددة.",
+                    "تحديد إجراءات متابعة دقيقة لكل توصية إشرافية مقدمة للمعلم."
+                ]
+            },
+            {
+                id: 4,
+                name: "4. تنفيذ برامج إنماء مهني لأعضاء الهيئة التعليمية، ومتابعة أثرها في تحسين الممارسات التدريسية، ونواتج تعلم الطلبة",
+                indicators: [
+                    { id: 1, text: "١- يوفر فرعاً وبرامج إنماء مهني متنوعة لتلبية الاحتياجات التدريبية تسهم في تطوير الكفايات المهنية لأعضاء الهيئة التعليمية" },
+                    { id: 2, text: "٢- يشارك بفاعلية في برامج الإنماء المهني ويوظفها لتطوير مهاراته القيادية والإشرافية" },
+                    { id: 3, text: "٣- يوظف ما يكتسبه من تعلم مهني في تحسين وتطوير الأداء المدرسي" },
+                    { id: 4, text: "٤- يعزز ثقافة التعلم المهني المستمر من خلال دعم المبادرات المهنية وتبادل الخبرات والبحوث الإجرائية" },
+                    { id: 5, text: "٥- يقيس أثر برامج الإنماء المهني في تطوير أداء جميع أعضاء الهيئة التعليمية وتحسين تعلم الطلبة" }
+                ],
+                evidences: [
+                    "خطة إنماء مهني مبنية على تحليل الاحتياجات التدريبية المرصودة.",
+                    "سجل البرامج والورش التدريبية المنفذة وتقارير تقييمها.",
+                    "شواهد توظيف التعلم المهني في تحسين نواتج تعلم الطلبة."
+                ],
+                impacts: [
+                    "تطوير الكفايات المهنية لأعضاء الهيئة التعليمية بفاعلية.",
+                    "تعزيز قدرة المعلمين على توظيف الاستراتيجيات الحديثة.",
+                    "رفع مستوى تبادل الخبرات والممارسات الناجحة بالمدرسة."
+                ],
+                notes: [
+                    "يلاحظ وجود اهتمام بتنفيذ البرامج التدريبية، وتبرز أهمية التركيز على قياس أثرها."
+                ],
+                supports: [
+                    "تقديم نموذج لتحليل الاحتياجات التدريبية وربطها بالزيارات.",
+                    "مناقشة آليات ربط التدريب بالفجوات المهنية المرصودة."
+                ],
+                recommendations: [
+                    "تحديث خطة الإنماء المهني وفق نتائج تحليل الاحتياجات الفعلية.",
+                    "متابعة توظيف المهارات المكتسبة في الميدان المدرسي."
+                ]
+            },
+            {
+                id: 5,
+                name: "5. الإشراف على مجتمعات التعلم المهنية، وتبادل الخبرات التعليمية في تطوير ممارسات التدريس، وتعلم الطلبة",
+                indicators: [
+                    { id: 1, text: "١- يشرف على بناء مجتمعات التعلم المهنية وفق احتياجات أعضاء الهيئة التعليمية" },
+                    { id: 2, text: "٢- يشرف على تفعيل مجتمعات تعلم مهنية داخل المدرسة بما يدعم استدامتها، وتحسين الممارسات التعليمية، ورفع نواتج تعلم الطلبة" },
+                    { id: 3, text: "٣- يشرف على تفعيل مجتمعات تعلم مهنية مع المدارس الأخرى لتبادل الخبرات وتحسين الممارسات التعليمية ومعالجة التحديات المشتركة" },
+                    { id: 4, text: "٤- يشرف على توظيف مخرجات مجتمعات التعلم المهنية في تطوير الأداء التدريسي وتحسين جودة التعليم والتعلم داخل المدرسة" },
+                    { id: 5, text: "٥- يقيس أثر مجتمعات التعلم المهنية على تطوير أداء أعضاء الهيئة التعليمية، وتحسين نواتج تعلم الطلبة" }
+                ],
+                evidences: [
+                    "وثائق تشكيل مجتمعات التعلم المهنية وخطة عملها السنوية.",
+                    "محاضر اجتماعات المجتمعات المهنية وسجلات تبادل الخبرات."
+                ],
+                impacts: [
+                    "تعزيز ثقافة العمل التعاوني وتبادل الخبرات بين المعلمين.",
+                    "تطوير الممارسات التدريسية بصورة مستمرة ومستدامة."
+                ],
+                notes: [
+                    "يلاحظ وجود فرص واعدة لتبادل الخبرات المهنية تحتاج لمزيد من التنظيم."
+                ],
+                supports: [
+                    "مناقشة آليات بناء مجتمعات تعلم مهنية وفق الاحتياجات."
+                ],
+                recommendations: [
+                    "تنظيم الاجتماعات وفق خطة عمل واضحة وتوثيق مخرجاتها بدقة."
+                ]
+            },
+            {
+                id: 6,
+                name: "6. توظيف وإدارة الأجهزة والوسائل التعليمية، ومرافق المبنى المدرسي",
+                indicators: [
+                    { id: 1, text: "١- يهيئ المرافق المدرسية ويُتابع الالتزام بالاشتراطات الصحية بما يخدم تعلم الطلبة، بمن فيهم الطلبة ذوي الإعاقة / الاحتياجات الخاصة" },
+                    { id: 2, text: "٢- يتابع توافر متطلبات الأمن والسلامة في المختبرات المدرسية، مركز مصادر التعلم... الخ، ومدى التزام مالكي وسائقي وسائل النقل المدرسية باشتراطات بنود العقود المبرمة" },
+                    { id: 3, text: "٣- يتابع نظافة المبنى المدرسي وصيانته بصورة منتظمة، ويعمل على معالجة التحديات المرتبطة بالمرافق والتجهيزات المدرسية" },
+                    { id: 4, text: "٤- يتابع توفير وصيانة الأجهزة والوسائل التعليمية بما يضمن استدامتها" },
+                    { id: 5, text: "٥- يتابع توظيف مرافق المبنى المدرسي وتجهيزاته في دعم عمليتي التعليم والتعلم" }
+                ],
+                evidences: [
+                    "سجلات حصر مرافق المبنى المدرسي وتقارير متابعة الصيانة الدورية.",
+                    "قوائم التحقق من متطلبات الأمن والسلامة وفحص المختبرات."
+                ],
+                impacts: [
+                    "تعزيز سلامة الطلبة والعاملين في البيئة المدرسية.",
+                    "تحسين جاهزية المرافق لدعم عمليات التعليم والتعلم."
+                ],
+                notes: [
+                    "يلاحظ الاهتمام بتهيئة البيئة المدرسية، وتبرز أهمية تعزيز التوثيق الدوري."
+                ],
+                supports: [
+                    "تقديم نموذج لمتابعة الصيانة الوقائية وعقود النقل المدرسي."
+                ],
+                recommendations: [
+                    "استكمال تحديث سجل حصر المرافق والأجهزة وإعداد جدول صيانة دوري."
+                ]
+            },
+            {
+                id: 7,
+                name: "7. إدارة موارد المدرسة وفق أولوياتها، واحتياجات الطلبة بما يدعم عمليات التدريس والتعلم",
+                indicators: [
+                    { id: 1, text: "١- يحدد الاحتياجات الداعمة لعمليتي التعليم والتعلم" },
+                    { id: 2, text: "٢- يتابع توظيف الموارد المالية، وتوثيق مصروفاتها بما يتماشى مع أنظمة الصرف المتبعة" },
+                    { id: 3, text: "٣- يوظف الموارد والتقنيات والبرامج الالكترونية بما يدعم عمليتي التعليم والتعلم" },
+                    { id: 4, text: "٤- يتابع توزيع الأدوار والمسئوليات بين العاملين وفقاً لمهامهم الوظيفية" },
+                    { id: 5, text: "٥- يعزز القدرات والابتكارات والمبادرات التطويرية بما يخدم تعلم الطلبة وفق الموارد والإمكانات المتاحة" }
+                ],
+                evidences: [
+                    "سجل حصر الاحتياجات المدرسية وخطة توزيع الموارد وفق الأولويات.",
+                    "سجلات توثيق المصروفات والإيرادات وفق الأنظمة المتبعة."
+                ],
+                impacts: [
+                    "تعزيز كفاءة استثمار الموارد والإمكانات المدرسية المتاحة.",
+                    "توجيه الإنفاق نحو الاحتياجات الأكثر ارتباطًا بتعلم الطلبة."
+                ],
+                notes: [
+                    "يلاحظ توفر إمكانات يمكن استثمارها بصورة أوسع لدعم البرامج المدرسية."
+                ],
+                supports: [
+                    "مناقشة آليات تحديد أولويات الاحتياجات وتوزيع الموارد."
+                ],
+                recommendations: [
+                    "تحديث سجل الاحتياجات بصورة دورية وترتيب الأولويات بدقة."
+                ]
+            },
+            {
+                id: 8,
+                name: "8. تفعيل المجالس واللجان والفرق المدرسية في اتخاذ القرارات وتحسين الأداء المدرسي",
+                indicators: [
+                    { id: 1, text: "١- يشكل المجالس واللجان والفرق المدرسية وفق الدليل المعتمد" },
+                    { id: 2, text: "٢- يفعل العمل التعاوني بين المجالس واللجان والفرق المدرسية" },
+                    { id: 3, text: "٣- يعمل على رفع إنتاجية فرق العمل ويعزز مستوى كفاءتها" },
+                    { id: 4, text: "٤- يتابع تنفيذ مهام واختصاصات المجالس واللجان والفرق المدرسية" },
+                    { id: 5, text: "٥- يشارك في أعمال المجالس واللجان والفرق المدرسية ويتابع تنفيذ قراراتها" }
+                ],
+                evidences: [
+                    "قرارات تشكيل المجالس واللجان والفرق المدرسية وفق الدليل المعتمد.",
+                    "محاضر الاجتماعات الدورية وسجلات متابعة تنفيذ القرارات."
+                ],
+                impacts: [
+                    "تعزيز العمل المؤسسي والتشاركي ورفع كفاءة اتخاذ القرارات.",
+                    "توزيع المسؤوليات وتحسين استثمار الخبرات المتاحة."
+                ],
+                notes: [
+                    "يلاحظ وجود فرص لتعزيز التكامل بين فرق العمل المدرسية."
+                ],
+                supports: [
+                    "مراجعة آلية تشكيل المجالس واللجان وتقديم نماذج خطط عمل."
+                ],
+                recommendations: [
+                    "استكمال تشكيل المجالس واللجان وتحديد مهام واختصاصات كل فريق بوضوح."
+                ]
+            },
+            {
+                id: 9,
+                name: "9. تفعيل الشراكة مع أولياء الأمور والمجتمع لدعم تعلم الطلبة",
+                indicators: [
+                    { id: 1, text: "١- يوظف البيانات والتقارير المدرسية في توجيه فرص الشراكة مع أولياء الأمور والمجتمع" },
+                    { id: 2, text: "٢- يبني شراكات مع أولياء الأمور والمجتمع مرتبطة بأولويات تعلم الطلبة، وتطوير الأداء المدرسي" },
+                    { id: 3, text: "٣- يتابع فاعلية وأثر برامج الشراكة بين المدرسة، وأولياء الأمور والمجتمع" },
+                    { id: 4, text: "٤- يمكن أولياء الأمور من دعم تعلم أبنائهم، ومتابعة تقدمهم الدراسي" },
+                    { id: 5, text: "٥- يوثق الممارسات الناجحة في الشراكة مع أولياء الأمور والمجتمع" }
+                ],
+                evidences: [
+                    "خطة الشراكة المدرسية مع أولياء الأمور وقاعدة بيانات جهات الشراكة.",
+                    "محاضر اجتماعات مجلس أولياء الأمور وسجلات التواصل."
+                ],
+                impacts: [
+                    "تعزيز التواصل الفاعل بين المدرسة والأسرة لدعم تعلم الطلبة.",
+                    "رفع مستوى مشاركة أولياء الأمور في متابعة تقدم أبنائهم الدراسي."
+                ],
+                notes: [
+                    "يلاحظ وجود فرص لتعزيز مشاركة أولياء الأمور في تطوير البرامج."
+                ],
+                supports: [
+                    "مناقشة آليات بناء خطة شراكة قائمة على احتياجات الطلبة."
+                ],
+                recommendations: [
+                    "تحديث خطة الشراكة وفق احتياجات الطلبة وتعزيز انتظام اجتماعات المجلس."
+                ]
+            },
+            {
+                id: 10,
+                name: "10. الحوكمة وفق الأدوار والمسؤوليات",
+                indicators: [
+                    { id: 1, text: "١- يطبق إجراءات إدارية موثقة على أعضاء المجتمع المدرسي" },
+                    { id: 2, text: "٢- يشرف ويتابع انتظام وانضباط الكوادر العاملة والطلبة وفق القوانين واللوائح والأنظمة المعتمدة" },
+                    { id: 3, text: "٣- يشرف على تأدية جميع فعاليات الطابور المدرسي وفق اللائحة المعتمدة" },
+                    { id: 4, text: "٤- يُعزز مبادئ الحوكمة (النزاهة، الشفافية، المساءلة والالتزام بالقوانين والأنظمة واللوائح والقرارات المنظمة للعمل)" },
+                    { id: 5, text: "٥- يشرف ويتابع على توزيع أنصبة المواد الدراسية بين المعلمين بعدالة" }
+                ],
+                evidences: [
+                    "سجلات إدارية منظمة توثق الإجراءات المتخذة وقرارات توزيع المهام.",
+                    "سجلات متابعة انتظام الدوام والانضباط المدرسي."
+                ],
+                impacts: [
+                    "تعزيز وضوح الأدوار والمسؤوليات ورفع مستوى الانضباط المؤسسي.",
+                    "تحقيق العدالة في توزيع الأعباء والمهام بين العاملين."
+                ],
+                notes: [
+                    "يلاحظ أهمية تعزيز توحيد الإجراءات الإدارية بين مختلف الوحدات."
+                ],
+                supports: [
+                    "مراجعة آليات توزيع الأدوار والمسؤوليات وتنظيم المهام اليومية."
+                ],
+                recommendations: [
+                    "تحديث سجلات توزيع الأدوار والمسؤوليات وتعزيز توثيق الإجراءات الإدارية."
+                ]
+            },
+            {
+                id: 11,
+                name: "11. الالتزام بأخلاقيات المهنة والقوانين والأنظمة واللوائح والقرارات المنظمة للعمل",
+                indicators: [
+                    { id: 1, text: "١- يلتزم بأخلاقيات مهنة التعليم، والمحافظة على سرية المعلومات واحترام حقوق العاملين والطلبة وأولياء الأمور" },
+                    { id: 2, text: "٢- يتقبل التوجهات والملاحظات الصادرة من المسؤول المباشر والمشرف واللجان الزائرة والالتزام بتنفيذها" },
+                    { id: 3, text: "٣- يسهم في نشر ثقافة العمل بروح الفريق، وتعزيز بيئة مدرسية إيجابية وآمنة وداعمة للطلبة" },
+                    { id: 4, text: "٤- يوفر البيانات والتقارير المتعلقة بالأداء المدرسي للجهات ذات العلاقة، وفقا للقوانين والأنظمة واللوائح والقرارات المنظمة للعمل" },
+                    { id: 5, text: "٥- يشرف على مشاركة نتائج التقويم للطلبة وأولياء أمورهم وفقاً والقوانين والأنظمة واللوائح والقرارات الصادرة في هذا الشأن" }
+                ],
+                evidences: [
+                    "شواهد الالتزام بالتعليمات واللوائح المنظمة للعمل وسجلات حفظ الوثائق.",
+                    "محاضر الاجتماعات التي توضح مناقشة التوجيهات والملاحظات."
+                ],
+                impacts: [
+                    "تعزيز الثقة بين المدرسة والمجتمع المدرسي وترسيخ المسؤولية المهنية.",
+                    "حماية خصوصية المعلومات والبيانات وتعزيز الشفافية والموثوقية."
+                ],
+                notes: [
+                    "يلاحظ أهمية تعزيز ثقافة المسؤولية المهنية لدى جميع العاملين."
+                ],
+                supports: [
+                    "مناقشة مبادئ أخلاقيات مهنة التعليم وأهمية المحافظة على السرية."
+                ],
+                recommendations: [
+                    "تعزيز الالتزام بأخلاقيات المهنة واللوائح المنظمة للعمل واستكمال توثيق التوجيهات."
                 ]
             }
-            // يمكنك إضافة باقي البنود الـ 11 هنا بنفس الهيكل...
         ];
 
-        // دالة تعبئة القائمة الأولى (البنود)
-        function populateCriteriaDropdown() {
-            const select = document.getElementById('build-criterion');
-            select.innerHTML = '';
-            OFFICIAL_FRAMEWORK.forEach(crit => {
-                const option = document.createElement('option');
-                option.value = crit.id;
-                option.textContent = crit.title;
-                select.appendChild(option);
+        // DOM Elements
+        const selectBand = document.getElementById('selectBand');
+        const selectIndicator = document.getElementById('selectIndicator');
+        const selectGrade = document.getElementById('selectGrade');
+        const selectEvidence = document.getElementById('selectEvidence');
+        const selectImpact = document.getElementById('selectImpact');
+        const selectNote = document.getElementById('selectNote');
+        const selectSupport = document.getElementById('selectSupport');
+        const selectRecommendation = document.getElementById('selectRecommendation');
+        const previewText = document.getElementById('previewText');
+
+        const field1 = document.getElementById('field1');
+        const field2 = document.getElementById('field2');
+        const field3 = document.getElementById('field3');
+        const field4 = document.getElementById('field4');
+        const field5 = document.getElementById('field5');
+
+        // Populate Bands
+        function initBands() {
+            selectBand.innerHTML = '<option value="">-- اختر البند الرئيسي من الاستمارة --</option>';
+            supervisoryData.forEach(band => {
+                const opt = document.createElement('option');
+                opt.value = band.id;
+                opt.textContent = band.name;
+                selectBand.appendChild(opt);
             });
-            onCriterionChange();
         }
 
-        // عند تغيير البند
-        function onCriterionChange() {
-            const critId = parseInt(document.getElementById('build-criterion').value);
-            const crit = OFFICIAL_FRAMEWORK.find(c => c.id === critId);
+        // When Band changes, populate its 5 sub-indicators and general dropdowns
+        selectBand.addEventListener('change', function() {
+            const bandId = parseInt(this.value);
+            selectIndicator.innerHTML = '<option value="">-- اختر المؤشر الفرعي --</option>';
+            selectIndicator.disabled = true;
 
-            // تحديث نص المؤشرات (نجمعها في نص واحد للعرض)
-            const focusTexts = crit.indicators.map(ind => ind.focus).join(' - ');
-            document.getElementById('indicator-text').textContent = focusTexts || 'لا توجد مؤشرات مسجلة.';
+            if (!bandId) return;
 
-            // تحديث قائمة الأدلة (نجمع أدلة كل المؤشرات التابعة للبند)
-            const evSelect = document.getElementById('build-evidence');
-            evSelect.innerHTML = '';
-            let allEvidences = [];
-            crit.indicators.forEach(ind => {
-                allEvidences = allEvidences.concat(ind.evidences);
-            });
-            
-            if (allEvidences.length === 0) {
-                const option = document.createElement('option');
-                option.textContent = 'لا توجد أدلة مسجلة';
-                evSelect.appendChild(option);
-            } else {
-                allEvidences.forEach(ev => {
-                    const option = document.createElement('option');
-                    option.value = ev;
-                    option.textContent = ev;
-                    evSelect.appendChild(option);
+            const band = supervisoryData.find(b => b.id === bandId);
+            if (band) {
+                band.indicators.forEach(ind => {
+                    const opt = document.createElement('option');
+                    opt.value = ind.id;
+                    opt.textContent = ind.text;
+                    selectIndicator.appendChild(opt);
                 });
+                selectIndicator.disabled = false;
+
+                // Populate shared dropdowns for this band
+                populateDropdown(selectEvidence, band.evidences);
+                populateDropdown(selectImpact, band.impacts);
+                populateDropdown(selectNote, band.notes);
+                populateDropdown(selectSupport, band.supports);
+                populateDropdown(selectRecommendation, band.recommendations);
             }
+            updatePreview();
+        });
 
-            generateStatement();
-        }
-
-        // توليد النص بناءً على الاختيارات
-        function generateStatement() {
-            const critId = parseInt(document.getElementById('build-criterion').value);
-            const rating = document.getElementById('build-rating').value;
-            const evidence = document.getElementById('build-evidence').value;
-            const textarea = document.getElementById('build-statement');
-            const btnText = document.getElementById('btn-add-text');
-            const btnAdd = document.getElementById('btn-add');
-
-            const crit = OFFICIAL_FRAMEWORK.find(c => c.id === critId);
-            if (!crit) return;
-            
-            const ind = crit.indicators[0]; // نستخدم المؤشر الأول كنص أساسي
-            const ratingLabel = document.getElementById('build-rating').options[document.getElementById('build-rating').selectedIndex].text;
-
-            let statement = '';
-            
-            if (rating === '1' || rating === '2') {
-                // توجيه إلى الإجادة
-                btnText.textContent = 'إضافة إلى: جوانب الإجادة';
-                btnAdd.className = 'px-6 py-3 rounded-xl bg-brand hover:bg-brand-dark text-white font-bold text-sm shadow-md transition flex-[2] text-center flex items-center justify-center gap-2';
-                
-                statement = `يُظهر الأداء تميزاً في (${crit.domain}) من خلال: ${ind.text} ويتضح ذلك جلياً من خلال الأدلة المتمثلة في: ${evidence}`;
-            } else {
-                // توجيه إلى التطوير
-                btnText.textContent = 'إضافة إلى: الجوانب التي تحتاج إلى تطوير';
-                btnAdd.className = 'px-6 py-3 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-sm shadow-md transition flex-[2] text-center flex items-center justify-center gap-2';
-                
-                statement = `على الرغم من الجهود المبذولة في (${crit.domain})، إلا أن هناك حاجة لتطوير الأداء فيما يتعلق بـ: ${ind.text}، ويتضح ذلك من خلال: ${evidence}`;
-            }
-
-            textarea.value = statement;
-        }
-
-        // إضافة العبارة إلى الحقل المستهدف
-        function addToTarget() {
-            const statement = document.getElementById('build-statement').value.trim();
-            if (!statement) {
-                showToast('يرجى كتابة أو توليد عبارة أولاً.', 'error');
-                return;
-            }
-
-            const rating = document.getElementById('build-rating').value;
-            const isExcellence = (rating === '1' || rating === '2');
-            
-            const targetId = isExcellence ? 'text-excellence' : 'text-improvement';
-            const targetCountId = isExcellence ? 'count-excellence' : 'count-improvement';
-            const targetArea = document.getElementById(targetId);
-            
-            // التحقق من الحد الأقصى 1000 حرف
-            if ((targetArea.value.length + statement.length + 2) > 1000) {
-                showToast('عذراً، تم الوصول للحد الأقصى (1000 حرف) لهذا الحقل. يرجى النسخ والمسح لإضافة المزيد.', 'warning');
-                return;
-            }
-
-            // إضافة النص مع سطر جديد
-            if (targetArea.value.length > 0) {
-                targetArea.value += '\n\n'; // فاصل بين العبارات
-            }
-            targetArea.value += statement;
-            
-            // تحديث عداد الأحرف
-            updateCount(targetId, targetCountId);
-            
-            // تمرير الشاشة للحقل المستهدف
-            targetArea.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            showToast(isExcellence ? 'تمت الإضافة إلى جوانب الإجادة بنجاح' : 'تمت الإضافة إلى جوانب التطوير بنجاح', 'success');
-            
-            // مسح مربع النص في المنشئ استعداداً للبند التالي
-            document.getElementById('build-statement').value = '';
-        }
-
-        // دوال مساعدة: عداد الأحرف، المسح، والنسخ
-        function updateCount(textareaId, countId) {
-            const val = document.getElementById(textareaId).value;
-            document.getElementById(countId).textContent = `${val.length} / 1000`;
-            
-            // تغيير اللون إذا اقترب من الحد الأقصى
-            if (val.length >= 950) {
-                document.getElementById(countId).classList.add('text-red-500', 'bg-red-50');
-            } else {
-                document.getElementById(countId).classList.remove('text-red-500', 'bg-red-50');
-            }
-        }
-
-        function clearField(textareaId, countId) {
-            if(confirm('هل أنت متأكد من مسح محتوى هذا الحقل بالكامل؟')) {
-                document.getElementById(textareaId).value = '';
-                updateCount(textareaId, countId);
-            }
-        }
-
-        function copyField(textareaId) {
-            const text = document.getElementById(textareaId).value;
-            if (!text) {
-                showToast('هذا الحقل فارغ!', 'warning');
-                return;
-            }
-            navigator.clipboard.writeText(text).then(() => {
-                showToast('تم نسخ الحقل إلى الحافظة بنجاح', 'success');
-            }).catch(err => {
-                showToast('فشل في النسخ، يرجى المحاولة يدوياً', 'error');
+        function populateDropdown(selectEl, items) {
+            selectEl.innerHTML = '<option value="">-- اختر من البنك --</option>';
+            items.forEach(item => {
+                const opt = document.createElement('option');
+                opt.value = item;
+                opt.textContent = item;
+                selectEl.appendChild(opt);
             });
         }
 
-        function copyFullReport() {
-            const excellence = document.getElementById('text-excellence').value.trim();
-            const improvement = document.getElementById('text-improvement').value.trim();
-            const notes = document.getElementById('text-notes').value.trim();
+        // Event listeners for updating preview
+        [selectIndicator, selectGrade, selectEvidence, selectImpact, selectNote, selectSupport, selectRecommendation].forEach(el => {
+            el.addEventListener('change', updatePreview);
+        });
 
-            if (!excellence && !improvement && !notes) {
-                showToast('لا يوجد نص لنسخه!', 'warning');
+        document.querySelectorAll('input[name="perfType"]').forEach(radio => {
+            radio.addEventListener('change', updatePreview);
+        });
+
+        function updatePreview() {
+            const bandId = parseInt(selectBand.value);
+            const indId = parseInt(selectIndicator.value);
+            const grade = selectGrade.value;
+            const evidence = selectEvidence.value;
+            const impact = selectImpact.value;
+
+            if (!bandId || !indId) {
+                previewText.textContent = "قم بتحديد البند والمؤشر والخيارات أعلاه لتظهر المعاينة هنا...";
                 return;
             }
 
-            let fullText = '';
-            if (excellence) fullText += `أولاً: جوانب الإجادة وأدلتها:\n${excellence}\n\n`;
-            if (improvement) fullText += `ثانياً: الجوانب التي تحتاج إلى تطوير وأدلتها:\n${improvement}\n\n`;
-            if (notes) fullText += `ثالثاً: الملاحظات الإشرافية:\n${notes}\n\n`;
+            const band = supervisoryData.find(b => b.id === bandId);
+            const ind = band.indicators.find(i => i.id === indId);
 
-            navigator.clipboard.writeText(fullText.trim()).then(() => {
-                showToast('تم نسخ التقرير الإشرافي كاملاً بنجاح', 'success');
-            }).catch(err => {
-                showToast('فشل في النسخ، يرجى المحاولة يدوياً', 'error');
+            let generated = `البند: ${band.name}\nالمؤشر: ${ind.text} (التقدير: ${grade})\n`;
+            if (evidence) generated += `الدليل: ${evidence} `;
+            if (impact) generated += `الأثر: ${impact}`;
+
+            previewText.textContent = generated;
+        }
+
+        // Insert into Fields
+        document.getElementById('btnInsertExcellence').addEventListener('click', function() {
+            insertData(field1);
+        });
+
+        document.getElementById('btnInsertImprovement').addEventListener('click', function() {
+            insertData(field2);
+        });
+
+        function insertData(targetField) {
+            const bandId = parseInt(selectBand.value);
+            const indId = parseInt(selectIndicator.value);
+            const grade = selectGrade.value;
+            const evidence = selectEvidence.value;
+            const impact = selectImpact.value;
+            const note = selectNote.value;
+            const support = selectSupport.value;
+            const recommendation = selectRecommendation.value;
+
+            if (!bandId || !indId) {
+                alert("الرجاء اختيار البند والمؤشر أولاً.");
+                return;
+            }
+
+            const band = supervisoryData.find(b => b.id === bandId);
+            const ind = band.indicators.find(i => i.id === indId);
+
+            let block = `• [بند: ${band.name.split(' ')[0]}] ${ind.text} (التقدير: ${grade})\n`;
+            if (evidence) block += `  - الدليل: ${evidence}\n`;
+            if (impact) block += `  - الأثر: ${impact}\n`;
+
+            targetField.value = targetField.value ? targetField.value + "\n\n" + block : block;
+            autoResize(targetField);
+            updateCount(targetField, targetField.id.replace('field', 'count'));
+
+            // Auto-fill Note, Support, Recommendation if selected
+            if (note) {
+                field3.value = field3.value ? field3.value + "\n\n• " + note : "• " + note;
+                autoResize(field3);
+                updateCount(field3, 'count3');
+            }
+            if (support) {
+                field4.value = field4.value ? field4.value + "\n\n• " + support : "• " + support;
+                autoResize(field4);
+                updateCount(field4, 'count4');
+            }
+            if (recommendation) {
+                field5.value = field5.value ? field5.value + "\n\n• " + recommendation : "• " + recommendation;
+                autoResize(field5);
+                updateCount(field5, 'count5');
+            }
+
+            alert("تم إدراج العبارة بنجاح في الحقول المخصصة!");
+        }
+
+        // Reset Generator
+        document.getElementById('btnResetForm').addEventListener('click', function() {
+            selectBand.value = "";
+            selectIndicator.innerHTML = '<option value="">-- اختر البند أولاً --</option>';
+            selectIndicator.disabled = true;
+            selectGrade.value = "3";
+            selectEvidence.innerHTML = '<option value="">-- اختر الدليل المناسب --</option>';
+            selectImpact.innerHTML = '<option value="">-- اختر الأثر المناسب --</option>';
+            selectNote.innerHTML = '<option value="">-- اختر الملاحظة المناسبة --</option>';
+            selectSupport.innerHTML = '<option value="">-- اختر الدعم المقدم --</option>';
+            selectRecommendation.innerHTML = '<option value="">-- اختر التوصية المناسبة --</option>';
+            previewText.textContent = "قم بتحديد البند والمؤشر والخيارات أعلاه لتظهر المعاينة هنا...";
+        });
+
+        // Auto-expand Textareas & Character Count
+        function autoResize(textarea) {
+            textarea.style.height = 'auto';
+            textarea.style.height = textarea.scrollHeight + 'px';
+        }
+
+        function updateCount(textarea, countId) {
+            const countEl = document.getElementById(countId);
+            const len = textarea.value.length;
+            countEl.textContent = `1000 / ${len}`;
+            if (len > 1000) {
+                countEl.classList.add('text-red-600', 'font-bold');
+            } else {
+                countEl.classList.remove('text-red-600', 'font-bold');
+            }
+        }
+
+        document.querySelectorAll('textarea').forEach(textarea => {
+            textarea.addEventListener('input', function() {
+                autoResize(this);
+                const countId = 'count' + this.id.replace('field', '');
+                updateCount(this, countId);
             });
+        });
+
+        function copyField(fieldId) {
+            const el = document.getElementById(fieldId);
+            el.select();
+            navigator.clipboard.writeText(el.value);
+            alert("تم نسخ محتوى الحقل بنجاح!");
         }
 
-        function resetBuilder() {
-            document.getElementById('build-statement').value = '';
-            document.getElementById('build-rating').value = '1';
-            document.getElementById('build-criterion').selectedIndex = 0;
-            onCriterionChange();
+        function clearField(fieldId, countId) {
+            const el = document.getElementById(fieldId);
+            el.value = "";
+            autoResize(el);
+            updateCount(el, countId);
         }
 
-        // التنبيهات
-        function showToast(message, type = 'info') {
-            const container = document.getElementById('toast-container');
-            const colors = {
-                success: "bg-emerald-600 border-emerald-500",
-                warning: "bg-amber-500 border-amber-400",
-                error: "bg-red-600 border-red-500",
-                info: "bg-gray-800 border-gray-700"
-            };
-            const icons = {
-                success: "fa-circle-check",
-                warning: "fa-triangle-exclamation",
-                error: "fa-circle-xmark",
-                info: "fa-circle-info"
-            };
-            const toast = document.createElement("div");
-            toast.className = `pointer-events-auto px-5 py-3 rounded-xl shadow-xl border ${colors[type]} text-white flex items-center gap-3 text-sm font-semibold transition-all duration-300 transform -translate-y-2 opacity-0`;
-            toast.innerHTML = `<i class="fa-solid ${icons[type]} text-lg"></i><span>${message}</span>`;
-            container.appendChild(toast);
-            
-            // تأثير الظهور
-            setTimeout(() => {
-                toast.classList.remove('-translate-y-2', 'opacity-0');
-            }, 10);
-            
-            // الإخفاء بعد 3 ثواني
-            setTimeout(() => {
-                toast.classList.add('-translate-y-2', 'opacity-0');
-                setTimeout(() => toast.remove(), 300);
-            }, 3000);
-        }
+        // Copy All Report
+        document.getElementById('copyAllFields').addEventListener('click', function() {
+            const report = `=== تقرير الزيارة الإشرافية ===\n\n1. جوانب الإجادة:\n${field1.value}\n\n2. جوانب التحسين:\n${field2.value}\n\n3. الملاحظات:\n${field3.value}\n\n4. الدعم المقدم:\n${field4.value}\n\n5. التوصيات:\n${field5.value}`;
+            navigator.clipboard.writeText(report);
+            alert("تم نسخ التقرير الإشرافي كاملاً بنجاح!");
+        });
 
-        // التهيئة عند فتح الصفحة
-        window.onload = function() {
-            populateCriteriaDropdown();
-            updateCount('text-excellence', 'count-excellence');
-            updateCount('text-improvement', 'count-improvement');
-            updateCount('text-notes', 'count-notes');
-        };
+        // Initialize on load
+        window.addEventListener('DOMContentLoaded', () => {
+            initBands();
+        });
     </script>
 </body>
 </html>
+
